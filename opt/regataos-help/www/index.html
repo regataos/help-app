@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Centro de solução de problemas do Regata OS</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/fas-icons.js"></script>
+	<script type="text/javascript" src="js/search.js"></script>
+	<script type="text/javascript" src="js/update-css.js"></script>
+    <script type="text/javascript" src="js/translations/language/index-lang.js"></script>
+
+	<!-- Display content when everything is ready -->
+	<script type="text/javascript">
+		$(function(){
+			$("#loadscreen").fadeOut("slow");
+		});
+
+		$(function(){
+			$(".sidebar").fadeIn("slow");
+		});
+	</script>
+
+</head>
+<body>
+
+	<div class="sidebar">
+    <div class="return-sidebar2">
+        <img class="icones-menu" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta-off.png"/>
+    </div>
+    <div class="return-sidebar" onclick="back_button();">
+        <img class="icones-menu" title="Voltar" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta.png"/>
+    </div>
+	<div class="hide-sidebar" onclick="hide_sidebar();">
+		<img class="icones-menu" title="Apenas ícones" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
+	</div>
+	<div class="show-sidebar" onclick="show_sidebar();">
+		<img class="icones-menu" title="Icones e textos" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
+	</div>
+		<ul class="ul-sidebar">
+            <li class="li-sidebar solutions" onclick="go_solutions();">
+                <a class="link-items" onclick="go_solutions();">
+                    <!-- <i class="fas fa-home" style="display: none;"></i> -->
+                    <img class="icones-menu" title="Soluções prontas" style="margin-left: 3px; height: 30px;" src="images/img-sidebar/tools.png"/>
+                    <p style="margin-left: 13px;"></p>
+                </a>
+            </li>
+            <li class="li-sidebar regataos-help" onclick="go_regataoshelp();">
+                <a class="link-items" onclick="go_regataoshelp();">
+                    <!-- <i class="fas fa-home" style="display: none;"></i> -->
+                    <img class="icones-menu" title="Dicas e tutoriais" style="margin-left: 3px; height: 33px;" src="images/img-sidebar/boia.png"/>
+                    <p style="margin-left: 10px;"></p>
+                </a>
+            </li>
+            <li class="li-sidebar regataos-community" onclick="go_regataoscommunity();">
+                <a class="link-items" onclick="go_regataoscommunity();">
+                    <!-- <i class="fas fa-paint-brush" style="margin-left: 1px;" style="display: none;"></i> -->
+                    <img class="icones-menu" title="Comunidade" style="margin-left: 3px; height: 30px;" src="images/img-sidebar/chat.png"/>
+                    <p style="margin-left: 10px;"></p>
+                </a>
+            </li>
+        </ul>
+	</div>
+
+	<div class="div-iframe">
+        <iframe src="pages/solutions.html" allowfullscreen frameborder="0" class="iframe" id="main-iframe"></iframe>
+    </div>
+
+</body>
+</html>

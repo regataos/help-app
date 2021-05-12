@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#Configuration file directory
+congif_dir="$HOME/.config/regataos-help"
+
+#Check and create the Regata OS Help configuration directory
+if test ! -e "$congif_dir" ; then
+	mkdir -p "$congif_dir/"
+fi
+
+if test ! -e "/tmp/regataos-help/" ; then
+	mkdir -p "/tmp/regataos-help/"
+	ln -sf "$congif_dir" "/tmp/regataos-help/config"
+fi
+
+# Check language
+if test ! -e "/tmp/regataos-configs/config/plasma-localerc" ; then
+	mkdir -p /tmp/regataos-configs/config
+	ln -sf "$HOME/.config/plasma-localerc" "/tmp/regataos-configs/config/"
+fi
+
+regataoshelp /opt/regataos-help

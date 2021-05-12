@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Save the current state in which the user left the Regata OS Help application
+
+#Configuration file directory
+congif_dir="$HOME/.config/regataos-help"
+
+#Check and create the Regata OS Help configuration directory
+if test ! -e "$congif_dir" ; then
+	mkdir -p "$congif_dir/"
+fi
+
+if test ! -e "/tmp/regataos-help/" ; then
+	mkdir -p "/tmp/regataos-help/"
+	ln -sf "$congif_dir" "/tmp/regataos-help/config"
+fi
+
+#Save the status of the application sidebar
+function hide_sidebar() {
+	if test ! -e "$congif_dir/regataos-help.conf" ; then
+		echo "hide_sidebar=1" > "$congif_dir/regataos-help.conf"
+	else
+		if [[ $(grep -r hide_sidebar "$congif_dir/regataos-help.conf") == *"hide_sidebar=0"* ]]; then
+			sed -i 's/\(hide_sidebar=0\)/hide_sidebar=1/' "$congif_dir/regataos-help.conf"
+		elif [[ $(grep -r hide_sidebar "$congif_dir/regataos-help.conf") == *"hide_sidebar=1"* ]]; then
+			echo "Nothing to do..."
+		else
+			echo "hide_sidebar=1" >> "$congif_dir/regataos-help.conf"
+		fi
+	fi
+}
+
+function show_sidebar() {
+	if test ! -e "$congif_dir/regataos-help.conf" ; then
+		echo "hide_sidebar=0" > "$congif_dir/regataos-help.conf"
+	else
+		if [[ $(grep -r hide_sidebar "$congif_dir/regataos-help.conf") == *"hide_sidebar=1"* ]]; then
+			sed -i 's/\(hide_sidebar=1\)/hide_sidebar=0/' "$congif_dir/regataos-help.conf"
+		elif [[ $(grep -r hide_sidebar "$congif_dir/regataos-help.conf") == *"hide_sidebar=0"* ]]; then
+			echo "Nothing to do..."
+		else
+			echo "hide_sidebar=0" >> "$congif_dir/regataos-help.conf"
+		fi
+	fi
+}
+
+case $1 in
+   "-hide-sidebar") hide_sidebar
+         ;;
+   "-show-sidebar") show_sidebar
+         ;;
+   *) echo "Invalid option!"
+      exit 1
+      ;;
+esac

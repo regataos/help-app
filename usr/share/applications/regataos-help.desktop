@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name[pt_BR]=Suporte do Regata OS
+Name[pt_PT]=Suporte do Regata OS
+Name[en_US]=Regata OS Soporte
+Name=Regata OS Support
+Comment[pt_BR]=Obter suporte para o Regata OS
+Comment[pt_PT]=Obter suporte para o Regata OS
+Comment[en_US]=Get support for Regata OS
+Comment=Get support for Regata OS
+GenericName[pt_BR]=Obter suporte para o Regata OS
+GenericName[pt_PT]=Obter suporte para o Regata OS
+GenericName[en_US]=Get support for Regata OS
+GenericName=Get support for Regata OS
+Categories=Utility;
+Exec=regataos-help
+Icon=regataos-support
+StartupNotify=true
+Terminal=false
+Type=Application
+StartupWMClass=Regata OS Support
