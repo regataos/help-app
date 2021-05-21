@@ -23,12 +23,9 @@ then
         chown $user:users "$desktop_dir/Home.desktop"
     fi
 
-    # Remove some files and folders so that the configuration of the graphical environment is restored to the default
-    rm -rf "/home/$user/.local"
-    rm -rf "/home/$user/.cache"
-    rm -rf "/home/$user/.config"
-    rm -rf "/home/$user/.fonts"
-    rm -rf /home/$user/.*
+    # Remove some files so that the configuration of the graphical environment is restored to the default
+    rm -f /home/$user/.config/*rc
+    rm -f /home/$user/.config/kdeglobals
 
     # Restore some files and folders that are standard
     tar xf /opt/regataos-help/clean_home_directory.tar.xz -C /home/$user/
