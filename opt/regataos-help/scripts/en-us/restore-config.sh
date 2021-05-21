@@ -1,27 +1,45 @@
 #!/bin/sh
 
-sudo -H env DISPLAY=:0 zenity --question --text "Do you really want to restore the settings?\nThe system will restart automatically." --title "Restore default settings" --ok-label "Yes" --cancel-label "Cancel" --width 300
+sudo -H env DISPLAY=:0 zenity --question --text "Some files will also be deleted. Do you really want to restore the settings?\n\nThe system will restart automatically!" --title "Restore default settings" --ok-label "Yes" --cancel-label "Cancel" --width 300
 if [ $? -eq "0" ]
 then
+    # Get username
+    user=$(users | awk '{print $1}')
 
-    kmsg=$(users | cut -d ' ' -f 2-)
-    echo $kmsg
+	# Create desktop shortcut
+    #Find the user's desktop
+    test -f "${XDG_CONFIG_HOME:-/home/$user/.config}/user-dirs.dirs" && source "${XDG_CONFIG_HOME:-/home/$user/.config}/user-dirs.dirs"
+    desktop_dir="${XDG_DESKTOP_DIR:-/home/$user/Desktop}"
+    desktop_folder="$(echo $desktop_dir | cut -d/ -f 3-)"
+    desktop_dir="/home/$user/$desktop_folder"
 
-    sudo rm -f /home/$kmsg/.config/plasma-org.kde.plasma.desktop-appletsrc
-    sudo rm -f /home/$kmsg/.config/kdeglobals
-    cp -f /etc/xdg/kdeglobals /home/$kmsg/.config/kdeglobals
-    sudo rm -f /home/$kmsg/.config/kactivitymanagerd-statsrc
-    sudo rm -f /home/$kmsg/.config/kactivitymanagerdrc
-    sudo rm -f /home/$kmsg/.config/plasmashellrc
-    sudo rm -f /home/$kmsg/.config/startupconfig
-    sudo rm -f /home/$kmsg/.config/gwenviewrc
-    sudo rm -f /home/$kmsg/.config/systemsettingsrc
-    sudo rm -f /home/$kmsg/.config/kwinrc
-    sudo rm -f /home/$kmsg/.config/dolphinrc
-    sudo rm -f /home/$kmsg/.config/kwriterc
+    #Create desktop shortcuts only if necessary
+    if test ! -e "$desktop_dir/trash.desktop"; then
+        cp -f "/opt/regataos-help/extra/trash.desktop" "$desktop_dir/trash.desktop"
+        chown $user:users "$desktop_dir/trash.desktop"
+    fi
+    if test ! -e "$desktop_dir/Home.desktop"; then
+        cp -f "/opt/regataos-help/extra/Home.desktop" "$desktop_dir/Home.desktop"
+        chown $user:users "$desktop_dir/Home.desktop"
+    fi
 
+    # Remove some files and folders so that the configuration of the graphical environment is restored to the default
+    rm -rf "/home/$user/.local"
+    rm -rf "/home/$user/.cache"
+    rm -rf "/home/$user/.config"
+    rm -rf "/home/$user/.fonts"
+    rm -rf /home/$user/.*
+
+    # Restore some files and folders that are standard
+    tar xf /opt/regataos-help/clean_home_directory.tar.xz -C /home/$user/
+
+    # Make sure the user is the owner of the files in your home and restart the system
+    chown $user:users /home/$user/.*
+
+    # Revert any changes that have taken place at the root of the system to the default
     cp -f /opt/regataos-help/scripts/regataos-update.sh /usr/share/regataos/regataos-update.sh
 
+    sleep 1
     sudo reboot
 
 else
