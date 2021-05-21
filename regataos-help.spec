@@ -2,9 +2,9 @@
 %define service_name2 regataos-help-selectlanguage
 
 Name: regataos-help
-Version: 5.2
+Version: 5.3
 Release: 0
-Url: http://www.regataos.com.br/
+Url: https://github.com/regataos/help-app
 Summary: Problems solution of Regata OS
 Group: System/GUI/KDE
 BuildRequires: xz
@@ -21,6 +21,7 @@ Requires: regataos-base >= 20.1.2
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
 Source2: regataos-help.service
+Source3: clean_home_directory.tar.xz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -33,6 +34,9 @@ mkdir -p %{buildroot}/opt/regataos-base/
 cp -f %{SOURCE1} %{buildroot}/opt/regataos-base/regataos-help-%{version}.tar.xz
 mkdir -p %{buildroot}%{_unitdir}
 cp -f %{SOURCE2} %{buildroot}%{_unitdir}/%{service_name}.service
+
+mkdir -p %{buildroot}/opt/regataos-help/
+cp -f %{SOURCE3} %{buildroot}/opt/regataos-help/clean_home_directory.tar.xz
 
 %post
 if test -e /opt/regataos-base/regataos-help-%{version}.tar.xz ; then
@@ -64,5 +68,6 @@ update-desktop-database
 %defattr(-,root,root)
 /opt/regataos-base/regataos-help-%{version}.tar.xz
 %{_unitdir}/%{service_name}.service
+/opt/regataos-help/clean_home_directory.tar.xz
 
 %changelog
