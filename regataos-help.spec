@@ -2,7 +2,7 @@
 %define service_name2 regataos-help-selectlanguage
 
 Name: regataos-help
-Version: 5.3
+Version: 5.4
 Release: 0
 Url: https://github.com/regataos/help-app
 Summary: Problems solution of Regata OS

@@ -8,8 +8,8 @@ do
 # Select language
 function lang_clear_cache() {
 	# Clear cache
-	rm -f "/opt/regataos-help/scripts/function-scripts"
-	rm -f "/opt/regataos-help/www/js/translations/language"
+	rm -rf "/opt/regataos-help/scripts/function-scripts"
+	rm -rf "/opt/regataos-help/www/js/translations/language"
 }
 
 function lang_pt_BR() {
