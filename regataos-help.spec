@@ -17,7 +17,6 @@ Requires: magma >= 5.52.2
 Requires: regataos-base >= 20.1.2
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
-Source2: regataos-help.service
 Source3: clean_home_directory.tar.xz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
 
@@ -47,10 +46,27 @@ if test ! -e /usr/bin/regataoshelp ; then
 	ln -s /opt/magma/regataoshelp /usr/bin/regataoshelp
 fi
 
-%service_add_post regataos-help.service
-systemctl enable  regataos-help.service || true
-systemctl start   regataos-help.service || true
-systemctl restart regataos-help.service || true
+# Some changes for the new version of the Regata OS Help app
+if test -e "/etc/xdg/autostart/regataos-help-network.desktop"; then
+	# Disable obsolete systemd services
+	systemctl stop regataos-help.service || true
+	systemctl disable regataos-help.service || true
+
+	systemctl stop regataos-help-selectlanguage.service || true
+	systemctl disable regataos-help-selectlanguage.service || true
+
+	# Terminate processes that are no longer needed
+	killall regataos-help-check-network.sh
+	killall regataos-help-notifications.sh
+	killall select-language
+
+	# Remove obsolete autostart services
+	rm -f "/etc/xdg/autostart/regataos-help-network.desktop"
+	rm -f "/etc/xdg/autostart/regataos-help-notifications.desktop"
+fi
+
+# Set the graphical interface language according to user settings
+/opt/regataos-help/scripts/select-language start
 
 update-desktop-database
 
@@ -59,7 +75,6 @@ update-desktop-database
 %files
 %defattr(-,root,root)
 /opt/regataos-base/regataos-help-%{version}.tar.xz
-%{_unitdir}/%{service_name}.service
 /opt/regataos-help/clean_home_directory.tar.xz
 
 %changelog
