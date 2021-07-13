@@ -1,9 +1,0 @@
-[Unit]
-Description=Check network for Regata OS
-Before=display-manager.service
-
-[Service]
-ExecStart=/bin/sh /opt/regataos-help/scripts/regataos-help-check-network.sh
-
-[Install]
-WantedBy=graphical.target
