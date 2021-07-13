@@ -28,8 +28,6 @@ Center of problems solution of Regata OS.
 %install
 mkdir -p %{buildroot}/opt/regataos-base/
 cp -f %{SOURCE1} %{buildroot}/opt/regataos-base/regataos-help-%{version}.tar.xz
-mkdir -p %{buildroot}%{_unitdir}
-cp -f %{SOURCE2} %{buildroot}%{_unitdir}/%{service_name}.service
 
 mkdir -p %{buildroot}/opt/regataos-help/
 cp -f %{SOURCE3} %{buildroot}/opt/regataos-help/clean_home_directory.tar.xz
