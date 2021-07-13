@@ -1,8 +1,5 @@
-%define service_name regataos-help
-%define service_name2 regataos-help-selectlanguage
-
 Name: regataos-help
-Version: 5.4
+Version: 5.5
 Release: 0
 Url: https://github.com/regataos/help-app
 Summary: Problems solution of Regata OS
@@ -16,7 +13,7 @@ BuildRequires: -post-build-checks
 BuildRequires: systemd
 BuildRequires: grep
 Requires: xz
-Requires: magma >= 5.52.2-lp152.6.1
+Requires: magma >= 5.52.2
 Requires: regataos-base >= 20.1.2
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
@@ -50,15 +47,10 @@ if test ! -e /usr/bin/regataoshelp ; then
 	ln -s /opt/magma/regataoshelp /usr/bin/regataoshelp
 fi
 
-%service_add_post %{service_name}.service
-systemctl enable  %{service_name}.service || true
-systemctl start   %{service_name}.service || true
-systemctl restart %{service_name}.service || true
-
-%service_add_post %{service_name2}.service
-systemctl enable  %{service_name2}.service || true
-systemctl start   %{service_name2}.service || true
-systemctl restart %{service_name2}.service || true
+%service_add_post regataos-help.service
+systemctl enable  regataos-help.service || true
+systemctl start   regataos-help.service || true
+systemctl restart regataos-help.service || true
 
 update-desktop-database
 

@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=/opt/regataos-help/scripts/regataos-help-notifications.sh
+Exec=sudo /opt/regataos-help/scripts/select-language
 OnlyShowIn=KDE;
 Type=Service
 MimeType=
@@ -8,5 +8,5 @@ X-KDE-autostart-after=root
 X-KDE-StartupNotify=false
 X-KDE-autostart-condition=AutoStart:true
 Icon=system-run
-GenericName=regataos-help-notifications
-Name=regataos-help-notifications
+GenericName=regataos-help-select-language
+Name=regataos-help-select-language

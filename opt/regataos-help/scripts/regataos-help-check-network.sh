@@ -1,44 +1,18 @@
 #!/bin/bash
 
-cd /
-
-while :
-do
-
 # Checking internet connection
-function check_network() {
-	if ! ping -c 1 www.google.com.br ; then
+if ! ping -c 1 google.com ; then
+	sleep 2
 
-		sleep 2
-
-		if ! ping -c 1 www.google.com.br ; then
-			echo "online" > /tmp/apps-scripts/network-status.txt
-		else
-			echo "online" > /tmp/apps-scripts/network-status.txt
-		fi
-
+	if ! ping -c 1 google.com ; then
+		echo "offline" > /tmp/apps-scripts/network-status.txt
 	else
 		echo "online" > /tmp/apps-scripts/network-status.txt
 	fi
-}
 
-ps -C regataoshelp > /dev/null
-if [ $? = 0 ]
-then
-	check_network
+else
+	echo "online" > /tmp/apps-scripts/network-status.txt
 fi
 
-ps -C regataosgcs > /dev/null
-if [ $? = 0 ]
-then
-	check_network
-fi
-
-ps -C magma > /dev/null
-if [ $? = 0 ]
-then
-	check_network
-fi
-
-   sleep 3
-done
+# We're finished!
+exit 0

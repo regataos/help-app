@@ -19,4 +19,8 @@ if test ! -e "/tmp/regataos-configs/config/plasma-localerc" ; then
 	ln -sf "$HOME/.config/plasma-localerc" "/tmp/regataos-configs/config/"
 fi
 
-regataoshelp /opt/regataos-help
+# Check internet connection
+/opt/regataos-help/scripts/regataos-help-check-network.sh start
+
+# Run app
+regataoshelp /opt/regataos-help & sleep 1; /opt/regataos-help/scripts/regataos-help-notifications
