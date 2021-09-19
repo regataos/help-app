@@ -1,5 +1,5 @@
 Name: regataos-help
-Version: 5.5
+Version: 5.6
 Release: 0
 Url: https://github.com/regataos/help-app
 Summary: Problems solution of Regata OS
@@ -13,8 +13,8 @@ BuildRequires: -post-build-checks
 BuildRequires: systemd
 BuildRequires: grep
 Requires: xz
-Requires: magma >= 5.52.2
-Requires: regataos-base >= 20.1.2
+Requires: magma >= 5.54.1
+Requires: regataos-base >= 21.0.12
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
 Source3: clean_home_directory.tar.xz

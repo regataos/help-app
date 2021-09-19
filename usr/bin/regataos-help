@@ -1,16 +1,13 @@
 #!/bin/bash
 
-#Configuration file directory
-congif_dir="$HOME/.config/regataos-help"
-
 #Check and create the Regata OS Help configuration directory
-if test ! -e "$congif_dir" ; then
-	mkdir -p "$congif_dir/"
+if test ! -e "$HOME/.config/regataos-help" ; then
+	mkdir -p "$HOME/.config/regataos-help"
 fi
 
-if test ! -e "/tmp/regataos-help/" ; then
-	mkdir -p "/tmp/regataos-help/"
-	ln -sf "$congif_dir" "/tmp/regataos-help/config"
+if test ! -e "/tmp/regataos-help" ; then
+	mkdir -p "/tmp/regataos-help"
+	ln -sf "$HOME/.config/regataos-help" "/tmp/regataos-help/config"
 fi
 
 # Check language

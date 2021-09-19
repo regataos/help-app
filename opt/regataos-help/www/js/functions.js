@@ -1,58 +1,55 @@
-const exec = require('child_process').exec;
-const fs = require('fs');
-
 // Open community in browser
 function community() {
-    var comando = "xdg-open https://regataos.forumeiros.com/";
-    console.log(comando);
-    exec(comando,function(error,call,errlog){
+    const exec = require('child_process').exec;
+    var command = "xdg-open https://regataos.forumeiros.com/";
+    exec(command,function(error,call,errlog){
     });
 }
 
 // Fix network
 function fixnetwork() {
-    var comando = "sudo /opt/regataos-help/scripts/fix-network.sh";
-    console.log(comando);
-    exec(comando,function(error,call,errlog){
+    const exec = require('child_process').exec;
+    var command = "sudo /opt/regataos-help/scripts/fix-network.sh";
+    exec(command,function(error,call,errlog){
     });
 }
 
 // Fix software repos
 function fixrepos() {
-    var comando = "sudo /opt/regataos-help/scripts/fix-repos.sh";
-    console.log(comando);
-    exec(comando,function(error,call,errlog){
+    const exec = require('child_process').exec;
+    var command = "sudo /opt/regataos-help/scripts/fix-repos.sh";
+    exec(command,function(error,call,errlog){
     });
 }
 
 // Hardware info
 function hardware_info() {
-    var comando = "sleep 1; sudo /opt/regataos-help/scripts/hardware-info.sh";
-    console.log(comando);
-    exec(comando,function(error,call,errlog){
+    const exec = require('child_process').exec;
+    var command = "sleep 1; sudo /opt/regataos-help/scripts/hardware-info.sh";
+    exec(command,function(error,call,errlog){
     });
 }
 
 // Restore config
 function restore() {
-    var comando = "sudo /opt/regataos-help/scripts/restore-config.sh";
-    console.log(comando);
-    exec(comando,function(error,call,errlog){
+    const exec = require('child_process').exec;
+    var command = "sudo /opt/regataos-help/scripts/restore-config.sh";
+    exec(command,function(error,call,errlog){
     });
 }
 
 // Save the status of the application sidebar
 function hide_sidebar_shell() {
-    var comando = "/bin/bash /opt/regataos-help/scripts/regataos-help-configs -hide-sidebar";
-    console.log(comando);
-    exec(comando,function(error,call,errlog){
+    const exec = require('child_process').exec;
+    var command = "/bin/bash /opt/regataos-help/scripts/regataos-help-configs -hide-sidebar";
+    exec(command,function(error,call,errlog){
     });
 }
 
 function show_sidebar_shell() {
-    var comando = "/bin/bash /opt/regataos-help/scripts/regataos-help-configs -show-sidebar";
-    console.log(comando);
-    exec(comando,function(error,call,errlog){
+    const exec = require('child_process').exec;
+    var command = "/bin/bash /opt/regataos-help/scripts/regataos-help-configs -show-sidebar";
+    exec(command,function(error,call,errlog){
     });
 }
 
@@ -115,37 +112,27 @@ function show_sidebar2() {
 }
 
 function sidebar_start() {
-const fs = require('fs');
+    const fs = require('fs');
 
-fs.access('/tmp/regataos-help/config/regataos-help.conf', (err) => {
-if (!err) {
-    fs.readFile('/tmp/regataos-help/config/regataos-help.conf', (err, data) => {
-	if (err) throw err;
+    fs.access('/tmp/regataos-help/config/regataos-help.conf', (err) => {
+    if (!err) {
+        var read_settings = fs.readFileSync("/tmp/regataos-help/config/regataos-help.conf", "utf8");
 
-	    var data = data
-	    var status1 = "hide_sidebar=0"
-	    var status2 = "hide_sidebar=1"
+        if ((read_settings.indexOf("hide_sidebar=0") > -1) == "1") {
+            show_sidebar2();
 
-	    var showsidebar = data.indexOf(status1) > -1;
-	    var hidesidebar = data.indexOf(status2) > -1;
+        } else if ((read_settings.indexOf("hide_sidebar=1") > -1) == "1") {
+            hide_sidebar2();
 
-	    if (showsidebar == '1') {
-		    $(document).ready(function() {
-                show_sidebar2();
-		    });
-	    } else if (hidesidebar == '1') {
-		    $(document).ready(function() {
-                hide_sidebar2();
-            });
         } else {
-        
-	    }
-    });
-    return;
+            show_sidebar2();
+        }
+
+        return;
     } else {
         show_sidebar2();
     }
-});
+    });
 }
 sidebar_start();
 
