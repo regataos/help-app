@@ -70,8 +70,6 @@ a {
 
 .sidebar .ul-sidebar li {
     cursor: pointer;
-    background-color: #e5e5e5;
-    color: #d2d5da;
     font: 16px 'Roboto', sans-serif;
 	width: 0px;
     margin-top: 0px;
@@ -81,12 +79,29 @@ a {
 	padding-bottom: 14px;
 }
 
-/*
-.sidebar ul li:hover {
-    background-color: #242424;
+.sidebar .ul-sidebar li:hover .link-items {
+    border-left: 4px solid rgb(45, 120, 214) !important;
+}
+
+.sidebar-button {
+    background-color: #e5e5e5;
     color: #d2d5da;
 }
-*/
+
+.sidebar-button:hover {
+    background-color: #cacaca;
+    color: #d2d5da;
+}
+
+.sidebar-button-dark {
+    background-color: #2a2f35;
+    color: #fff;
+}
+
+.sidebar-button-dark:hover {
+    background-color: #373e46;
+    color: #fff;
+}
 
 .regataos-help {
     display: none;
@@ -125,15 +140,6 @@ a {
 	padding-top: 2px;
     padding-left: 5px;
 	padding-bottom: 2px;
-}
-
-.sidebar .ul-sidebar li:hover {
-    background-color: #cacaca;
-    color: #d2d5da;
-}
-
-.sidebar .ul-sidebar li:hover .link-items {
-    border-left: 4px solid rgb(45, 120, 214) !important;
 }
 
 .link-items:hover {
@@ -336,7 +342,7 @@ div.rede-icone-alert {
 }
 
 .rede-botao-off {
-    display: none;
+    display: block;
     text-align: center;
     font: 16px 'Roboto', sans-serif;
     width: 100px;
@@ -348,10 +354,6 @@ div.rede-icone-alert {
     box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-}
-
-.rede-botao-off:hover {
-    background-color: #b5b5b5;
 }
 
 div.repo-icone-on {
@@ -389,10 +391,6 @@ div.repo-icone-off {
     transition: all 0.3s ease-in-out;
 }
 
-.repo-botao-on:hover {
-    background-color: #b5b5b5;
-}
-
 div.restore-icon {
     display: block;
     height: 100px;
@@ -416,10 +414,6 @@ div.restore-icon {
     box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-}
-
-.restore-botao:hover {
-    background-color: #b5b5b5;
 }
 
 div.info-icon {
@@ -447,8 +441,22 @@ div.info-icon {
     transition: all 0.3s ease-in-out;
 }
 
-.info-botao:hover {
+.button {
+    color: #000;
+    background-color: #ccc;
+}
+
+.button:hover {
     background-color: #b5b5b5;
+}
+
+.button-dark {
+    color: #fff;
+    background-color: #373e46;
+}
+
+.button-dark:hover {
+    background-color: #2a2f35;
 }
 
 @-webkit-keyframes animatebottom {

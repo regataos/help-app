@@ -42,6 +42,6 @@ $(document).ready(function() {
 	//Hardware information
 	$(".info-configs").html("Obter informações detalhadas sobre o hardware");
 	$(".info-configs-desc").text("Um arquivo de texto será criado na sua pasta pessoal com informações importantes sobre o hardware.");
-	$(".info-botao").text("Informações sobre o hardware");
+	$(".info-botao").text("Informações do hardware");
 	$(".info-botao").css("width", "255px");
 });

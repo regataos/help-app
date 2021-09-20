@@ -20,7 +20,6 @@ const fs = require('fs');
 			$("div.repo-botao-on").css("display", "block")
 
 			$("div.rede-icone-off").css("display", "none")
-			$("div.rede-botao-off").css("display", "none")
 
 			$("div.repo-icone-off").css("display", "none")
 			$("div.repo-botao-off").css("display", "none")
@@ -49,7 +48,6 @@ const fs = require('fs');
 			$("div.repo-botao-on").css("display", "none")
 
 			$("div.rede-icone-off").css("display", "block")
-			$("div.rede-botao-off").css("display", "block")
 
 			$("div.repo-icone-off").css("display", "block")
 			$("div.repo-botao-off").css("display", "block")

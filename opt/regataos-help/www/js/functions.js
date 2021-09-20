@@ -1,43 +1,3 @@
-// Open community in browser
-function community() {
-    const exec = require('child_process').exec;
-    var command = "xdg-open https://regataos.forumeiros.com/";
-    exec(command,function(error,call,errlog){
-    });
-}
-
-// Fix network
-function fixnetwork() {
-    const exec = require('child_process').exec;
-    var command = "sudo /opt/regataos-help/scripts/fix-network.sh";
-    exec(command,function(error,call,errlog){
-    });
-}
-
-// Fix software repos
-function fixrepos() {
-    const exec = require('child_process').exec;
-    var command = "sudo /opt/regataos-help/scripts/fix-repos.sh";
-    exec(command,function(error,call,errlog){
-    });
-}
-
-// Hardware info
-function hardware_info() {
-    const exec = require('child_process').exec;
-    var command = "sleep 1; sudo /opt/regataos-help/scripts/hardware-info.sh";
-    exec(command,function(error,call,errlog){
-    });
-}
-
-// Restore config
-function restore() {
-    const exec = require('child_process').exec;
-    var command = "sudo /opt/regataos-help/scripts/restore-config.sh";
-    exec(command,function(error,call,errlog){
-    });
-}
-
 // Save the status of the application sidebar
 function hide_sidebar_shell() {
     const exec = require('child_process').exec;
@@ -145,25 +105,13 @@ function check_theme() {
         var read_settings = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
 
         if ((read_settings.indexOf("ColorScheme=BreezeDark") > -1) == "1") {
-            $("#loadscreen").css("background-color", "#171a21");
-            $("body").css("background-color", "#171a21");
-            $(".div1").css("background-color", "#171a21");
-            $(".div2").css("background-color", "#171a21");
-            $(".div1").css("color", "#fff");
-            $(".h2").css("color", "#fff");
-            $(".h3").css("color", "#fff");
-            $("p").css("color", "#fff");
-
+            // Side bar
             $(".sidebar").css("background-color", "#2a2f35");
             $(".sidebar").css("box-shadow", "0px 0px 3px 0px rgb(8 13 18 / 34%)");
-            $(".sidebar .ul-sidebar li").css("background-color", "#2a2f35");
             $(".link-items").css("color", "#fff");
             $(".link-items p").css("color", "#fff");
 
-            $(".button").css("background-color", "#2a2f35");
-            $(".button").css("color", "#fff");
-
-            // Images
+            // Sidebar Images
             $("img.seta-off").attr("src","file:///opt/regataos-help/www/images/img-sidebar/seta-off-dark.png");
             $("img.seta").attr("src","file:///opt/regataos-help/www/images/img-sidebar/seta-dark.png");
             $("img.sidebar-icon").attr("src","file:///opt/regataos-help/www/images/img-sidebar/hide-sidebar-dark.png");
@@ -171,18 +119,54 @@ function check_theme() {
             $("img.help").attr("src","file:///opt/regataos-help/www/images/img-sidebar/boia-dark.png");
             $("img.community").attr("src","file:///opt/regataos-help/www/images/img-sidebar/chat-dark.png");
 
-            // Hover effect
-            $(".sidebar .ul-sidebar li").hover(function(){
-                $(this).css("background-color", "#373e46");
-                }, function(){
-                $(this).css("background-color", "#2a2f35");
-            });
+            // To the main page
+            $("#loadscreen").css("background-color", "#171a21");
+            $("body").css("background-color", "#171a21");
 
-            $(".button").hover(function(){
-                $(this).css("background-color", "#333840");
-                }, function(){
-                $(this).css("background-color", "#2a2f35");
-            });
+            // For sidebar buttons
+            var option_solutions = document.getElementById("option-solutions");
+            option_solutions.classList.remove("sidebar-button");
+            option_solutions.classList.add("sidebar-button-dark");
+
+            var option_regataoshelp = document.getElementById("option-regataoshelp");
+            option_regataoshelp.classList.remove("sidebar-button");
+            option_regataoshelp.classList.add("sidebar-button-dark");
+
+            var option_community = document.getElementById("option-community");
+            option_community.classList.remove("sidebar-button");
+            option_community.classList.add("sidebar-button-dark");
+
+        } else {
+            // Side bar
+            $(".sidebar").css("background-color", "#e5e5e5");
+            $(".sidebar").css("box-shadow", "0px 0px 3px 0px rgb(8 13 18 / 34%)");
+            $(".link-items").css("color", "#333");
+            $(".link-items p").css("color", "#333");
+
+            // Sidebar Images
+            $("img.seta-off").attr("src","file:///opt/regataos-help/www/images/img-sidebar/seta-off.png");
+            $("img.seta").attr("src","file:///opt/regataos-help/www/images/img-sidebar/seta.png");
+            $("img.sidebar-icon").attr("src","file:///opt/regataos-help/www/images/img-sidebar/hide-sidebar.png");
+            $("img.solution").attr("src","file:///opt/regataos-help/www/images/img-sidebar/tools.png");
+            $("img.help").attr("src","file:///opt/regataos-help/www/images/img-sidebar/boia.png");
+            $("img.community").attr("src","file:///opt/regataos-help/www/images/img-sidebar/chat.png");
+
+            // To the main page
+            $("#loadscreen").css("background-color", "#fff");
+            $("body").css("background-color", "#fff");
+
+            // For sidebar buttons
+            var option_solutions = document.getElementById("option-solutions");
+            option_solutions.classList.remove("sidebar-button-dark");
+            option_solutions.classList.add("sidebar-button");
+
+            var option_regataoshelp = document.getElementById("option-regataoshelp");
+            option_regataoshelp.classList.remove("sidebar-button-dark");
+            option_regataoshelp.classList.add("sidebar-button");
+
+            var option_community = document.getElementById("option-community");
+            option_community.classList.remove("sidebar-button-dark");
+            option_community.classList.add("sidebar-button");
         }
         return;
     }
