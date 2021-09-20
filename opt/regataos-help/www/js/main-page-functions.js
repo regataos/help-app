@@ -9,7 +9,7 @@ function community() {
 // Fix network
 function fixnetwork() {
     const exec = require('child_process').exec;
-    var command = "sudo /opt/regataos-help/scripts/fix-network.sh";
+    var command = "xhost +; sleep 1; sudo /opt/regataos-help/scripts/fix-network.sh";
     exec(command,function(error,call,errlog){
     });
 }
@@ -17,7 +17,7 @@ function fixnetwork() {
 // Fix software repos
 function fixrepos() {
     const exec = require('child_process').exec;
-    var command = "sudo /opt/regataos-help/scripts/fix-repos.sh";
+    var command = "xhost +; sleep 1; sudo /opt/regataos-help/scripts/fix-repos.sh";
     exec(command,function(error,call,errlog){
     });
 }
@@ -25,7 +25,7 @@ function fixrepos() {
 // Hardware info
 function hardware_info() {
     const exec = require('child_process').exec;
-    var command = "sleep 1; sudo /opt/regataos-help/scripts/hardware-info.sh";
+    var command = "xhost +; sleep 1; sudo /opt/regataos-help/scripts/hardware-info.sh";
     exec(command,function(error,call,errlog){
     });
 }
@@ -33,7 +33,7 @@ function hardware_info() {
 // Restore config
 function restore() {
     const exec = require('child_process').exec;
-    var command = "sudo /opt/regataos-help/scripts/restore-config.sh";
+    var command = "xhost +; sleep 1; sudo /opt/regataos-help/scripts/restore-config.sh";
     exec(command,function(error,call,errlog){
     });
 }

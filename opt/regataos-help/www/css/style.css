@@ -312,7 +312,7 @@ p {
 }
 
 div.rede-icone-on {
-    display: none;
+    display: block;
     height: 100px;
     width: 100px;
     background-position: 50% 50%;
@@ -357,7 +357,7 @@ div.rede-icone-alert {
 }
 
 div.repo-icone-on {
-    display: none;
+    display: block;
     height: 100px;
     width: 127px;
     background-position: 50% 50%;
@@ -377,7 +377,7 @@ div.repo-icone-off {
 }
 
 .repo-botao-on {
-    display: none;
+    display: block;
     text-align: center;
     font: 16px 'Roboto', sans-serif;
     width: 175px;
@@ -443,20 +443,46 @@ div.info-icon {
 
 .button {
     color: #000;
+    border-radius: 5px;
     background-color: #ccc;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: .5s;
+    animation-name: animatebottom;
+    animation-duration: .5s;
 }
 
 .button:hover {
-    background-color: #b5b5b5;
+    background: #b5b5b5 radial-gradient(circle, transparent 1%, #b5b5b5 1%) center/15000%;
+}
+
+.button:active {
+    background-color: #eee;
+    background-size: 100%;
+    transition: all 0s;
 }
 
 .button-dark {
     color: #fff;
+    border-radius: 5px;
     background-color: #373e46;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: .5s;
+    animation-name: animatebottom;
+    animation-duration: .5s;
 }
 
 .button-dark:hover {
-    background-color: #2a2f35;
+    background: #2a2f35 radial-gradient(circle, transparent 1%, #2a2f35 1%) center/15000%;
+}
+
+.button-dark:active {
+    background-color: #444c55;
+    background-size: 100%;
+    transition: all 0s;
 }
 
 @-webkit-keyframes animatebottom {
