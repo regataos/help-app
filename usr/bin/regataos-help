@@ -12,8 +12,14 @@ fi
 
 # Check language
 if test ! -e "/tmp/regataos-configs/config/plasma-localerc" ; then
-	mkdir -p /tmp/regataos-configs/config
+	mkdir -p "/tmp/regataos-configs/config"
 	ln -sf "$HOME/.config/plasma-localerc" "/tmp/regataos-configs/config/"
+fi
+
+# Check the theme that should be used
+if test ! -e "/tmp/regataos-configs/config/kdeglobals" ; then
+	mkdir -p "/tmp/regataos-configs/config"
+	ln -sf "$HOME/.config/kdeglobals" "/tmp/regataos-configs/config/"
 fi
 
 # Check internet connection

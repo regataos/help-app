@@ -26,39 +26,40 @@
 
 </head>
 <body>
+    <div id="loadscreen"></div>
 
 	<div class="sidebar">
     <div class="return-sidebar2">
-        <img class="icones-menu" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta-off.png"/>
+        <img class="icones-menu seta-off" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta-off.png"/>
     </div>
     <div class="return-sidebar" onclick="back_button();">
-        <img class="icones-menu" title="Voltar" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta.png"/>
+        <img class="icones-menu seta" title="Voltar" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta.png"/>
     </div>
 	<div class="hide-sidebar" onclick="hide_sidebar();">
-		<img class="icones-menu" title="Apenas ícones" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
+		<img class="icones-menu sidebar-icon" title="Apenas ícones" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
 	</div>
 	<div class="show-sidebar" onclick="show_sidebar();">
-		<img class="icones-menu" title="Icones e textos" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
+		<img class="icones-menu sidebar-icon" title="Icones e textos" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
 	</div>
 		<ul class="ul-sidebar">
             <li class="li-sidebar solutions" onclick="go_solutions();">
                 <a class="link-items" onclick="go_solutions();">
                     <!-- <i class="fas fa-home" style="display: none;"></i> -->
-                    <img class="icones-menu" title="Soluções prontas" style="margin-left: 3px; height: 30px;" src="images/img-sidebar/tools.png"/>
+                    <img class="icones-menu solution" title="Soluções prontas" style="margin-left: 3px; height: 30px;" src="images/img-sidebar/tools.png"/>
                     <p style="margin-left: 13px;"></p>
                 </a>
             </li>
             <li class="li-sidebar regataos-help" onclick="go_regataoshelp();">
                 <a class="link-items" onclick="go_regataoshelp();">
                     <!-- <i class="fas fa-home" style="display: none;"></i> -->
-                    <img class="icones-menu" title="Dicas e tutoriais" style="margin-left: 3px; height: 33px;" src="images/img-sidebar/boia.png"/>
+                    <img class="icones-menu help" title="Dicas e tutoriais" style="margin-left: 3px; height: 33px;" src="images/img-sidebar/boia.png"/>
                     <p style="margin-left: 10px;"></p>
                 </a>
             </li>
             <li class="li-sidebar regataos-community" onclick="go_regataoscommunity();">
                 <a class="link-items" onclick="go_regataoscommunity();">
                     <!-- <i class="fas fa-paint-brush" style="margin-left: 1px;" style="display: none;"></i> -->
-                    <img class="icones-menu" title="Comunidade" style="margin-left: 3px; height: 30px;" src="images/img-sidebar/chat.png"/>
+                    <img class="icones-menu community" title="Comunidade" style="margin-left: 3px; height: 30px;" src="images/img-sidebar/chat.png"/>
                     <p style="margin-left: 10px;"></p>
                 </a>
             </li>

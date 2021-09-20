@@ -71,10 +71,10 @@ function hide_sidebar() {
 function show_sidebar() {
     $(".sidebar").css("width", "230px");
     $(".sidebar").css("transition", "all 0.3s ease-in-out");
-    $(".sidebar .ul-sidebar li").css("width", "231px");
+    $(".sidebar .ul-sidebar li").css("width", "230px");
     $(".hide-sidebar").css("display", "flex");
     $(".show-sidebar").css("display", "none");
-    $(".div-iframe").css("padding-left", "231px");
+    $(".div-iframe").css("padding-left", "230px");
     $(".iframe").css("width", "83%");
 
     show_sidebar_shell();
@@ -98,10 +98,10 @@ function hide_sidebar2() {
 
 function show_sidebar2() {
     $(".sidebar").css("width", "230px");
-    $(".sidebar .ul-sidebar li").css("width", "231px");
+    $(".sidebar .ul-sidebar li").css("width", "230px");
     $(".hide-sidebar").css("display", "flex");
     $(".show-sidebar").css("display", "none");
-    $(".div-iframe").css("padding-left", "231px");
+    $(".div-iframe").css("padding-left", "230px");
     $(".iframe").css("width", "83%");
 
     show_sidebar_shell();
@@ -136,36 +136,126 @@ function sidebar_start() {
 }
 sidebar_start();
 
+// Check the theme that should be used
+function check_theme() {
+    const fs = require('fs');
+
+    fs.access('/tmp/regataos-configs/config/kdeglobals', (err) => {
+    if (!err) {
+        var read_settings = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
+
+        if ((read_settings.indexOf("ColorScheme=BreezeDark") > -1) == "1") {
+            $("#loadscreen").css("background-color", "#171a21");
+            $("body").css("background-color", "#171a21");
+            $(".div1").css("background-color", "#171a21");
+            $(".div2").css("background-color", "#171a21");
+            $(".div1").css("color", "#fff");
+            $(".h2").css("color", "#fff");
+            $(".h3").css("color", "#fff");
+            $("p").css("color", "#fff");
+
+            $(".sidebar").css("background-color", "#2a2f35");
+            $(".sidebar").css("box-shadow", "0px 0px 3px 0px rgb(8 13 18 / 34%)");
+            $(".sidebar .ul-sidebar li").css("background-color", "#2a2f35");
+            $(".link-items").css("color", "#fff");
+            $(".link-items p").css("color", "#fff");
+
+            $(".button").css("background-color", "#2a2f35");
+            $(".button").css("color", "#fff");
+
+            // Images
+            $("img.seta-off").attr("src","file:///opt/regataos-help/www/images/img-sidebar/seta-off-dark.png");
+            $("img.seta").attr("src","file:///opt/regataos-help/www/images/img-sidebar/seta-dark.png");
+            $("img.sidebar-icon").attr("src","file:///opt/regataos-help/www/images/img-sidebar/hide-sidebar-dark.png");
+            $("img.solution").attr("src","file:///opt/regataos-help/www/images/img-sidebar/tools-dark.png");
+            $("img.help").attr("src","file:///opt/regataos-help/www/images/img-sidebar/boia-dark.png");
+            $("img.community").attr("src","file:///opt/regataos-help/www/images/img-sidebar/chat-dark.png");
+
+            // Hover effect
+            $(".sidebar .ul-sidebar li").hover(function(){
+                $(this).css("background-color", "#373e46");
+                }, function(){
+                $(this).css("background-color", "#2a2f35");
+            });
+
+            $(".button").hover(function(){
+                $(this).css("background-color", "#333840");
+                }, function(){
+                $(this).css("background-color", "#2a2f35");
+            });
+        }
+        return;
+    }
+    });
+}
+check_theme();
+
+setInterval(function() {
+    check_theme();
+}, 100);
+
 //Detect iframe url
 function detect_iframe_url() {
     var iframe_url = document.getElementById("main-iframe").contentWindow.location.href
+    const fs = require('fs');
 
-	if (iframe_url.indexOf("solutions.html")==-1) {
-		console.error('not');
-		$(".solutions a").css("border-left", "4px solid #e5e5e5")
-	} else {
-		$(".solutions a").css("border-left", "4px solid #0085e4")
-        $(".return-sidebar2").css("display", "flex");
-        $(".return-sidebar").css("display", "none");
-	}
+    fs.access('/tmp/regataos-configs/config/kdeglobals', (err) => {
+    if (!err) {
+        var read_settings = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
 
-	if (iframe_url.indexOf("suporte.regataos.com.br")==-1) {
-		console.error('not');
-		$(".regataos-help a").css("border-left", "4px solid #e5e5e5")
-	} else {
-		$(".regataos-help a").css("border-left", "4px solid #0085e4")
-        $(".return-sidebar2").css("display", "none");
-        $(".return-sidebar").css("display", "flex");
-	}
+        if ((read_settings.indexOf("ColorScheme=BreezeDark") > -1) == "1") {
+            if ((iframe_url.indexOf("solutions.html") > -1) == "1") {
+                $(".solutions a").css("border-left", "4px solid #0085e4")
+                $(".return-sidebar2").css("display", "flex");
+                $(".return-sidebar").css("display", "none");
+            } else {
+                $(".solutions a").css("border-left", "4px solid #2a2f35")
+            }
 
-	if (iframe_url.indexOf("regataos.forumeiros.com")==-1) {
-		console.error('not');
-		$(".regataos-community a").css("border-left", "4px solid #e5e5e5")
-	} else {
-		$(".regataos-community a").css("border-left", "4px solid #0085e4")
-        $(".return-sidebar2").css("display", "none");
-        $(".return-sidebar").css("display", "flex");
-	}
+            if ((iframe_url.indexOf("suporte.regataos.com.br") > -1) == "1") {
+		        $(".regataos-help a").css("border-left", "4px solid #0085e4")
+                $(".return-sidebar2").css("display", "none");
+                $(".return-sidebar").css("display", "flex");
+            } else {
+                $(".regataos-help a").css("border-left", "4px solid #2a2f35")
+            }
+
+            if ((iframe_url.indexOf("regataos.forumeiros.com") > -1) == "1") {
+		        $(".regataos-community a").css("border-left", "4px solid #0085e4")
+                $(".return-sidebar2").css("display", "none");
+                $(".return-sidebar").css("display", "flex");
+            } else {
+                $(".regataos-community a").css("border-left", "4px solid #2a2f35")
+            }
+
+        } else {
+            if ((iframe_url.indexOf("solutions.html") > -1) == "1") {
+                $(".solutions a").css("border-left", "4px solid #0085e4")
+                $(".return-sidebar2").css("display", "flex");
+                $(".return-sidebar").css("display", "none");
+            } else {
+                $(".solutions a").css("border-left", "4px solid #e5e5e5")
+            }
+
+            if ((iframe_url.indexOf("suporte.regataos.com.br") > -1) == "1") {
+		        $(".regataos-help a").css("border-left", "4px solid #0085e4")
+                $(".return-sidebar2").css("display", "none");
+                $(".return-sidebar").css("display", "flex");
+            } else {
+                $(".regataos-help a").css("border-left", "4px solid #e5e5e5")
+            }
+
+            if ((iframe_url.indexOf("regataos.forumeiros.com") > -1) == "1") {
+		        $(".regataos-community a").css("border-left", "4px solid #0085e4")
+                $(".return-sidebar2").css("display", "none");
+                $(".return-sidebar").css("display", "flex");
+            } else {
+                $(".regataos-community a").css("border-left", "4px solid #e5e5e5")
+            }
+        }
+    return;
+    }
+    });
 }
 
 //Go to specific pages
@@ -185,6 +275,7 @@ function go_regataoshelp() {
     var iframe_url = document.getElementById("main-iframe").contentWindow.location.href
     if ((iframe_url.indexOf("https://suporte.regataos.com.br/") > -1) == "0") {
 	    document.getElementById("main-iframe").contentWindow.document.location.href="https://suporte.regataos.com.br/";
+        check_theme();
 
 	    // Take the page to the top
 	    setTimeout(function() {
