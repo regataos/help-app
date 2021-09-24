@@ -19,7 +19,12 @@ fi
 # Check the theme that should be used
 if test ! -e "/tmp/regataos-configs/config/kdeglobals" ; then
 	mkdir -p "/tmp/regataos-configs/config"
-	ln -sf "$HOME/.config/kdeglobals" "/tmp/regataos-configs/config/"
+	
+	if test -e "$HOME/.config/kdedefaults/kdeglobals" ; then
+		ln -sf "$HOME/.config/kdedefaults/kdeglobals" "/tmp/regataos-configs/config/"
+	else
+		ln -sf "$HOME/.config/kdeglobals" "/tmp/regataos-configs/config/"
+	fi
 fi
 
 # Check internet connection

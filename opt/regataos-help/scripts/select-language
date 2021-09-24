@@ -10,6 +10,8 @@ function lang_clear_cache() {
 	# Clear cache
 	rm -rf "/opt/regataos-help/scripts/function-scripts"
 	rm -rf "/opt/regataos-help/www/js/translations/language"
+	rm -f "/tmp/regataos-configs/config/kdeglobals"
+
 }
 
 function lang_pt_BR() {
