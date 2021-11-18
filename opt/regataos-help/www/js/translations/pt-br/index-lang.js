@@ -5,7 +5,7 @@ $(document).ready(function() {
 	// Title
 	$(".h1").text("Você precisa de ajuda com o Regata OS?");
 	// Description
-	$(".h2").html("Este é o centro de solução de problemas do Regata OS.</br>"+
+	$(".h2-description").html("Este é o centro de solução de problemas do Regata OS.</br>"+
 	"Separamos aqui algumas opções que podem lhe ajudar a resolver alguns problemas.</br>");
 
 	// Side bar
@@ -19,9 +19,6 @@ $(document).ready(function() {
 	//Regata OS Help
 	$(".regataos-help p").text("Dicas e tutoriais");
 	$(".regataos-help img").attr({title:"Dicas e tutoriais"});
-	//Community
-	$(".regataos-community p").text("Comunidade");
-	$(".regataos-community img").attr({title:"Comunidade"});
 
 	// Button options
 	//Network problems

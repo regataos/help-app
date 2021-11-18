@@ -16,15 +16,12 @@ if (navigator.onLine) {
 	if (stdout) {
 		if ((stdout.indexOf("pt_BR") > -1) == "1") {
 			$(".regataos-help").css("display", "block")
-			$(".regataos-community").css("display", "block")
 
 		} else if ((stdout.indexOf("pt_PT") > -1) == "1") {
 			$(".regataos-help").css("display", "block")
-			$(".regataos-community").css("display", "block")
 
 		} else {
 			$(".regataos-help").css("display", "none")
-			$(".regataos-community").css("display", "none")
 		}
 	}
 	});
@@ -40,7 +37,6 @@ if (navigator.onLine) {
 	$("div.repo-botao-off").css("display", "block")
 
 	$(".regataos-help").css("display", "none")
-	$(".regataos-community").css("display", "none")
 }
 }
 status_network();

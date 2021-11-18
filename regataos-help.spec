@@ -1,5 +1,5 @@
 Name: regataos-help
-Version: 5.6
+Version: 5.8
 Release: 0
 Url: https://github.com/regataos/help-app
 Summary: Problems solution of Regata OS
@@ -14,7 +14,7 @@ BuildRequires: systemd
 BuildRequires: grep
 Requires: xz
 Requires: magma >= 5.54.1
-Requires: regataos-base >= 21.0.12
+Requires: regataos-base >= 21.0.16
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
 Source3: clean_home_directory.tar.xz
@@ -44,28 +44,9 @@ if test ! -e /usr/bin/regataoshelp ; then
 	ln -s /opt/magma/regataoshelp /usr/bin/regataoshelp
 fi
 
-# Some changes for the new version of the Regata OS Help app
-if test -e "/etc/xdg/autostart/regataos-help-network.desktop"; then
-	# Disable obsolete systemd services
-	systemctl stop regataos-help.service || true
-	systemctl disable regataos-help.service || true
-
-	systemctl stop regataos-help-selectlanguage.service || true
-	systemctl disable regataos-help-selectlanguage.service || true
-
-	# Terminate processes that are no longer needed
-	killall regataos-help-check-network.sh
-	killall regataos-help-notifications.sh
-	killall select-language
-
-	# Remove obsolete autostart services
-	rm -f "/etc/xdg/autostart/regataos-help-network.desktop"
-	rm -f "/etc/xdg/autostart/regataos-help-notifications.desktop"
-fi
-
 # Set the graphical interface language according to user settings
+# and update desktop database
 /opt/regataos-help/scripts/select-language start
-
 update-desktop-database
 
 %clean
