@@ -27,6 +27,9 @@ if test ! -e "/tmp/regataos-configs/config/kdeglobals" ; then
 	fi
 fi
 
+# Fix for zenity
+xhost +si:localuser:root
+
 # Check internet connection
 /opt/regataos-help/scripts/regataos-help-check-network.sh start
 
