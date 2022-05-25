@@ -7,26 +7,14 @@
 	<link rel="stylesheet" type="text/css" href="./../css/roboto-style.css">
 	<link rel="stylesheet" type="text/css" href="./../css/style.css">
 	<link rel="stylesheet" type="text/css" href="./../css/responsive.css">
-	<script type="text/javascript" src="./../js/jquery.min.js"></script>
-	<script type="text/javascript" src="./../js/update-css.js"></script>
-	<script type="text/javascript" src="./../js/main-page-functions.js"></script>
-	<script type="text/javascript" src="./../js/fas-icons.js"></script>
-	<script type="text/javascript" src="./../js/translations/language/index-lang.js"></script>
-
-	<!-- Display content when everything is ready -->
-	<script type="text/javascript">
-		$(function(){
-			$("#loadscreen").fadeOut("slow");
-		});
-
-		$(function(){
-			$(".blocks").fadeIn("slow");
-		});
-	</script>
-
 </head>
 <body>
-    <div id='loadscreen'></div>
+    <div id="loadscreen"></div>
+    <script>
+        setInterval(function () {
+            document.getElementById("loadscreen").style.display= "none";
+        }, 1200);
+    </script>
 
     <div class="div1">
     <h1 class="h1">Você precisa de ajuda com o Regata OS?</h1>
@@ -40,35 +28,36 @@
     <div class="div2 auto-update">
         <ul class="ul-blocks">
             <li class="rede option" style="margin-left: 0px;">
-                <div class="rede-icone-on" style="background-image:url(./../images/antenna-icon-ok.png);"></div>
-                <div class="rede-icone-off" style="background-image:url(./../images/antenna-icon-error.png);"></div>
+                <div class="rede-icone-on online-img" style="background-image:url(./../images/antenna-icon-ok.png);"></div>
+                <div class="rede-icone-off offline-img" style="background-image:url(./../images/antenna-icon-error.png);"></div>
                 <div class="rede-icone-alert" style="background-image:url(./../images/antenna-icon-off.png);"></div>
                 <h3 class="h3 network-problems">Solucionar problemas</br>com a rede</h3>
                 <p class="network-problems-desc">Se você está tendo problemas com a conexão com a internet, esta opção é a recomendada para você.</p>
-                <div id="network-button" class="rede-botao-off button" onclick="fixnetwork()">Iniciar agora</div>
+                <div id="network-button" class="option-button rede-botao-off button" onclick="runShellScript('fix-network')">Iniciar agora</div>
             </li>
             <li class="repo option">
-                <div class="repo-icone-on" style="background-image:url(./../images/repo-icon-on.png);"></div>
-                <div class="repo-icone-off" style="background-image:url(./../images/repo-icon-off.png);"></div>
+                <div class="repo-icone-on online-img" style="background-image:url(./../images/repo-icon-on.png);"></div>
+                <div class="repo-icone-off offline-img" style="background-image:url(./../images/repo-icon-off.png);"></div>
                 <h3 class="h3 update-repos">Atualizar os repositórios</br>de software manualmente</h3>
                 <p class="update-repos-desc">Atualize os repositórios de software manualmente. Isso pode ajudar a solucionar problemas.</p>
-                <div id="repo-button" class="repo-botao-on button" onclick="fixrepos()">Atualizar repositórios</div>
+                <div id="repo-button" class="option-button repo-botao-on online button" onclick="runShellScript('fix-repos')">Atualizar repositórios</div>
             </li>
             <li class="restore option">
                 <div class="restore-icon" style="background-image:url(./../images/restore-icon.png);"></div>
                 <h3 class="h3 restore-configs">Restaurar as configurações</br>padrão do ambiente gráfico</h3>
                 <p class="restore-configs-desc">Restaure as configurações padrão do ambiente gráfico do Regata OS. Será necessário reiniciar.</p>
-                <div id="restore-button" class="restore-botao button" onclick="restore()">Restaurar configurações</div>
+                <div id="restore-button" class="option-button restore-botao button" onclick="runShellScript('restore-config')">Restaurar configurações</div>
             </li>
             <li class="info option">
                 <div class="info-icon" style="background-image:url(./../images/info-icon.png);"></div>
                 <h3 class="h3 info-configs">Obter informações detalhadas sobre o hardware</h3>
                 <p class="info-configs-desc">Um arquivo de texto será criado na sua pasta pessoal com informações importantes sobre o hardware.</p>
-                <div id="info-button" class="info-botao button" onclick="hardware_info()">Informações do hardware</div>
+                <div id="info-button" class="option-button info-botao button" onclick="runShellScript('hardware-info')">Informações do hardware</div>
             </li>
 		</ul>
         </ul>
     </div>
-
+	<script type="text/javascript" src="./../js/translations/language/solutions-lang.js"></script>
+	<script type="text/javascript" src="./../js/solutions.js"></script>
 </body>
 </html>

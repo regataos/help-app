@@ -6,52 +6,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/functions.js"></script>
-	<script type="text/javascript" src="js/fas-icons.js"></script>
-	<script type="text/javascript" src="js/search.js"></script>
-	<script type="text/javascript" src="js/update-css.js"></script>
-    <script type="text/javascript" src="js/translations/language/index-lang.js"></script>
-
-	<!-- Display content when everything is ready -->
-	<script type="text/javascript">
-		$(function(){
-			$("#loadscreen").fadeOut("slow");
-		});
-
-		$(function(){
-			$(".sidebar").fadeIn("slow");
-		});
-	</script>
-
 </head>
 <body>
     <div id="loadscreen"></div>
+    <script>
+        setInterval(function () {
+            document.getElementById("loadscreen").style.display= "none";
+        }, 1200);
+    </script>
 
 	<div class="sidebar">
-    <div class="return-sidebar2">
+    <div id="return-off" class="return-sidebar2">
         <img class="icones-menu seta-off" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta-off.png"/>
     </div>
-    <div class="return-sidebar" onclick="back_button();">
+    <div id="return-on" class="return-sidebar" onclick="backButton();">
         <img class="icones-menu seta" title="Voltar" style="margin-left: 3px; height: 20px;" src="images/img-sidebar/seta.png"/>
     </div>
-	<div class="hide-sidebar" onclick="hide_sidebar();">
+	<div class="hide-sidebar" onclick="hideSideBar(true);">
 		<img class="icones-menu sidebar-icon" title="Apenas ícones" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
 	</div>
-	<div class="show-sidebar" onclick="show_sidebar();">
+	<div class="show-sidebar" onclick="showSideBar(true);">
 		<img class="icones-menu sidebar-icon" title="Icones e textos" style="margin-left: 3px; height: 16px;" src="images/img-sidebar/hide-sidebar.png"/>
 	</div>
 		<ul class="ul-sidebar">
             <li id="option-solutions" class="li-sidebar solutions sidebar-button" onclick="go_solutions();">
                 <a class="link-items" onclick="go_solutions();">
-                    <!-- <i class="fas fa-home" style="display: none;"></i> -->
                     <img class="icones-menu solution" title="Soluções prontas" style="margin-left: 3px; height: 30px;" src="images/img-sidebar/tools.png"/>
                     <p style="margin-left: 13px;"></p>
                 </a>
             </li>
             <li id="option-regataoshelp" class="li-sidebar regataos-help sidebar-button" onclick="go_regataoshelp();">
                 <a class="link-items" onclick="go_regataoshelp();">
-                    <!-- <i class="fas fa-home" style="display: none;"></i> -->
                     <img class="icones-menu help" title="Dicas e tutoriais" style="margin-left: 3px; height: 33px;" src="images/img-sidebar/boia.png"/>
                     <p style="margin-left: 10px;"></p>
                 </a>
@@ -62,6 +47,7 @@
 	<div class="div-iframe">
         <iframe src="pages/solutions.html" allowfullscreen frameborder="0" class="iframe" id="main-iframe"></iframe>
     </div>
-
+    <script type="text/javascript" src="js/translations/language/index-lang.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

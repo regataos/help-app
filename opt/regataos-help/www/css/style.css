@@ -14,6 +14,27 @@ body {
     user-select: none;
 }
 
+/* Display content when everything is ready */
+#loadscreen {
+	display: block;
+    opacity: 1;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #fff;
+	z-index: 40000;
+    animation-name: initEffect;
+    animation-duration: 1.2s;
+}
+
+@keyframes initEffect {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
+}
+
 a {
     color: rgb(45, 120, 214);
     cursor: pointer;
@@ -23,7 +44,7 @@ a {
 .div-iframe {
     position: fixed;
     float: left;
-    padding-left: 230px;
+    margin-left: 230px;
     width: 100%;
     height: 100%;
     transition: all 0.3s ease-in-out;
@@ -34,7 +55,7 @@ a {
 	overflow-x:hidden;
 	overflow-y:hidden;
 	height:100%;
-	width:83%;
+	width: calc(100% - 230px);
 	top:0px;
 	left:0px;
 	right:0px;
@@ -54,14 +75,15 @@ a {
     text-align: left;
     top: 0px;
     left: 0px;
-    width: 0px;
+    width: 230px;
     height: 100%;
     padding: 0px 0px 14px 0px;
     user-select: none;
     float: left;
     z-index: 30000;
-    -webkit-box-shadow: 0px 0px 1px 0px rgb(8 13 18 / 34%);
-    box-shadow: 0px 0px 1px 0px rgb(8 13 18 / 34%);
+    -webkit-box-shadow: 0px 0px 3px 0px rgb(8 13 18 / 34%);
+    box-shadow: 0px 0px 3px 0px rgb(8 13 18 / 34%);
+    transition: all 0.3s ease-in-out;
 }
 
 .ul-sidebar {
@@ -71,12 +93,13 @@ a {
 .sidebar .ul-sidebar li {
     cursor: pointer;
     font: 16px 'Roboto', sans-serif;
-	width: 0px;
+	width: 230px;
     margin-top: 0px;
 	margin-left: 0px;
     margin-bottom: 0px;
 	padding-top: 14px;
 	padding-bottom: 14px;
+    transition: all 0.3s ease-in-out;
 }
 
 .sidebar .ul-sidebar li:hover .link-items {
@@ -101,10 +124,6 @@ a {
 .sidebar-button-dark:hover {
     background-color: #373e46;
     color: #fff;
-}
-
-.regataos-help {
-    display: none;
 }
 
 .regataos-community {
@@ -135,7 +154,7 @@ a {
     font-size: 18px;
 	text-decoration: none;
 	color: #333;
-    border-left: 4px solid #e5e5e5;
+    border-left: 4px solid #0085e400;
     transition: all 0.3s ease-in-out;
 	padding-top: 2px;
     padding-left: 5px;
@@ -291,12 +310,15 @@ li {
     animation-duration: .5s;
 }
 
+.option-button {
+    background-color: #0085e400;
+}
+
 .h3 {
     color: #575757;
     font-size: 18px;
     font-weight: 600;
     line-height: 1.4;
-    margin: 0px;
     padding-left: 0px;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -342,14 +364,13 @@ div.rede-icone-alert {
 }
 
 .rede-botao-off {
-    display: block;
+    display: inline-block;
     text-align: center;
     font: 16px 'Roboto', sans-serif;
-    width: 100px;
     background-color: #ccc;
     background-position: center;
     margin-top: 15px;
-    padding: 13px 0;
+    padding: 13px 15px;
     cursor: pointer;
     box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
     -webkit-transition: all 0.3s ease-in-out;
@@ -377,14 +398,13 @@ div.repo-icone-off {
 }
 
 .repo-botao-on {
-    display: block;
+    display: inline-block;
     text-align: center;
     font: 16px 'Roboto', sans-serif;
-    width: 175px;
     background-color: #ccc;
     background-position: center;
     margin-top: 15px;
-    padding: 13px 0;
+    padding: 13px 15px;
     cursor: pointer;
     box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
     -webkit-transition: all 0.3s ease-in-out;
@@ -402,14 +422,13 @@ div.restore-icon {
 }
 
 .restore-botao {
-    display: block;
+    display: inline-block;
     text-align: center;
     font: 16px 'Roboto', sans-serif;
-    width: 145px;
     background-color: #ccc;
     background-position: center;
     margin-top: 15px;
-    padding: 13px 0;
+    padding: 13px 15px;
     cursor: pointer;
     box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
     -webkit-transition: all 0.3s ease-in-out;
@@ -427,14 +446,13 @@ div.info-icon {
 }
 
 .info-botao {
-    display: block;
+    display: inline-block;
     text-align: center;
     font: 16px 'Roboto', sans-serif;
-    width: 185px;
     background-color: #ccc;
     background-position: center;
     margin-top: 15px;
-    padding: 13px 0;
+    padding: 13px 15px;
     cursor: pointer;
     box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
     -webkit-transition: all 0.3s ease-in-out;
@@ -493,14 +511,4 @@ div.info-icon {
 @keyframes animatebottom { 
     from{ bottom:-30px; opacity:0 } 
     to{ bottom:0; opacity:1 }
-}
-
-/* Display content when everything is ready */
-#loadscreen {
-	display: block;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background-color: #fff;
-	z-index: 40000;
 }

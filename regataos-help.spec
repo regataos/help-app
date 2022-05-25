@@ -1,10 +1,9 @@
 Name: regataos-help
-Version: 5.8
+Version: 6.0
 Release: 0
 Url: https://github.com/regataos/help-app
 Summary: Problems solution of Regata OS
 Group: System/GUI/KDE
-BuildRequires: xz
 BuildRequires: desktop-file-utils
 BuildRequires: update-desktop-files
 BuildRequires: hicolor-icon-theme
@@ -13,8 +12,7 @@ BuildRequires: -post-build-checks
 BuildRequires: systemd
 BuildRequires: grep
 Requires: xz
-Requires: magma >= 5.54.1
-Requires: regataos-base >= 21.0.16
+Requires: magma
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
 Source3: clean_home_directory.tar.xz

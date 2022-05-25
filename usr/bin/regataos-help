@@ -1,26 +1,43 @@
 #!/bin/bash
 
 #Check and create the Regata OS Help configuration directory
-if test ! -e "$HOME/.config/regataos-help" ; then
+if test ! -e "$HOME/.config/regataos-help"; then
 	mkdir -p "$HOME/.config/regataos-help"
 fi
 
-if test ! -e "/tmp/regataos-help" ; then
+if test ! -e "/tmp/regataos-help"; then
 	mkdir -p "/tmp/regataos-help"
 	ln -sf "$HOME/.config/regataos-help" "/tmp/regataos-help/config"
 fi
 
 # Check language
-if test ! -e "/tmp/regataos-configs/config/plasma-localerc" ; then
+if test ! -e "/tmp/regataos-configs/config/plasma-localerc"; then
+	if test ! -e "$HOME/.config/plasma-localerc"; then
+		if test -e "/etc/xdg/plasma-localerc"; then
+			cp -f "/etc/xdg/plasma-localerc" "$HOME/.config/plasma-localerc"
+		fi
+	fi
+
 	mkdir -p "/tmp/regataos-configs/config"
-	ln -sf "$HOME/.config/plasma-localerc" "/tmp/regataos-configs/config/"
+	chmod 777 "/tmp/regataos-configs/config"
+	if test -e "$HOME/.config/plasma-localerc"; then
+		ln -sf "$HOME/.config/plasma-localerc" "/tmp/regataos-configs/config/"
+	fi
+fi
+
+if test ! -e "/tmp/regataos-configs/config/user-dirs.locale"; then
+	if test -e "$HOME/.config/user-dirs.locale"; then
+		mkdir -p "/tmp/regataos-configs/config"
+		chmod 777 "/tmp/regataos-configs/config"
+		ln -sf "$HOME/.config/user-dirs.locale" "/tmp/regataos-configs/config/"
+	fi
 fi
 
 # Check the theme that should be used
-if test ! -e "/tmp/regataos-configs/config/kdeglobals" ; then
+if test ! -e "/tmp/regataos-configs/config/kdeglobals"; then
 	mkdir -p "/tmp/regataos-configs/config"
-	
-	if test -e "$HOME/.config/kdedefaults/kdeglobals" ; then
+
+	if test -e "$HOME/.config/kdedefaults/kdeglobals"; then
 		ln -sf "$HOME/.config/kdedefaults/kdeglobals" "/tmp/regataos-configs/config/"
 	else
 		ln -sf "$HOME/.config/kdeglobals" "/tmp/regataos-configs/config/"
@@ -31,7 +48,9 @@ fi
 xhost +si:localuser:root
 
 # Check internet connection
-/opt/regataos-help/scripts/regataos-help-check-network.sh start
+# /opt/regataos-help/scripts/regataos-help-check-network.sh start
 
 # Run app
-regataoshelp /opt/regataos-help & sleep 1; /opt/regataos-help/scripts/regataos-help-notifications
+regataoshelp /opt/regataos-help &
+sleep 1
+/opt/regataos-help/scripts/regataos-help-notifications
