@@ -1,4 +1,4 @@
-// Check internet connection for topbar
+// Check internet connection
 setInterval(checkOnline, 500);
 function checkOnline() {
     const online = document.querySelectorAll(".online");

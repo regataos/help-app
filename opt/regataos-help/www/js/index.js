@@ -1,4 +1,14 @@
-// Check KDE Plasma dark theme configuration
+// Check internet connection
+setInterval(checkOnline, 1000);
+function checkOnline() {
+    const onlineSupport = document.getElementById("option-regataoshelp");
+
+    if (navigator.onLine) {
+        onlineSupport.style.display = "block";
+    } else {
+        onlineSupport.style.display = "none";
+    }
+}
 
 // Check configuration files
 function checkConfigFile(data, desiredString) {
@@ -233,49 +243,54 @@ function sideBarStart() {
 sideBarStart();
 
 // Choose url according to user language
-function choose_url() {
+function setSupportUrl() {
     const fs = require('fs');
-    fs.access('/tmp/regataos-configs/config/plasma-localerc', (err) => {
-        if (!err) {
-            fs.readFile('/tmp/regataos-configs/config/plasma-localerc', (err, data) => {
-                if (err) throw err;
-                var data = data
 
-                if (data.indexOf("pt_BR") > -1) {
-                    window.online_support = "https://suporte.regataos.com.br/";
-                } else if (data.indexOf("pt_PT") > -1) {
-                    window.online_support = "https://suporte.regataos.com.br/";
-                } else if (data.indexOf("en_US") > -1) {
-                    window.online_support = "https://support.regataos.com.br/";
-                } else {
-                    window.online_support = "https://support.regataos.com.br/";
-                }
-            });
-            return;
+    const urlSupport = {
+        "pt_BR": "https://suporte.regataos.com.br",
+        "pt_PT": "https://suporte.regataos.com.br",
+        "en_US": "https://support.regataos.com",
+    };
 
-        } else {
-            fs.readFile('/tmp/regataos-configs/config/user-dirs.locale', (err, data) => {
-                if (err) throw err;
-                var data = data
+    if (fs.existsSync("/tmp/regataos-configs/config/plasma-localerc")) {
+        const checkLangSystem = fs.readFileSync("/tmp/regataos-configs/config/plasma-localerc", "utf8");
 
-                if (data.indexOf("pt_BR") > -1) {
-                    window.online_support = "https://suporte.regataos.com.br/";
-                } else if (data.indexOf("pt_PT") > -1) {
-                    window.online_support = "https://suporte.regataos.com.br/";
-                } else if (data.indexOf("en_US") > -1) {
-                    window.online_support = "https://support.regataos.com.br/";
-                } else {
-                    window.online_support = "https://support.regataos.com.br/";
-                }
-            });
+        if (checkLangSystem.includes("LANGUAGE")) {
+            const configOption = "LANGUAGE="
+            const languageDetected = checkConfigFile(checkLangSystem, configOption);
+
+            if (typeof urlSupport[languageDetected] !== "undefined") {
+                return urlSupport[languageDetected];
+            } else {
+                return urlSupport["en_US"];
+            }
+
+        } else if (checkLangSystem.includes("LANG")) {
+            const configOption = "LANG="
+            const languageDetected = checkConfigFile(checkLangSystem, configOption);
+
+            if (typeof urlSupport[languageDetected] !== "undefined") {
+                return urlSupport[languageDetected];
+            } else {
+                return urlSupport["en_US"];
+            }
         }
-    });
+
+    } else if (fs.existsSync("/tmp/regataos-configs/config/user-dirs.locale")) {
+        const checkLangSystem = fs.readFileSync("/tmp/regataos-configs/config/user-dirs.locale", "utf8");
+
+        if (typeof urlSupport[checkLangSystem] !== "undefined") {
+            return urlSupport[checkLangSystem];
+        } else {
+            return urlSupport["en_US"];
+        }
+    }
 }
-choose_url();
 
 // Go to specific pages
 function go_solutions() {
-    var iframeUrl = document.getElementById("main-iframe").contentWindow.location.href
+    const iframeUrl = document.getElementById("main-iframe").contentWindow.location.href;
+
     if ((iframeUrl.indexOf("solutions.html") > -1) == "0") {
         document.getElementById("main-iframe").contentWindow.document.location.href = "pages/solutions.html";
 
@@ -287,9 +302,10 @@ function go_solutions() {
 }
 
 function go_regataoshelp() {
-    var iframeUrl = document.getElementById("main-iframe").contentWindow.location.href
-    if ((iframeUrl.indexOf(online_support) > -1) == "0") {
-        document.getElementById("main-iframe").contentWindow.document.location.href = online_support;
+    const iframeUrl = document.getElementById("main-iframe").contentWindow.location.href;
+
+    if ((iframeUrl.indexOf("regataos") > -1) == "0") {
+        document.getElementById("main-iframe").contentWindow.document.location.href = setSupportUrl();
         checkTheme();
 
         // Take the page to the top
@@ -311,7 +327,7 @@ function backButton() {
         }, 100);
 
     } else {
-        document.getElementById("main-iframe").contentWindow.document.location.href = online_support;
+        document.getElementById("main-iframe").contentWindow.document.location.href = setSupportUrl();
 
         // Take the page to the top
         setTimeout(function () {
