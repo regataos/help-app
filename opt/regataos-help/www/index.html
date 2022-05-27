@@ -9,7 +9,7 @@
 <body>
     <div id="loadscreen"></div>
     <script>
-        setInterval(function () {
+        setTimeout(function () {
             document.getElementById("loadscreen").style.display= "none";
         }, 1200);
     </script>
@@ -48,5 +48,13 @@
     </div>
     <script type="text/javascript" src="js/translations/language/index-lang.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+
+    <script>
+    const gui = require('nw.gui');
+
+    onload = function() {
+        gui.Window.get().show();
+    }
+    </script>
 </body>
 </html>

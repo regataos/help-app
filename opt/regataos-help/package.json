@@ -5,6 +5,7 @@
   "main": "www/index.html",
   "inject_js_end": "www/js/scripts.js",
   "window": {
+    "show": false,
     "toolbar": false,
     "position": "center",
     "width": 1366,
