@@ -47,8 +47,9 @@ function checkConfigFile(data, desiredString) {
     const searchString = new RegExp(`(?<=${desiredString}).*`, "g");
 
     let systemConfig = data.match(searchString)[0];
+	systemConfig = systemConfig.toLowerCase();
     systemConfig = systemConfig.replace(/:.*/g, '');
-    systemConfig = systemConfig.replace(/\.UTF-8/g, "");
+    systemConfig = systemConfig.replace(/\.utf-8/g, "").replace(/\.utf8/g, "");
     return systemConfig;
 }
 
