@@ -248,9 +248,10 @@ function setSupportUrl() {
     const fs = require('fs');
 
     const urlSupport = {
-        "pt_BR": "https://suporte.regataos.com.br",
-        "pt_PT": "https://suporte.regataos.com.br",
-        "en_US": "https://support.regataos.com",
+        "pt_br": "https://suporte.regataos.com.br",
+        "pt_pt": "https://suporte.regataos.com.br",
+        "en_us": "https://support.regataos.com",
+        "en": "https://support.regataos.com",
     };
 
     if (fs.existsSync("/tmp/regataos-configs/config/plasma-localerc")) {
@@ -263,7 +264,7 @@ function setSupportUrl() {
             if (typeof urlSupport[languageDetected] !== "undefined") {
                 return urlSupport[languageDetected];
             } else {
-                return urlSupport["en_US"];
+                return urlSupport["en_us"];
             }
 
         } else if (checkLangSystem.includes("LANG")) {
@@ -273,7 +274,7 @@ function setSupportUrl() {
             if (typeof urlSupport[languageDetected] !== "undefined") {
                 return urlSupport[languageDetected];
             } else {
-                return urlSupport["en_US"];
+                return urlSupport["en_us"];
             }
         }
 
@@ -281,9 +282,9 @@ function setSupportUrl() {
         const checkLangSystem = fs.readFileSync("/tmp/regataos-configs/config/user-dirs.locale", "utf8");
 
         if (typeof urlSupport[checkLangSystem] !== "undefined") {
-            return urlSupport[checkLangSystem];
+            return urlSupport[checkLangSystem.toLowerCase()];
         } else {
-            return urlSupport["en_US"];
+            return urlSupport["en_us"];
         }
     }
 }
