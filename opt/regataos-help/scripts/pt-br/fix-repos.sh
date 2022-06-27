@@ -4,19 +4,11 @@ sudo -H env DISPLAY=:0 zenity --question --text "Instalar também atualizações
 if [ $? -eq "0" ]
 then
 	# Download
-	if test -e /usr/share/regataos/enterprise-iso.txt ; then
-		wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-nt.tar.xz https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-nt.tar.xz 2>&1 | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Baixando arquivos. Espere um momento..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
-
-	else
-		wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-st.tar.xz https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-st.tar.xz 2>&1 | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Baixando arquivos. Espere um momento..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
-	fi
+	wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-22.tar.xz \
+		https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-22.tar.xz 2>&1 | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Baixando arquivos. Espere um momento..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
 
 	# Extract files
-	if test -e /usr/share/regataos/enterprise-iso.txt ; then
-		sudo tar xf /tmp/apps-scripts/regataos-repo-nt.tar.xz -C /
-	else
-		sudo tar xf /tmp/apps-scripts/regataos-repo-st.tar.xz -C /
-	fi
+	sudo tar xf /tmp/apps-scripts/regataos-repo-22.tar.xz -C /
 
 	sudo pkcon --noninteractive refresh | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Atualizando os repositórios de software manualmente..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
 	echo fixrepos > /tmp/apps-scripts/fix-repos.txt
@@ -28,19 +20,11 @@ then
 
 else
 	# Download
-	if test -e /usr/share/regataos/enterprise-iso.txt ; then
-		wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-nt.tar.xz https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-nt.tar.xz 2>&1 | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Baixando arquivos. Espere um momento..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
-
-	else
-		wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-st.tar.xz https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-st.tar.xz 2>&1 | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Baixando arquivos. Espere um momento..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
-	fi
+	wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-22.tar.xz \
+		https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-22.tar.xz 2>&1 | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Baixando arquivos. Espere um momento..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
 
 	# Extract files
-	if test -e /usr/share/regataos/enterprise-iso.txt ; then
-		sudo tar xf /tmp/apps-scripts/regataos-repo-nt.tar.xz -C /
-	else
-		sudo tar xf /tmp/apps-scripts/regataos-repo-st.tar.xz -C /
-	fi
+	sudo tar xf /tmp/apps-scripts/regataos-repo-22.tar.xz -C /
 
 	sudo pkcon --noninteractive refresh | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text "Atualizando os repositórios de software manualmente..." --title "Atualizando os repositórios de software" --auto-close --auto-kill --no-cancel
 
