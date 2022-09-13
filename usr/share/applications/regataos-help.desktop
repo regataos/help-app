@@ -1,4 +1,6 @@
 [Desktop Entry]
+Encoding=UTF-8
+Version=1.0
 Comment[pt_BR]=Obter suporte para o Regata OS
 Comment[pt_PT]=Obter suporte para o Regata OS
 Comment[en_US]=Get support for Regata OS
@@ -21,4 +23,3 @@ StartupNotify=true
 Terminal=false
 Type=Application
 StartupWMClass=Regata OS Support
-X-KDE-SubstituteUID=false

@@ -1,0 +1,20 @@
+### This file contains translation into Brazilian Portuguese language ###
+
+## Fix software repositories
+updatingRepo="Updating software repositories"
+downFiles="Downloading files. Wait a moment..."
+upRepoManually="Updating software repositories manually..."
+
+## Collect hardware information
+hardwareInfo="Hardware information"
+collectingHardwareInfo="Collecting hardware information..."
+
+## Restore default settings for the graphical environment
+restoreConfig="Restore default settings"
+restoreConfigQuestion="Some files will also be deleted. Do you really want to restore the settings?\n\nThe system will restart automatically!"
+restoreConfigYes="Yes"
+restoreConfigCancel="Cancel"
+
+## Fix network
+fixNetwork="Fix network problems"
+fixNetworkDesc="Trying to fix network issues..."

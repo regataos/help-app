@@ -7,6 +7,8 @@ document.querySelector(".h1").innerHTML = "Você precisa de ajuda com o Regata O
 document.querySelector(".h2-description").innerHTML = "Este é o centro de solução de problemas do Regata OS.</br>" +
 	"Separamos aqui algumas opções que podem lhe ajudar a resolver alguns problemas.</br>";
 
+document.getElementById("ask-community").innerHTML = "Se você ainda não encontrou o que procura, pergunte à comunidade, através do <a onclick='community()'>nosso fórum</a>.";
+
 // Button options
 //Network problems
 document.querySelector(".network-problems").innerHTML = "Solucionar problemas</br>com a rede";

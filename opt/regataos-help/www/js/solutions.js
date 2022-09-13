@@ -1,3 +1,8 @@
+// Disable main hover effect after few seconds
+setTimeout(function () {
+    document.getElementById("loadscreen").style.display = "none";
+}, 1000);
+
 // Check internet connection
 setInterval(checkOnline, 500);
 function checkOnline() {
@@ -5,6 +10,7 @@ function checkOnline() {
     const onlineImg = document.querySelectorAll(".online-img");
     const offline = document.querySelectorAll(".offline");
     const offlineImg = document.querySelectorAll(".offline-img");
+    const transparentButton = document.querySelector(".button-transparent");
 
     if (navigator.onLine) {
         for (let i = 0; i < online.length; i++) {
@@ -23,6 +29,8 @@ function checkOnline() {
             offlineImg[i].style.display = "none";
         }
 
+        transparentButton.style.display = "none";
+
     } else {
         for (let i = 0; i < online.length; i++) {
             online[i].style.display = "none";
@@ -39,6 +47,8 @@ function checkOnline() {
         for (let i = 0; i < offlineImg.length; i++) {
             offlineImg[i].style.display = "block";
         }
+
+        transparentButton.style.display = "inline-block";
     }
 }
 
@@ -47,7 +57,7 @@ function checkConfigFile(data, desiredString) {
     const searchString = new RegExp(`(?<=${desiredString}).*`, "g");
 
     let systemConfig = data.match(searchString)[0];
-	systemConfig = systemConfig.toLowerCase();
+    systemConfig = systemConfig.toLowerCase();
     systemConfig = systemConfig.replace(/:.*/g, '');
     systemConfig = systemConfig.replace(/\.utf-8/g, "").replace(/\.utf8/g, "");
     return systemConfig;
@@ -156,18 +166,63 @@ function checkTheme() {
 }
 checkTheme();
 
-// Open community in browser
-function community() {
-    const exec = require('child_process').exec;
-    var command = "xdg-open https://regataos.forumeiros.com/";
-    exec(command, function (error, call, errlog) {
-    });
-}
-
 // Run Shell Script
 function runShellScript(script) {
     const exec = require('child_process').exec;
     var command = `xhost +; sleep 1; sudo /opt/regataos-help/scripts/${script}.sh`;
+    exec(command, function (error, call, errlog) {
+    });
+}
+
+// Open community in browser
+function selectCommunityUrl() {
+    const fs = require('fs');
+
+    const urlCommunity = {
+        "pt_br": "https://regataos.forumeiros.com/",
+        "pt_pt": "https://regataos.forumeiros.com/",
+        "en_us": "https://t.me/regataos_en",
+        "en": "https://t.me/regataos_en",
+    };
+
+    if (fs.existsSync("/tmp/regataos-configs/config/plasma-localerc")) {
+        const checkLangSystem = fs.readFileSync("/tmp/regataos-configs/config/plasma-localerc", "utf8");
+
+        if (checkLangSystem.includes("LANGUAGE")) {
+            const configOption = "LANGUAGE="
+            const languageDetected = checkConfigFile(checkLangSystem, configOption);
+
+            if (typeof urlCommunity[languageDetected] !== "undefined") {
+                return urlCommunity[languageDetected];
+            } else {
+                return urlCommunity["en_us"];
+            }
+
+        } else if (checkLangSystem.includes("LANG")) {
+            const configOption = "LANG="
+            const languageDetected = checkConfigFile(checkLangSystem, configOption);
+
+            if (typeof urlCommunity[languageDetected] !== "undefined") {
+                return urlCommunity[languageDetected];
+            } else {
+                return urlCommunity["en_us"];
+            }
+        }
+
+    } else if (fs.existsSync("/tmp/regataos-configs/config/user-dirs.locale")) {
+        const checkLangSystem = fs.readFileSync("/tmp/regataos-configs/config/user-dirs.locale", "utf8");
+
+        if (typeof urlCommunity[checkLangSystem] !== "undefined") {
+            return urlCommunity[checkLangSystem.toLowerCase()];
+        } else {
+            return urlCommunity["en_us"];
+        }
+    }
+}
+
+function community() {
+    const exec = require('child_process').exec;
+    const command = `xdg-open ${selectCommunityUrl()}`;
     exec(command, function (error, call, errlog) {
     });
 }

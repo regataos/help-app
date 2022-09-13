@@ -7,7 +7,7 @@ document.querySelector(".h1").innerHTML = "Do you need help with Regata OS?";
 document.querySelector(".h2-description").innerHTML = "This is the Regata OS troubleshooting center.</br>" +
 	"We have separated some options here that can help you solve some problems.</br>";
 
-document.getElementById("ask-community").style.display = "none";
+document.getElementById("ask-community").innerHTML = "If you still haven't found what you're looking for, ask the community using our <a onclick='community()'>Telegram group</a>.";
 
 // Button options
 //Network problems

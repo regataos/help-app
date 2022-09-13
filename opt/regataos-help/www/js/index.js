@@ -1,3 +1,15 @@
+// Show app only when the UI is ready
+const gui = require('nw.gui');
+
+onload = function () {
+    gui.Window.get().show();
+}
+
+// Disable main hover effect after few seconds
+setTimeout(function () {
+    document.getElementById("loadscreen").style.display = "none";
+}, 1000);
+
 // Check internet connection
 setInterval(checkOnline, 1000);
 function checkOnline() {
@@ -15,7 +27,7 @@ function checkConfigFile(data, desiredString) {
     const searchString = new RegExp(`(?<=${desiredString}).*`, "g");
 
     let systemConfig = data.match(searchString)[0];
-	systemConfig = systemConfig.toLowerCase();
+    systemConfig = systemConfig.toLowerCase();
     systemConfig = systemConfig.replace(/:.*/g, '');
     systemConfig = systemConfig.replace(/\.utf-8/g, "").replace(/\.utf8/g, "");
     return systemConfig;
@@ -36,12 +48,12 @@ function checkTheme() {
             textSideBar[i].style.color = "#f3f3f3";
         }
 
-        document.querySelector("img.seta-off").src = "file:///opt/regataos-help/www/images/img-sidebar/seta-off-dark.png";
-        document.querySelector("img.seta").src = "file:///opt/regataos-help/www/images/img-sidebar/seta-dark.png";
-        document.querySelector(".hide-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/hide-sidebar-dark.png";
-        document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/hide-sidebar-dark.png";
-        document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools-dark.png";
-        document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/boia-dark.png";
+        document.querySelector("img.seta-off").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow-off-dark.png";
+        document.querySelector("img.seta").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow-dark.png";
+        document.querySelector(".hide-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu-dark.png";
+        document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu-dark.png";
+        document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools2-dark.png";
+        document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/support-dark.png";
 
         // For sidebar buttons
         const solutionOptions = document.getElementById("option-solutions");
@@ -64,12 +76,12 @@ function checkTheme() {
             textSideBar[i].style.color = "#333";
         }
 
-        document.querySelector("img.seta-off").src = "file:///opt/regataos-help/www/images/img-sidebar/seta-off.png";
-        document.querySelector("img.seta").src = "file:///opt/regataos-help/www/images/img-sidebar/seta.png";
-        document.querySelector(".hide-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/hide-sidebar.png";
-        document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/hide-sidebar.png";
-        document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools.png";
-        document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/boia.png";
+        document.querySelector("img.seta-off").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow-off.png";
+        document.querySelector("img.seta").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow.png";
+        document.querySelector(".hide-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu.png";
+        document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu.png";
+        document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools2.png";
+        document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/support.png";
 
         // For sidebar buttons
         const solutionOptions = document.getElementById("option-solutions");

@@ -415,6 +415,18 @@ div.repo-icone-off {
     transition: all 0.3s ease-in-out;
 }
 
+.button-transparent {
+    display: none;
+    text-align: center;
+    font: 16px 'Roboto', sans-serif;
+    color: #fff;
+    background-color: #fff;
+    background-position: center;
+    margin-top: 15px;
+    padding: 13px 15px;
+    cursor: default;
+}
+
 div.restore-icon {
     display: block;
     height: 100px;
