@@ -22,17 +22,6 @@ function checkOnline() {
     }
 }
 
-// Check configuration files
-function checkConfigFile(data, desiredString) {
-    const searchString = new RegExp(`(?<=${desiredString}).*`, "g");
-
-    let systemConfig = data.match(searchString)[0];
-    systemConfig = systemConfig.toLowerCase();
-    systemConfig = systemConfig.replace(/:.*/g, '');
-    systemConfig = systemConfig.replace(/\.utf-8/g, "").replace(/\.utf8/g, "");
-    return systemConfig;
-}
-
 // Check the theme that should be used
 function checkTheme() {
     const fs = require('fs');
@@ -260,9 +249,9 @@ function setSupportUrl() {
     const fs = require('fs');
 
     const urlSupport = {
-        "pt_br": "https://suporte.regataos.com.br",
-        "pt_pt": "https://suporte.regataos.com.br",
-        "en_us": "https://support.regataos.com",
+        "pt-br": "https://suporte.regataos.com.br",
+        "pt-pt": "https://suporte.regataos.com.br",
+        "en-us": "https://support.regataos.com",
         "en": "https://support.regataos.com",
     };
 
@@ -276,7 +265,7 @@ function setSupportUrl() {
             if (typeof urlSupport[languageDetected] !== "undefined") {
                 return urlSupport[languageDetected];
             } else {
-                return urlSupport["en_us"];
+                return urlSupport["en-us"];
             }
 
         } else if (checkLangSystem.includes("LANG")) {
@@ -286,7 +275,7 @@ function setSupportUrl() {
             if (typeof urlSupport[languageDetected] !== "undefined") {
                 return urlSupport[languageDetected];
             } else {
-                return urlSupport["en_us"];
+                return urlSupport["en-us"];
             }
         }
 
@@ -296,7 +285,7 @@ function setSupportUrl() {
         if (typeof urlSupport[checkLangSystem] !== "undefined") {
             return urlSupport[checkLangSystem.toLowerCase()];
         } else {
-            return urlSupport["en_us"];
+            return urlSupport["en-us"];
         }
     }
 }

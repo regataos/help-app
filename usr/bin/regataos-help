@@ -49,10 +49,5 @@ fi
 # Fix for zenity
 xhost +si:localuser:root
 
-# Check internet connection
-# /opt/regataos-help/scripts/regataos-help-check-network.sh start
-
 # Run app
-regataoshelp /opt/regataos-help &
-sleep 1
-/opt/regataos-help/scripts/regataos-help-notifications start
+regataoshelp /opt/regataos-help

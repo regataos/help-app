@@ -52,17 +52,6 @@ function checkOnline() {
     }
 }
 
-// Check configuration files
-function checkConfigFile(data, desiredString) {
-    const searchString = new RegExp(`(?<=${desiredString}).*`, "g");
-
-    let systemConfig = data.match(searchString)[0];
-    systemConfig = systemConfig.toLowerCase();
-    systemConfig = systemConfig.replace(/:.*/g, '');
-    systemConfig = systemConfig.replace(/\.utf-8/g, "").replace(/\.utf8/g, "");
-    return systemConfig;
-}
-
 // Check the theme that should be used
 function checkTheme() {
     const fs = require('fs');
@@ -179,9 +168,9 @@ function selectCommunityUrl() {
     const fs = require('fs');
 
     const urlCommunity = {
-        "pt_br": "https://regataos.forumeiros.com/",
-        "pt_pt": "https://regataos.forumeiros.com/",
-        "en_us": "https://t.me/regataos_en",
+        "pt-br": "https://regataos.forumeiros.com/",
+        "pt-pt": "https://regataos.forumeiros.com/",
+        "en-us": "https://t.me/regataos_en",
         "en": "https://t.me/regataos_en",
     };
 
@@ -195,7 +184,7 @@ function selectCommunityUrl() {
             if (typeof urlCommunity[languageDetected] !== "undefined") {
                 return urlCommunity[languageDetected];
             } else {
-                return urlCommunity["en_us"];
+                return urlCommunity["en-us"];
             }
 
         } else if (checkLangSystem.includes("LANG")) {
@@ -205,7 +194,7 @@ function selectCommunityUrl() {
             if (typeof urlCommunity[languageDetected] !== "undefined") {
                 return urlCommunity[languageDetected];
             } else {
-                return urlCommunity["en_us"];
+                return urlCommunity["en-us"];
             }
         }
 
@@ -215,7 +204,7 @@ function selectCommunityUrl() {
         if (typeof urlCommunity[checkLangSystem] !== "undefined") {
             return urlCommunity[checkLangSystem.toLowerCase()];
         } else {
-            return urlCommunity["en_us"];
+            return urlCommunity["en-us"];
         }
     }
 }
