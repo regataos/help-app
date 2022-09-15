@@ -21,3 +21,6 @@ restoreConfigCancel="Cancel"
 ## Fix network
 fixNetwork="Fix network problems"
 fixNetworkDesc="Trying to fix network issues..."
+searchingDriverDesc="Checking network driver..."
+notifyDriverBroadcomTitle="Broadcom wireless driver installed!"
+notifyDriverInstallText="A new wireless driver has been installed.\nRestart the system."
