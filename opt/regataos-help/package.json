@@ -1,9 +1,9 @@
 {
   "name": "Regata OS Support",
   "description": "Get support for Regata OS",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "main": "www/index.html",
-  "inject_js_end": "www/js/scripts.js",
+  "user-agent": "RegataOSSupportClient/2.0.0 (Regata OS Support)",
   "window": {
     "show": false,
     "toolbar": false,
