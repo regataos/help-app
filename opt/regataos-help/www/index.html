@@ -38,26 +38,38 @@
 	    </div>
 
 		<ul class="ul-sidebar">
-            <li id="option-solutions"
+            <li id="option-solutions" title="Ready solutions"
                 class="li-sidebar solutions sidebar-button"
                 onclick="go_solutions();">
                 <a class="link-items" onclick="go_solutions();">
                     <img class="icones-menu solution"
                         title="Ready solutions"
-                        style="margin-left: 3px; height: 35px;"
+                        style="margin-left: 0px; height: 35px;"
                         src="images/img-sidebar/tools2.png"/>
                     <p style="margin-left: 13px;"></p>
                 </a>
             </li>
 
-            <li id="option-regataoshelp"
+            <li id="option-regataoshelp" title="Tutorials and Tips"
                 class="li-sidebar regataos-help sidebar-button"
                 onclick="go_regataoshelp();">
                 <a class="link-items" onclick="go_regataoshelp();">
                     <img class="icones-menu help"
                         title="Tutorials and Tips"
-                        style="margin-left: 3px; height: 35px;"
+                        style="margin-left: 0px; height: 35px;"
                         src="images/img-sidebar/support.png"/>
+                    <p style="margin-left: 10px;"></p>
+                </a>
+            </li>
+
+            <li id="option-forum" title="Regata OS Forum"
+                class="li-sidebar regataos-help sidebar-button"
+                onclick="go_forum();">
+                <a class="link-items" onclick="go_forum();">
+                    <img class="icones-menu forum"
+                        title="Regata OS Forum"
+                        style="margin-left: 0px; height: 35px;"
+                        src="images/img-sidebar/forum.png"/>
                     <p style="margin-left: 10px;"></p>
                 </a>
             </li>
@@ -69,7 +81,8 @@
             allowfullscreen
             frameborder="0"
             class="iframe"
-            id="main-iframe">
+            id="main-iframe"
+            onload="selectCommunity(this);">
         </iframe>
     </div>
 

@@ -7,13 +7,14 @@
                 "showMenu": "Icons only",
                 "hideMenu": "Icons and texts",
                 "toolsButton": "Ready solutions",
-                "tipsTutorials": "Tutorials and tips"
+                "tipsTutorials": "Tutorials and tips",
+                "forum": "Regata OS Forum"
             }
         },
         "homePage": {
             "title": "Do you need help with Regata OS?",
             "description": "This is the Regata OS troubleshooting center.</br>We have separated some options here that can help you solve some problems.</br>",
-            "communityText": "If you still haven't found what you're looking for, ask the community using our <a onclick='community()'>Telegram group</a>.",
+            "communityText": "If you still haven't found what you're looking for, ask the community using our <a id='community-access'>Telegram group</a>.",
             "networkOption": {
                 "title": "Troubleshoot network</br>problems",
                 "text": "If you are having problems with your internet connection, this option is recommended for you.",

@@ -36,6 +36,12 @@ function applyTranslation() {
 
         const tipsTutorialsText = document.querySelector("#option-regataoshelp p");
         tipsTutorialsText.innerHTML = data[i].index.sideBar.tipsTutorials;
+
+        const forum = document.querySelector("#option-forum img");
+        forum.title = data[i].index.sideBar.forum;
+
+        const forumText = document.querySelector("#option-forum p");
+        forumText.innerHTML = data[i].index.sideBar.forum;
     }
 }
 applyTranslation();

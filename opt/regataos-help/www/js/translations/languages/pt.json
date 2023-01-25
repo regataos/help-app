@@ -7,13 +7,14 @@
                 "showMenu": "Ícones e textos",
                 "hideMenu": "Apenas ícones",
                 "toolsButton": "Soluções prontas",
-                "tipsTutorials": "Tutoriais e dicas"
+                "tipsTutorials": "Tutoriais e dicas",
+                "forum": "Regata OS Fórum"
             }
         },
         "homePage": {
             "title": "Você precisa de ajuda com o Regata OS?",
             "description": "Este é o centro de solução de problemas do Regata OS.</br>Separamos aqui algumas opções que podem lhe ajudar a resolver alguns problemas.</br>",
-            "communityText": "Se você ainda não encontrou o que procura, pergunte à comunidade, através do <a onclick='community()'>nosso fórum</a>.",
+            "communityText": "Se você ainda não encontrou o que procura, pergunte à comunidade, através do <a id='community-access'>nosso fórum</a>.",
             "networkOption": {
                 "title": "Solucionar problemas</br>com a rede",
                 "text": "Se você está tendo problemas com a conexão com a internet, esta opção é a recomendada para você.",

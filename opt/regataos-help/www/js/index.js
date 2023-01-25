@@ -1,3 +1,16 @@
+// Global variable
+const mainIframe = document.getElementById("main-iframe").contentWindow;
+
+function getIframeUrl() {
+    let iframeUrl = mainIframe.location.href;
+    return iframeUrl;
+}
+
+// Go url iframe
+function goIframeUrl(url) {
+    mainIframe.document.location.href = url;
+}
+
 // Show app only when the UI is ready
 const gui = require('nw.gui');
 
@@ -43,6 +56,7 @@ function checkTheme() {
         document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu-dark.png";
         document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools2-dark.png";
         document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/support-dark.png";
+        document.querySelector("img.forum").src = "file:///opt/regataos-help/www/images/img-sidebar/forum-dark.png";
 
         // For sidebar buttons
         const solutionOptions = document.getElementById("option-solutions");
@@ -71,6 +85,7 @@ function checkTheme() {
         document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu.png";
         document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools2.png";
         document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/support.png";
+        document.querySelector("img.forum").src = "file:///opt/regataos-help/www/images/img-sidebar/forum.png";
 
         // For sidebar buttons
         const solutionOptions = document.getElementById("option-solutions");
@@ -104,10 +119,8 @@ setInterval(detectIframeUrl, 500);
 function detectIframeUrl() {
     const fs = require('fs');
 
-    const iframeUrl = document.getElementById("main-iframe").contentWindow.location.href;
-
     function usingDarkTheme() {
-        if ((iframeUrl.indexOf("solutions.html") > -1) == "1") {
+        if ((getIframeUrl().indexOf("solutions.html") > -1) == "1") {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #0085e4";
@@ -116,7 +129,16 @@ function detectIframeUrl() {
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #2a2f35";
         }
 
-        if ((iframeUrl.indexOf("regataos") > -1) == "1") {
+        if ((getIframeUrl().indexOf("forum.html") > -1) == "1") {
+            document.getElementById("return-on").style.display = "flex";
+            document.getElementById("return-off").style.display = "none";
+            document.querySelector("#option-forum a").style.borderLeft = "4px solid #0085e4";
+
+        } else {
+            document.querySelector("#option-forum a").style.borderLeft = "4px solid #2a2f35";
+        }
+
+        if ((getIframeUrl().indexOf("regataos") > -1) == "1") {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #0085e4";
@@ -127,7 +149,7 @@ function detectIframeUrl() {
     }
 
     function usingLightTheme() {
-        if ((iframeUrl.indexOf("solutions.html") > -1) == "1") {
+        if ((getIframeUrl().indexOf("solutions.html") > -1) == "1") {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #0085e4";
@@ -136,7 +158,16 @@ function detectIframeUrl() {
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #e5e5e5";
         }
 
-        if ((iframeUrl.indexOf("regataos") > -1) == "1") {
+        if ((getIframeUrl().indexOf("forum.html") > -1) == "1") {
+            document.getElementById("return-on").style.display = "flex";
+            document.getElementById("return-off").style.display = "none";
+            document.querySelector("#option-forum a").style.borderLeft = "4px solid #0085e4";
+
+        } else {
+            document.querySelector("#option-forum a").style.borderLeft = "4px solid #e5e5e5";
+        }
+
+        if ((getIframeUrl().indexOf("regataos") > -1) == "1") {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #0085e4";
@@ -255,47 +286,17 @@ function setSupportUrl() {
         "en": "https://support.regataos.com",
     };
 
-    if (fs.existsSync("/tmp/regataos-configs/config/plasma-localerc")) {
-        const checkLangSystem = fs.readFileSync("/tmp/regataos-configs/config/plasma-localerc", "utf8");
-
-        if (checkLangSystem.includes("LANGUAGE")) {
-            const configOption = "LANGUAGE="
-            const languageDetected = checkConfigFile(checkLangSystem, configOption);
-
-            if (typeof urlSupport[languageDetected] !== "undefined") {
-                return urlSupport[languageDetected];
-            } else {
-                return urlSupport["en-us"];
-            }
-
-        } else if (checkLangSystem.includes("LANG")) {
-            const configOption = "LANG="
-            const languageDetected = checkConfigFile(checkLangSystem, configOption);
-
-            if (typeof urlSupport[languageDetected] !== "undefined") {
-                return urlSupport[languageDetected];
-            } else {
-                return urlSupport["en-us"];
-            }
-        }
-
-    } else if (fs.existsSync("/tmp/regataos-configs/config/user-dirs.locale")) {
-        const checkLangSystem = fs.readFileSync("/tmp/regataos-configs/config/user-dirs.locale", "utf8");
-
-        if (typeof urlSupport[checkLangSystem] !== "undefined") {
-            return urlSupport[checkLangSystem.toLowerCase()];
-        } else {
-            return urlSupport["en-us"];
-        }
+    if (typeof urlSupport[languageDetected] !== "undefined") {
+        return urlSupport[languageDetected];
+    } else {
+        return urlSupport["en-us"];
     }
 }
 
 // Go to specific pages
 function go_solutions() {
-    const iframeUrl = document.getElementById("main-iframe").contentWindow.location.href;
-
-    if ((iframeUrl.indexOf("solutions.html") > -1) == "0") {
-        document.getElementById("main-iframe").contentWindow.document.location.href = "pages/solutions.html";
+    if ((getIframeUrl().indexOf("solutions.html") > -1) == "0") {
+        goIframeUrl("pages/solutions.html");
 
         // Take the page to the top
         setTimeout(function () {
@@ -305,11 +306,20 @@ function go_solutions() {
 }
 
 function go_regataoshelp() {
-    const iframeUrl = document.getElementById("main-iframe").contentWindow.location.href;
-
-    if ((iframeUrl.indexOf("regataos") > -1) == "0") {
-        document.getElementById("main-iframe").contentWindow.document.location.href = setSupportUrl();
+    if ((getIframeUrl().indexOf("regataos") > -1) == "0") {
+        goIframeUrl(setSupportUrl());
         checkTheme();
+
+        // Take the page to the top
+        setTimeout(function () {
+            window.scrollTo(0, 0);
+        }, 300);
+    }
+}
+
+function go_forum() {
+    if ((getIframeUrl().indexOf("forum.html") > -1) == "0") {
+        goIframeUrl("pages/forum.html");
 
         // Take the page to the top
         setTimeout(function () {
@@ -320,21 +330,73 @@ function go_regataoshelp() {
 
 // Back button
 function backButton() {
-    const iframeUrl = document.getElementById("main-iframe").contentWindow.location.href
+    if ((getIframeUrl().indexOf("forum.html") > -1) == "1") {
+        const webview = mainIframe.document.getElementById('webview-forum');
 
-    if (iframeUrl.indexOf("suporte.regataos.com.br/search?q=") == -1) {
-        history.go(-1);
-        // Take the page to the top
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 100);
+        webview.executeScript({
+            code: "window.location.href"
+        }, result => {
+            this.url = result[0];
+            let urlPage = url;
+            urlPage = urlPage.split("com/")[1];
+
+            if (!urlPage) {
+                if (getIframeUrl().indexOf("suporte.regataos.com.br/search?q=") == -1) {
+                    history.go(-1);
+                    // Take the page to the top
+                    setTimeout(function () {
+                        window.scrollTo(0, 0);
+                    }, 100);
+
+                } else {
+                    goIframeUrl(setSupportUrl());
+
+                    // Take the page to the top
+                    setTimeout(function () {
+                        window.scrollTo(0, 0);
+                    }, 300);
+                }
+
+            } else {
+                webview.executeScript({ code: 'history.go(-1)' })
+            }
+        })
 
     } else {
-        document.getElementById("main-iframe").contentWindow.document.location.href = setSupportUrl();
+        if (getIframeUrl().indexOf("suporte.regataos.com.br/search?q=") == -1) {
+            history.go(-1);
+            // Take the page to the top
+            setTimeout(function () {
+                window.scrollTo(0, 0);
+            }, 100);
 
-        // Take the page to the top
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 300);
+        } else {
+            goIframeUrl(setSupportUrl());
+
+            // Take the page to the top
+            setTimeout(function () {
+                window.scrollTo(0, 0);
+            }, 300);
+        }
     }
 }
+
+// Select community and hide forum in sidebar
+function selectCommunity() {
+    if ((languageDetected.indexOf("pt") > -1) == "0") {
+        document.querySelector("#option-forum").style.display = "none";
+    }
+
+    mainIframe.document.getElementById("community-access").onclick = function () {
+        if ((languageDetected.indexOf("pt") > -1) == "1") {
+            go_forum();
+
+        } else {
+            const exec = require('child_process').exec;
+            const command = `xdg-open "https://t.me/regataos_en"`;
+            exec(command, function (error, call, errlog) {
+            });
+        }
+    };
+}
+selectCommunity();
