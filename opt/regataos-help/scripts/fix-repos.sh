@@ -21,7 +21,7 @@ wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-22.tar.xz \
 # Extract files
 sudo tar xf /tmp/apps-scripts/regataos-repo-22.tar.xz -C /
 
-sudo pkcon --noninteractive refresh | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 \
+sudo retry -r 20 -- pkcon --noninteractive refresh | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 \
     --text "$text2" --title "$title" --auto-close --auto-kill --no-cancel \
     --window-icon "/usr/share/icons/breeze-dark/preferences/32/yast-sw_source.svg"
 
