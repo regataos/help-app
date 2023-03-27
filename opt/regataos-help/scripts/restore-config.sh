@@ -8,7 +8,7 @@ yesButton="$(cat $getTranslationFile | grep restoreConfigYes= | cut -d"=" -f 2- 
 cancelButton="$(cat $getTranslationFile | grep restoreConfigCancel= | cut -d"=" -f 2- | sed 's/"//g')"
 
 sudo -H env DISPLAY=:0 zenity --question --text "$text" --icon-name=preferences-system-time \
-    --title "$title" --ok-label "$yesButton" --cancel-label "$cancelButton" --width 300
+    --title "$title" --ok-label "$yesButton" --cancel-label "$cancelButton" --width 300 \
     --window-icon "/usr/share/icons/breeze/preferences/32/preferences-system-time.svg"
 if [ $? -eq "0" ]
 then
