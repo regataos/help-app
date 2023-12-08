@@ -49,5 +49,10 @@ fi
 # Fix for zenity
 xhost +si:localuser:root
 
+# Clear GPUCache files
+if test -e "$HOME/.config/Regata OS Support/Default/GPUCache/index"; then
+	rm -f "$HOME/.config/Regata OS Support/Default/GPUCache/"*
+fi
+
 # Run app
 regataoshelp /opt/regataos-help
