@@ -1,16 +1,16 @@
 {
   "name": "Regata OS Support",
   "description": "Get support for Regata OS",
-  "version": "2.0.0",
-  "main": "www/index.html",
-  "user-agent": "RegataOSSupportClient/2.0.0 (Regata OS Support)",
+  "version": "3.0",
+  "main": "app/index.html",
+  "user-agent": "RegataOSSupportClient/3.0 (Regata OS Support)",
   "window": {
     "show": false,
     "toolbar": false,
     "position": "center",
     "width": 1366,
     "height": 950,
-    "icon": "www/images/icon.png"
+    "icon": "app/images/icon.png"
   },
   "webview": {
     "partitions": [

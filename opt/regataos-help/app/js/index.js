@@ -1,7 +1,6 @@
 
 // Show app only when the UI is ready
 const gui = require('nw.gui');
-
 onload = function () {
     gui.Window.get().show();
 }
@@ -11,12 +10,17 @@ setTimeout(function () {
     document.getElementById("loadscreen").style.display = "none";
 }, 1000);
 
+// Block drag and drop of icons
+const icons = document.querySelectorAll(".icones-menu");
+for (let i = 0; i < icons.length; i++) {
+    icons[i].draggable = false;
+}
+
 // Get information from the main iframe
 const mainIframe = document.getElementById("main-iframe").contentWindow;
-
 function getIframeUrl() {
-    let iframeUrl = mainIframe.location.href;
-    return iframeUrl;
+    let getUrl = mainIframe.location.href;
+    return getUrl;
 }
 
 function goIframeUrl(url) {
@@ -27,7 +31,6 @@ function goIframeUrl(url) {
 setInterval(checkOnline, 1000);
 function checkOnline() {
     const onlineSupport = document.getElementById("option-regataoshelp");
-
     if (navigator.onLine) {
         onlineSupport.style.display = "block";
     } else {
@@ -36,6 +39,7 @@ function checkOnline() {
 }
 
 // Check the theme that should be used
+setInterval(checkTheme, 1000);
 function checkTheme() {
     const fs = require('fs');
 
@@ -108,14 +112,12 @@ function checkTheme() {
     if (fs.existsSync("/tmp/regataos-configs/config/kdeglobals")) {
         const checkColorScheme = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
         const configOption = "ColorScheme=";
-
         const colorConfig = checkConfigFile(checkColorScheme, configOption).toLowerCase();
         if (colorConfig.includes("dark")) {
             applyDarkTheme();
         } else {
             applyLightTheme();
         }
-
     } else {
         applyLightTheme();
     }
@@ -128,58 +130,52 @@ function detectIframeUrl() {
     const fs = require('fs');
 
     function usingDarkTheme() {
-        if ((getIframeUrl().indexOf("solutions.html") > -1) == "1") {
+        if (getIframeUrl().includes("solutions.html")) {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #0085e4";
-
         } else {
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #2a2f35";
         }
 
-        if ((getIframeUrl().indexOf("forum.html") > -1) == "1") {
+        if (getIframeUrl().includes("forum.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-forum a").style.borderLeft = "4px solid #0085e4";
-
         } else {
             document.querySelector("#option-forum a").style.borderLeft = "4px solid #2a2f35";
         }
 
-        if ((getIframeUrl().indexOf("support.html") > -1) == "1") {
+        if (getIframeUrl().includes("support.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #0085e4";
-
         } else {
             document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #2a2f35";
         }
     }
 
     function usingLightTheme() {
-        if ((getIframeUrl().indexOf("solutions.html") > -1) == "1") {
+        if (getIframeUrl().includes("solutions.html")) {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #0085e4";
-
         } else {
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #e5e5e5";
         }
 
-        if ((getIframeUrl().indexOf("forum.html") > -1) == "1") {
+        if (getIframeUrl().includes("forum.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-forum a").style.borderLeft = "4px solid #0085e4";
-
         } else {
             document.querySelector("#option-forum a").style.borderLeft = "4px solid #e5e5e5";
         }
 
-        if ((getIframeUrl().indexOf("support.html") > -1) == "1") {
+        if (getIframeUrl().includes("support.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #0085e4";
-
         } else {
             document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #e5e5e5";
         }
@@ -188,14 +184,12 @@ function detectIframeUrl() {
     if (fs.existsSync("/tmp/regataos-configs/config/kdeglobals")) {
         const checkColorScheme = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
         const configOption = "ColorScheme=";
-
         const colorConfig = checkConfigFile(checkColorScheme, configOption).toLowerCase();
         if (colorConfig.includes("dark")) {
             usingDarkTheme();
         } else {
             usingLightTheme();
         }
-
     } else {
         usingLightTheme();
     }
@@ -269,14 +263,12 @@ function sideBarStart() {
     if (fs.existsSync("/tmp/regataos-help/config/regataos-help.conf")) {
         const regataHelpConfig = fs.readFileSync("/tmp/regataos-help/config/regataos-help.conf", "utf8");
         const configOption = "hide_sidebar=";
-
         const sideBarConfig = checkConfigFile(regataHelpConfig, configOption);
         if (sideBarConfig.includes("0")) {
             showSideBar();
         } else {
             hideSideBar();
         }
-
     } else {
         showSideBar();
     }
@@ -285,7 +277,7 @@ sideBarStart();
 
 // Go to specific pages
 function go_solutions() {
-    if ((getIframeUrl().indexOf("solutions.html") > -1) == "0") {
+    if (!getIframeUrl().includes("solutions.html")) {
         goIframeUrl("pages/solutions.html");
 
         checkTheme();
@@ -298,7 +290,7 @@ function go_solutions() {
 }
 
 function go_regataoshelp() {
-    if ((getIframeUrl().indexOf("support.html") > -1) == "0") {
+    if (!getIframeUrl().includes("support.html")) {
         goIframeUrl("pages/support.html");
 
         checkTheme();
@@ -311,7 +303,7 @@ function go_regataoshelp() {
 }
 
 function go_forum() {
-    if ((getIframeUrl().indexOf("forum.html") > -1) == "0") {
+    if (!getIframeUrl().includes("forum.html")) {
         goIframeUrl("pages/forum.html");
 
         checkTheme();
@@ -334,7 +326,7 @@ function backButton() {
             this.url = result[0];
             let urlPage = url;
 
-            if ((urlPage.indexOf("com.br/") > -1) == "1") {
+            if (urlPage.includes("com.br/")) {
                 urlPage = urlPage.split("com.br/")[1];
             } else {
                 urlPage = urlPage.split("com/")[1];
@@ -354,10 +346,10 @@ function backButton() {
         })
     }
 
-    if ((getIframeUrl().indexOf("forum.html") > -1) == "1") {
+    if (getIframeUrl().includes("forum.html")) {
         backButtonWebview();
 
-    } else if ((getIframeUrl().indexOf("support.html") > -1) == "1") {
+    } else if (getIframeUrl().includes("support.html")) {
         backButtonWebview();
 
     } else {
@@ -371,13 +363,13 @@ function backButton() {
 
 // Select community and hide forum in sidebar
 function selectCommunity() {
-    if ((languageDetected.indexOf("pt") > -1) == "0") {
+    if (!languageDetected.includes("pt-br")) {
         document.querySelector("#option-forum").style.display = "none";
     }
 
-    if ((getIframeUrl().indexOf("solutions.html") > -1) == "1") {
+    if (getIframeUrl().includes("solutions.html")) {
         mainIframe.document.getElementById("community-access").onclick = function () {
-            if ((languageDetected.indexOf("pt") > -1) == "1") {
+            if (languageDetected.includes("pt-br")) {
                 go_forum();
 
             } else {

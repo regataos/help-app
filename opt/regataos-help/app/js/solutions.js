@@ -53,6 +53,7 @@ function checkOnline() {
 }
 
 // Check the theme that should be used
+setInterval(checkTheme, 1000);
 function checkTheme() {
     const fs = require('fs');
 

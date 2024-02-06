@@ -24,11 +24,11 @@ then
 
     #Create desktop shortcuts only if necessary
     if test ! -e "$desktop_dir/trash.desktop"; then
-        cp -f "/opt/regataos-help/extra/trash.desktop" "$desktop_dir/trash.desktop"
+        cp -f "/opt/regataos-help/app/extra/trash.desktop" "$desktop_dir/trash.desktop"
         chown $user:users "$desktop_dir/trash.desktop"
     fi
     if test ! -e "$desktop_dir/Home.desktop"; then
-        cp -f "/opt/regataos-help/extra/Home.desktop" "$desktop_dir/Home.desktop"
+        cp -f "/opt/regataos-help/app/extra/Home.desktop" "$desktop_dir/Home.desktop"
         chown $user:users "$desktop_dir/Home.desktop"
     fi
 
