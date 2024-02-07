@@ -82,19 +82,12 @@ function checkTheme() {
         }
 
         const networkButton = document.getElementById("network-button");
-        networkButton.classList.remove("button");
         networkButton.classList.add("button-dark");
-
         const repositoryButton = document.getElementById("repo-button");
-        repositoryButton.classList.remove("button");
         repositoryButton.classList.add("button-dark");
-
         const restoreButton = document.getElementById("restore-button");
-        restoreButton.classList.remove("button");
         restoreButton.classList.add("button-dark");
-
         const infoButton = document.getElementById("info-button");
-        infoButton.classList.remove("button");
         infoButton.classList.add("button-dark");
     }
 
@@ -124,19 +117,12 @@ function checkTheme() {
 
         const networkButton = document.getElementById("network-button");
         networkButton.classList.remove("button-dark");
-        networkButton.classList.add("button");
-
         const repositoryButton = document.getElementById("repo-button");
         repositoryButton.classList.remove("button-dark");
-        repositoryButton.classList.add("button");
-
         const restoreButton = document.getElementById("restore-button");
         restoreButton.classList.remove("button-dark");
-        restoreButton.classList.add("button");
-
         const infoButton = document.getElementById("info-button");
         infoButton.classList.remove("button-dark");
-        infoButton.classList.add("button");
     }
 
     if (fs.existsSync("/tmp/regataos-configs/config/kdeglobals")) {

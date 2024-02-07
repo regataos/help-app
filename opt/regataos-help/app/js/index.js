@@ -30,11 +30,18 @@ function goIframeUrl(url) {
 // Check internet connection
 setInterval(checkOnline, 1000);
 function checkOnline() {
-    const onlineSupport = document.getElementById("option-regataoshelp");
+    const regataosHelp = document.getElementById("option-regataoshelp");
+    const regataosCommunity = document.getElementById("option-forum");
+
     if (navigator.onLine) {
-        onlineSupport.style.display = "block";
+        regataosHelp.style.display = "block";
+
+        if (languageDetected.includes("pt-br")) {
+            regataosCommunity.style.display = "block";
+        }
     } else {
-        onlineSupport.style.display = "none";
+        regataosHelp.style.display = "none";
+        regataosCommunity.style.display = "none";
     }
 }
 

@@ -36,7 +36,7 @@ body {
 }
 
 a {
-    color: rgb(45, 120, 214);
+    color: #0084e3;
     cursor: pointer;
     text-decoration: underline;
 }
@@ -98,8 +98,8 @@ a {
     margin-top: 0px;
 	margin-left: 0px;
     margin-bottom: 0px;
-	padding-top: 18px;
-	padding-bottom: 18px;
+	padding-top: 10px;
+	padding-bottom: 10px;
     transition: all 0.3s ease-in-out;
 }
 
@@ -185,10 +185,15 @@ a {
     font-size: 22px;
 }
 
-.icones-menu {
+.icons-menu, .icons-menu-option {
     display: inline-block;
     padding-right: 5px;
     left: -8px;
+}
+
+.icons-menu-option {
+    height: 30px;
+    margin-left: 2px;
 }
 
 @keyframes example {
@@ -324,7 +329,7 @@ li {
     font-weight: 600;
     line-height: 1.4;
     padding-left: 0px;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 10px;
 }
 
@@ -337,148 +342,40 @@ p {
     padding-left: 0px;
 }
 
-div.rede-icone-on {
+.option-icon {
     display: block;
     height: 100px;
     width: 100px;
     background-position: 50% 50%;
-    background-size: 100% 100%;
+    background-size: 100% auto;
     background-repeat: no-repeat;
     border-radius: 6px;
 }
 
-div.rede-icone-off {
+.rede-icone-off, .repo-icone-off {
     display: none;
-    height: 100px;
-    width: 100px;
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 6px;
-}
-
-div.rede-icone-alert {
-    display: none;
-    height: 100px;
-    width: 100px;
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 6px;
-}
-
-.rede-botao-off {
-    display: inline-block;
-    text-align: center;
-    font: 16px 'Roboto', sans-serif;
-    background-color: #ccc;
-    background-position: center;
-    margin-top: 15px;
-    padding: 13px 15px;
-    cursor: pointer;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-div.repo-icone-on {
-    display: block;
-    height: 100px;
-    width: 127px;
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 6px;
-}
-
-div.repo-icone-off {
-    display: none;
-    height: 100px;
-    width: 127px;
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 6px;
-}
-
-.repo-botao-on {
-    display: inline-block;
-    text-align: center;
-    font: 16px 'Roboto', sans-serif;
-    background-color: #ccc;
-    background-position: center;
-    margin-top: 15px;
-    padding: 13px 15px;
-    cursor: pointer;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
 }
 
 .button-transparent {
     display: none;
-    text-align: center;
-    font: 16px 'Roboto', sans-serif;
     color: #fff;
     background-color: #fff;
-    background-position: center;
-    margin-top: 15px;
-    padding: 13px 15px;
     cursor: default;
 }
 
-div.restore-icon {
-    display: block;
-    height: 100px;
-    width: 112px;
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 6px;
-}
-
-.restore-botao {
-    display: inline-block;
-    text-align: center;
-    font: 16px 'Roboto', sans-serif;
-    background-color: #ccc;
-    background-position: center;
-    margin-top: 15px;
-    padding: 13px 15px;
-    cursor: pointer;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-div.info-icon {
-    display: block;
-    height: 100px;
-    width: 100px;
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-radius: 6px;
-}
-
-.info-botao {
-    display: inline-block;
-    text-align: center;
-    font: 16px 'Roboto', sans-serif;
-    background-color: #ccc;
-    background-position: center;
-    margin-top: 15px;
-    padding: 13px 15px;
-    cursor: pointer;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
 .button {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font: 16px 'Roboto', sans-serif;
     color: #000;
-    border-radius: 5px;
+    border-radius: 2em;
     background-color: #ccc;
+    background-position: center;
+    margin-top: 15px;
+    padding: 15px 20px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
     -webkit-animation-name: animatebottom;
@@ -501,12 +398,6 @@ div.info-icon {
     color: #fff;
     border-radius: 5px;
     background-color: #373e46;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: .5s;
-    animation-name: animatebottom;
-    animation-duration: .5s;
 }
 
 .button-dark:hover {
