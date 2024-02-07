@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Troubleshooting Center for Regata OS</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-	<link rel="stylesheet" type="text/css" href="./../css/roboto-style.css">
-	<link rel="stylesheet" type="text/css" href="./../css/style.css">
+    <title>Troubleshooting Center for Regata OS</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="./../css/roboto-style.css">
+    <link rel="stylesheet" type="text/css" href="./../css/style.css">
 </head>
+
 <body style="background-color: #f2f2f2;">
     <div id="loadscreen"></div>
 
@@ -15,42 +17,63 @@
         <h2 class="h2 h2-description">This is the Regata OS troubleshooting center.</br>
             We have separated some options here that can help you solve some problems.</br>
         </h2>
-        <h2 class="h2" id="ask-community">If you still haven't found what you're looking for, ask the community using our <a id="community-access">Telegram group</a>.</h2>
+        <h2 class="h2" id="ask-community">If you still haven't found what you're looking for, ask the community using
+            our <a id="community-access">Telegram group</a>.</h2>
     </div>
 
     <div class="div2 auto-update">
         <ul class="ul-blocks">
             <li class="rede option">
-                <div class="option-icon rede-icone-on online-img" style="background-image:url(./../images/wifi-on.png);"></div>
-                <div class="option-icon rede-icone-off offline-img" style="background-image:url(./../images/wifi-off.png);"></div>
-                <h3 class="h3 network-problems">Troubleshoot network</br>problems</h3>
-                <p class="network-problems-desc">If you are having problems with your internet connection, this option is recommended for you.</p>
-                <div id="network-button" class="option-button rede-botao-off button" onclick="runShellScript('fix-network')">Start now</div>
+                <div class="option-item">
+                    <div class="option-icon rede-icone-on online-img"
+                        style="background-image:url(./../images/wifi-on.png);"></div>
+                    <div class="option-icon rede-icone-off offline-img"
+                        style="background-image:url(./../images/wifi-off.png);"></div>
+                    <h3 class="h3 network-problems">Troubleshoot network</br>problems</h3>
+                    <p class="network-problems-desc">If you are having problems with your internet connection, this
+                        option is recommended for you.</p>
+                    <div id="network-button" class="option-button rede-botao-off button"
+                        onclick="runShellScript('fix-network')">Start now</div>
+                </div>
             </li>
             <li class="repo option">
-                <div class="option-icon repo-icone-on online-img" style="background-image:url(./../images/repo-on.png);"></div>
-                <div class="option-icon repo-icone-off offline-img" style="background-image:url(./../images/repo-off.png);"></div>
-                <h3 class="h3 update-repos">Update software repositories</br>manually</h3>
-                <p class="update-repos-desc">Update software repositories manually. This can help troubleshoot problems.</p>
-                <div id="repo-button" class="option-button repo-botao-on online button" onclick="runShellScript('fix-repos')">Update repositories</div>
-                <div class="button-transparent">transparent button</div>
+                <div class="option-item">
+                    <div class="option-icon repo-icone-on online-img"
+                        style="background-image:url(./../images/repo-on.png);"></div>
+                    <div class="option-icon repo-icone-off offline-img"
+                        style="background-image:url(./../images/repo-off.png);"></div>
+                    <h3 class="h3 update-repos">Update software repositories</br>manually</h3>
+                    <p class="update-repos-desc">Update software repositories manually. This can help troubleshoot
+                        problems.</p>
+                    <div id="repo-button" class="option-button repo-botao-on online button"
+                        onclick="runShellScript('fix-repos')">Update repositories</div>
+                </div>
             </li>
             <li class="restore option">
-                <div class="option-icon" style="background-image:url(./../images/restore.png);"></div>
-                <h3 class="h3 restore-configs">Restore the default settings</br>of the graphical environment</h3>
-                <p class="restore-configs-desc">Restore the default settings of the Regata OS graphical environment. Restart required.</p>
-                <div id="restore-button" class="option-button restore-botao button" onclick="runShellScript('restore-config')">Restore settings</div>
+                <div class="option-item">
+                    <div class="option-icon" style="background-image:url(./../images/restore.png);"></div>
+                    <h3 class="h3 restore-configs">Restore the default settings</br>of the graphical environment</h3>
+                    <p class="restore-configs-desc">Restore the default settings of the Regata OS graphical environment.
+                        Restart required.</p>
+                    <div id="restore-button" class="option-button restore-botao button"
+                        onclick="runShellScript('restore-config')">Restore settings</div>
+                </div>
             </li>
             <li class="info option">
-                <div class="option-icon" style="background-image:url(./../images/info.png);"></div>
-                <h3 class="h3 info-configs">Get detailed hardware information</h3>
-                <p class="info-configs-desc">A text file will be created in your personal folder with important information about the hardware.</p>
-                <div id="info-button" class="option-button info-botao button" onclick="runShellScript('hardware-info')">Hardware information</div>
+                <div class="option-item">
+                    <div class="option-icon" style="background-image:url(./../images/info.png);"></div>
+                    <h3 class="h3 info-configs">Get detailed hardware information</h3>
+                    <p class="info-configs-desc">A text file will be created in your personal folder with important
+                        information about the hardware.</p>
+                    <div id="info-button" class="option-button info-botao button"
+                        onclick="runShellScript('hardware-info')">Hardware information</div>
+                </div>
             </li>
-		</ul>
+        </ul>
     </div>
     <script type="text/javascript" src="./../js/settings-checker.js"></script>
     <script type="text/javascript" src="./../js/translations/apply-translation-home.js"></script>
-	<script type="text/javascript" src="./../js/solutions.js"></script>
+    <script type="text/javascript" src="./../js/solutions.js"></script>
 </body>
+
 </html>

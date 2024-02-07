@@ -85,7 +85,7 @@ function checkTheme() {
 
     function applyLightTheme() {
         document.querySelector("body").style.backgroundColor = "#fff";
-        document.querySelector(".sidebar").style.backgroundColor = "#e5e5e5";
+        document.querySelector(".sidebar").style.backgroundColor = "#f3f3f3";
         document.querySelector(".link-items").style.color = "#333";
         document.getElementById("loadscreen").style.backgroundColor = "#fff";
 
@@ -168,7 +168,7 @@ function detectIframeUrl() {
             document.getElementById("return-off").style.display = "flex";
             document.querySelector("#option-solutions a").style.borderLeft = "4px solid #0085e4";
         } else {
-            document.querySelector("#option-solutions a").style.borderLeft = "4px solid #e5e5e5";
+            document.querySelector("#option-solutions a").style.borderLeft = "4px solid #f3f3f3";
         }
 
         if (getIframeUrl().includes("forum.html")) {
@@ -176,7 +176,7 @@ function detectIframeUrl() {
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-forum a").style.borderLeft = "4px solid #0085e4";
         } else {
-            document.querySelector("#option-forum a").style.borderLeft = "4px solid #e5e5e5";
+            document.querySelector("#option-forum a").style.borderLeft = "4px solid #f3f3f3";
         }
 
         if (getIframeUrl().includes("support.html")) {
@@ -184,7 +184,7 @@ function detectIframeUrl() {
             document.getElementById("return-off").style.display = "none";
             document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #0085e4";
         } else {
-            document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #e5e5e5";
+            document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #f3f3f3";
         }
     }
 

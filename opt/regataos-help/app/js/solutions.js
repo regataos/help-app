@@ -10,7 +10,6 @@ function checkOnline() {
     const onlineImg = document.querySelectorAll(".online-img");
     const offline = document.querySelectorAll(".offline");
     const offlineImg = document.querySelectorAll(".offline-img");
-    const transparentButton = document.querySelector(".button-transparent");
 
     if (navigator.onLine) {
         for (let i = 0; i < online.length; i++) {
@@ -28,9 +27,6 @@ function checkOnline() {
         for (let i = 0; i < offlineImg.length; i++) {
             offlineImg[i].style.display = "none";
         }
-
-        transparentButton.style.display = "none";
-
     } else {
         for (let i = 0; i < online.length; i++) {
             online[i].style.display = "none";
@@ -47,8 +43,6 @@ function checkOnline() {
         for (let i = 0; i < offlineImg.length; i++) {
             offlineImg[i].style.display = "block";
         }
-
-        transparentButton.style.display = "inline-block";
     }
 }
 
