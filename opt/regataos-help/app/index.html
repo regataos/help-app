@@ -1,90 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Troubleshooting Center for Regata OS</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>Troubleshooting Center for Regata OS</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
+
 <body>
     <div id="loadscreen"></div>
 
-	<div class="sidebar">
+    <div class="sidebar">
         <div id="return-off" class="return-sidebar2">
-            <img class="icons-menu seta-off"
-                style="margin-left: 3px; height: 30px;"
-                src="images/img-sidebar/arrow-off.png"/>
+            <img class="icons-menu seta-off" style="margin-left: 3px; height: 30px;"
+                src="images/img-sidebar/arrow-off.png" />
         </div>
 
         <div id="return-on" class="return-sidebar" onclick="backButton();">
-            <img class="icons-menu seta"
-                title="Go Back"
-                style="margin-left: 3px; height: 30px;"
-                src="images/img-sidebar/arrow.png"/>
+            <img class="icons-menu seta" title="Go Back" style="margin-left: 3px; height: 30px;"
+                src="images/img-sidebar/arrow.png" />
         </div>
 
-	    <div class="hide-sidebar" onclick="hideSideBar(true);">
-		    <img class="icons-menu sidebar-icon"
-                title="Icons only"
-                style="margin-left: 3px; height: 30px;"
-                src="images/img-sidebar/menu.png"/>
-	    </div>
+        <div class="hide-sidebar" onclick="hideSideBar(true);">
+            <img class="icons-menu sidebar-icon" title="Icons only" style="margin-left: 3px; height: 30px;"
+                src="images/img-sidebar/menu.png" />
+        </div>
 
-	    <div class="show-sidebar" onclick="showSideBar(true);">
-		    <img class="icons-menu sidebar-icon"
-                title="Icons and texts"
-                style="margin-left: 3px; height: 30px;"
-                src="images/img-sidebar/menu.png"/>
-	    </div>
+        <div class="show-sidebar" onclick="showSideBar(true);">
+            <img class="icons-menu sidebar-icon" title="Icons and texts" style="margin-left: 3px; height: 30px;"
+                src="images/img-sidebar/menu.png" />
+        </div>
 
-		<ul class="ul-sidebar">
-            <li id="option-solutions"
-                class="li-sidebar solutions sidebar-button"
-                onclick="go_solutions();">
+        <ul class="ul-sidebar">
+            <li id="option-solutions" class="li-sidebar solutions sidebar-button" onclick="go_solutions();">
+                <div class="sidebar-item-effect"></div>
                 <a class="link-items" onclick="go_solutions();">
-                    <img class="icons-menu-option solution"
-                        title="Ready solutions"
-                        src="images/img-sidebar/tools2.png"/>
+                    <img class="icons-menu-option solution" title="Ready solutions"
+                        src="images/img-sidebar/tools2.png" />
                     <p style="margin-left: 13px;"></p>
                 </a>
             </li>
 
-            <li id="option-regataoshelp"
-                class="li-sidebar regataos-help sidebar-button"
-                onclick="go_regataoshelp();">
+            <li id="option-regataoshelp" class="li-sidebar regataos-help sidebar-button" onclick="go_regataoshelp();">
+                <div class="sidebar-item-effect"></div>
                 <a class="link-items" onclick="go_regataoshelp();">
-                    <img class="icons-menu-option help"
-                        title="Tutorials and Tips"
-                        src="images/img-sidebar/support.png"/>
+                    <img class="icons-menu-option help" title="Tutorials and Tips"
+                        src="images/img-sidebar/support.png" />
                     <p style="margin-left: 10px;"></p>
                 </a>
             </li>
 
-            <li id="option-forum"
-                class="li-sidebar regataos-help sidebar-button"
-                onclick="go_forum();">
+            <li id="option-forum" class="li-sidebar regataos-help sidebar-button" onclick="go_forum();">
+                <div class="sidebar-item-effect"></div>
                 <a class="link-items" onclick="go_forum();">
-                    <img class="icons-menu-option forum"
-                        title="Regata OS Forum"
-                        src="images/img-sidebar/forum.png"/>
+                    <img class="icons-menu-option forum" title="Regata OS Forum" src="images/img-sidebar/forum.png" />
                     <p style="margin-left: 10px;"></p>
                 </a>
             </li>
         </ul>
-	</div>
+    </div>
 
-	<div class="div-iframe">
-        <iframe src="pages/solutions.html"
-            allowfullscreen
-            frameborder="0"
-            class="iframe"
-            id="main-iframe"
+    <div class="div-iframe">
+        <iframe src="pages/solutions.html" allowfullscreen frameborder="0" class="iframe" id="main-iframe"
             onload="selectCommunity(this);">
         </iframe>
     </div>
 
     <script type="text/javascript" src="js/settings-checker.js"></script>
     <script type="text/javascript" src="js/translations/apply-translation-index.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
+
 </html>

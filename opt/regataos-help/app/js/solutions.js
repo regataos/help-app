@@ -49,12 +49,11 @@ function checkOnline() {
 // Check the theme that should be used
 setInterval(checkTheme, 1000);
 function checkTheme() {
-    const fs = require('fs');
-
     function applyDarkTheme() {
         document.querySelector("body").style.backgroundColor = "#171a21";
         document.querySelector(".div2").style.backgroundColor = "#171a21";
         document.getElementById("loadscreen").style.backgroundColor = "#171a21";
+        document.getElementById("community-access").classList.add("community-access-dark");
 
         const div1 = document.querySelector(".div1")
         div1.style.backgroundColor = "#171a21";
@@ -63,6 +62,11 @@ function checkTheme() {
         const h2Text = document.querySelectorAll(".h2");
         for (let i = 0; i < h2Text.length; i++) {
             h2Text[i].style.color = "#f3f3f3";
+        }
+
+        const optionItem = document.querySelectorAll(".option-item");
+        for (let i = 0; i < optionItem.length; i++) {
+            optionItem[i].style.backgroundColor = "#2a2f35";
         }
 
         const h3Text = document.querySelectorAll(".h3");
@@ -74,6 +78,13 @@ function checkTheme() {
         for (let i = 0; i < pText.length; i++) {
             pText[i].style.color = "#f3f3f3";
         }
+
+        document.querySelector(".rede-icone-on").style.backgroundImage = "url(./../images/wifi-on-dark.png)";
+        document.querySelector(".rede-icone-off").style.backgroundImage = "url(./../images/wifi-off-dark.png)";
+        document.querySelector(".repo-icone-on").style.backgroundImage = "url(./../images/repo-on-dark.png)";
+        document.querySelector(".repo-icone-off").style.backgroundImage = "url(./../images/repo-on-dark.png)";
+        document.querySelector(".restore-icone").style.backgroundImage = "url(./../images/restore-dark.png)";
+        document.querySelector(".info-icone").style.backgroundImage = "url(./../images/info-dark.png)";
 
         const networkButton = document.getElementById("network-button");
         networkButton.classList.add("button-dark");
@@ -89,6 +100,7 @@ function checkTheme() {
         document.querySelector("body").style.backgroundColor = "#fff";
         document.querySelector(".div2").style.backgroundColor = "#fff";
         document.getElementById("loadscreen").style.backgroundColor = "#fff";
+        document.getElementById("community-access").classList.remove("community-access-dark");
 
         const div1 = document.querySelector(".div1");
         div1.style.backgroundColor = "#fff";
@@ -96,18 +108,30 @@ function checkTheme() {
 
         const h2Text = document.querySelectorAll(".h2");
         for (let i = 0; i < h2Text.length; i++) {
-            h2Text[i].style.color = "#333";
+            h2Text[i].style.color = "#222";
+        }
+
+        const optionItem = document.querySelectorAll(".option-item");
+        for (let i = 0; i < optionItem.length; i++) {
+            optionItem[i].style.backgroundColor = "#f3f3f3";
         }
 
         const h3Text = document.querySelectorAll(".h3");
         for (let i = 0; i < h3Text.length; i++) {
-            h3Text[i].style.color = "#575757";
+            h3Text[i].style.color = "#222";
         }
 
         const pText = document.querySelectorAll("p");
         for (let i = 0; i < pText.length; i++) {
-            pText[i].style.color = "#575757";
+            pText[i].style.color = "#333";
         }
+
+        document.querySelector(".rede-icone-on").style.backgroundImage = "url(./../images/wifi-on.png)";
+        document.querySelector(".rede-icone-off").style.backgroundImage = "url(./../images/wifi-off.png)";
+        document.querySelector(".repo-icone-on").style.backgroundImage = "url(./../images/repo-on.png)";
+        document.querySelector(".repo-icone-off").style.backgroundImage = "url(./../images/repo-on.png)";
+        document.querySelector(".restore-icone").style.backgroundImage = "url(./../images/restore.png)";
+        document.querySelector(".info-icone").style.backgroundImage = "url(./../images/info.png)";
 
         const networkButton = document.getElementById("network-button");
         networkButton.classList.remove("button-dark");
@@ -119,17 +143,16 @@ function checkTheme() {
         infoButton.classList.remove("button-dark");
     }
 
+    const fs = require('fs');
     if (fs.existsSync("/tmp/regataos-configs/config/kdeglobals")) {
         const checkColorScheme = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
         const configOption = "ColorScheme=";
-
         const colorConfig = checkConfigFile(checkColorScheme, configOption).toLowerCase();
         if (colorConfig.includes("dark")) {
             applyDarkTheme();
         } else {
             applyLightTheme();
         }
-
     } else {
         applyLightTheme();
     }
@@ -139,7 +162,8 @@ checkTheme();
 // Run Shell Script
 function runShellScript(script) {
     const exec = require('child_process').exec;
-    var command = `xhost +; sleep 1; sudo /opt/regataos-help/scripts/${script}.sh`;
+    const command = `xhost +; sleep 1; ps -C ${script}.sh > /dev/null;
+    if [ $? = 1 ]; then sudo /opt/regataos-help/scripts/${script}.sh; fi`;
     exec(command, function (error, call, errlog) {
     });
 }

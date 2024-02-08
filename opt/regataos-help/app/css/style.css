@@ -6,7 +6,7 @@
 body {
     font-family: Oxygen;
     font-weight: 300;
-	background-color: #fff;
+    background-color: #fff;
     padding: 0;
     margin: 0;
     -webkit-touch-callout: none;
@@ -16,13 +16,13 @@ body {
 
 /* Display content when everything is ready */
 #loadscreen {
-	display: block;
+    display: block;
     opacity: 1;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background-color: #fff;
-	z-index: 40000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #fff;
+    z-index: 40000;
     animation-name: initEffect;
     animation-duration: 1.2s;
 }
@@ -30,15 +30,25 @@ body {
 @keyframes initEffect {
     from {
         opacity: 1;
-    } to {
+    }
+
+    to {
         opacity: 0;
     }
 }
 
 a {
-    color: #0084e3;
+    color: #005fb8;
     cursor: pointer;
     text-decoration: underline;
+    text-decoration-color: #005fb8;
+}
+
+.community-access-dark {
+    color: #3daee9;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #3daee9;
 }
 
 .div-iframe {
@@ -46,20 +56,21 @@ a {
     float: left;
     margin-left: 230px;
     width: 100%;
+    min-width: 422px;
     height: 100%;
     transition: all 0.3s ease-in-out;
 }
 
 .iframe {
-	overflow:hidden;
-	overflow-x:hidden;
-	overflow-y:hidden;
-	height:100%;
-	width: calc(100% - 230px);
-	top:0px;
-	left:0px;
-	right:0px;
-    bottom:0px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+    width: calc(100% - 230px);
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
     transition: all 0.3s ease-in-out;
 }
 
@@ -82,9 +93,8 @@ a {
     user-select: none;
     float: left;
     z-index: 30000;
-    -webkit-box-shadow: 0px 0px 3px 0px rgb(8 13 18 / 34%);
-    box-shadow: 0px 0px 3px 0px rgb(8 13 18 / 34%);
     transition: all 0.3s ease-in-out;
+    box-shadow: 0 0px 2px rgb(109 114 129 / 83%);
 }
 
 .ul-sidebar {
@@ -94,18 +104,36 @@ a {
 .sidebar .ul-sidebar li {
     cursor: pointer;
     font-size: 16px;
-	width: 230px;
+    width: 230px;
     min-height: auto;
     margin-top: 0px;
-	margin-left: 0px;
+    margin-left: 0px;
     margin-bottom: 0px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     transition: all 0.3s ease-in-out;
 }
 
-.sidebar .ul-sidebar li:hover .link-items {
-    border-left: 4px solid rgb(45, 120, 214) !important;
+.sidebar-item-effect {
+    display: block;
+    float: left;
+    width: 5px;
+    height: 30px;
+    border-radius: 4px;
+    margin-left: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar-item-effect-dark {
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar .ul-sidebar li:hover .sidebar-item-effect {
+    background-color: #005fb8;
+}
+
+.sidebar .ul-sidebar li:hover .sidebar-item-effect-dark {
+    background-color: #3daee9;
 }
 
 .sidebar-button {
@@ -136,39 +164,34 @@ a {
     display: none;
     bottom: 0;
     width: 20px;
-	animation-name: example;
-	animation-duration: 2s;
+    animation-name: example;
+    animation-duration: 2s;
 }
 
 .li-sidebar-uninstalling {
     display: none;
     bottom: 0;
     width: 20px;
-	animation-name: example;
-	animation-duration: 2s;
+    animation-name: example;
+    animation-duration: 2s;
 }
 
 .link-items {
     display: flex;
     flex-direction: row;
     align-items: center;
-	height: 26px;
+    height: 26px;
     font-size: 18px;
-	text-decoration: none;
-	color: #333;
-    border-left: 4px solid #0085e400;
+    text-decoration: none;
+    color: #333;
     transition: all 0.3s ease-in-out;
-	padding-top: 2px;
-    padding-left: 5px;
-	padding-bottom: 2px;
-}
-
-.link-items:hover {
-    border-left: 4px solid rgb(45, 120, 214) !important;
+    padding-top: 2px;
+    padding-left: 2px;
+    padding-bottom: 2px;
 }
 
 .link-items p {
-	color: #333;
+    color: #333;
     font-size: 18px;
     overflow: hidden;
     margin-top: 0px;
@@ -186,7 +209,8 @@ a {
     font-size: 22px;
 }
 
-.icons-menu, .icons-menu-option {
+.icons-menu,
+.icons-menu-option {
     display: inline-block;
     padding-right: 5px;
     left: -8px;
@@ -198,8 +222,13 @@ a {
 }
 
 @keyframes example {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .return-sidebar {
@@ -207,9 +236,9 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-	width: 30px;
-	height: 25px;
-	cursor: pointer;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -221,8 +250,8 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-	width: 30px;
-	height: 25px;
+    width: 30px;
+    height: 25px;
     transition: all 0.3s ease-in-out;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -234,9 +263,9 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-	width: 30px;
-	height: 25px;
-	cursor: pointer;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-top: 10px;
     margin-bottom: 11px;
@@ -248,9 +277,9 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-	width: 30px;
-	height: 25px;
-	cursor: pointer;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-top: 10px;
     margin-bottom: 11px;
@@ -259,8 +288,12 @@ a {
 
 .div1 {
     background: #fff;
-	width: auto;
-	height: 180px;
+    width: 100%;
+    float: left;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
 .h1 {
@@ -274,18 +307,18 @@ a {
 
 .h2 {
     position: relative;
-    color: #333;
+    color: #222;
     font-size: 18px;
     font-weight: 300;
     line-height: 1.4;
     margin: 0px;
-    padding-left: 30px;
+    padding: 0px 30px;
 }
 
 .h3 {
-    color: #575757;
-    font-size: 18px;
-    font-weight: 600;
+    color: #222;
+    font-size: 19px;
+    font-weight: 500;
     line-height: 1.4;
     padding-left: 0px;
     margin-top: 0px;
@@ -293,7 +326,7 @@ a {
 }
 
 p {
-    color: #575757;
+    color: #333;
     font-size: 16px;
     font-weight: 300;
     line-height: 1.4;
@@ -303,7 +336,11 @@ p {
 
 .div2 {
     background: #fff;
-	width: 100%;
+    width: 100%;
+    float: left;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
 }
 
 .ul-blocks {
@@ -313,9 +350,10 @@ p {
     align-items: center;
     box-sizing: border-box;
     padding: 0px 30px;
-	margin-top: 10px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 40px;
 }
 
 li {
@@ -328,6 +366,7 @@ li {
     position: relative;
     box-sizing: border-box;
     width: 100%;
+    max-width: 308px;
     height: auto;
     padding: 0px 10px 10px 10px;
     margin-left: 0px;
@@ -367,20 +406,22 @@ li {
     display: block;
     width: 100px;
     height: 100px;
-    background-position: 50% 50%;
+    background-position: 0% 50%;
     background-size: 100% auto;
     background-repeat: no-repeat;
     margin-bottom: 10px;
     border-radius: 6px;
 }
 
-.restore .option-icon, .info .option-icon {
+.restore .option-icon,
+.info .option-icon {
     background-size: 80%;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.rede-icone-off, .repo-icone-off {
+.rede-icone-off,
+.repo-icone-off {
     display: none;
 }
 
@@ -393,6 +434,7 @@ li {
     color: #fff;
     cursor: pointer;
     border-radius: 6px;
+    border-radius: 2em;
     background-color: #005fb8;
     background-position: center;
     margin-top: 0px;
@@ -404,39 +446,52 @@ li {
 }
 
 .button:hover {
-    background: #b5b5b5 radial-gradient(circle, transparent 1%, #b5b5b5 1%) center/15000%;
+    background: #013260 radial-gradient(circle, transparent 1%, #013260 1%) center/15000%;
 }
 
 .button:active {
-    background-color: #eee;
+    background-color: #005fb8;
     background-size: 100%;
     transition: all 0s;
 }
 
 .button-dark {
     color: #fff;
-    border-radius: 5px;
-    background-color: #373e46;
+    background-color: #3daee9;
 }
 
 .button-dark:hover {
-    background: #2a2f35 radial-gradient(circle, transparent 1%, #2a2f35 1%) center/15000%;
+    background: #2383b5 radial-gradient(circle, transparent 1%, #2383b5 1%) center/15000%;
 }
 
 .button-dark:active {
-    background-color: #444c55;
+    background-color: #3daee9;
     background-size: 100%;
     transition: all 0s;
 }
 
 @-webkit-keyframes animatebottom {
-    from { bottom:-30px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
+    from {
+        bottom: -30px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
 }
 
-@keyframes animatebottom { 
-    from{ bottom:-30px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
+@keyframes animatebottom {
+    from {
+        bottom: -30px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
 }
 
 /* Responsive */
@@ -446,14 +501,54 @@ li {
         grid-template-columns: auto auto auto;
     }
 
-    li:last-child {
-        margin-left: 0px;
-        margin-right: 0px;
+    .option {
+        max-width: 350px;
+    }
+
+    .option:last-child {
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 0px;
     }
 }
 
-@media screen and (max-width: 961px) {
+@media screen and (max-width: 1085px) {
     .ul-blocks {
         grid-template-columns: auto auto;
+    }
+
+    li.repo {
+        padding-right: 0px
+    }
+
+    li.restore {
+        padding-top: 10px;
+        padding-left: 0px;
+    }
+
+    .option:last-child {
+        padding-right: 0px;
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .ul-blocks {
+        grid-template-columns: auto;
+    }
+
+    .option {
+        padding: 0px 0px 20px 0px;
+    }
+
+    li.restore {
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+
+    .option:last-child {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
     }
 }

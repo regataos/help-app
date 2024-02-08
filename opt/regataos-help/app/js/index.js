@@ -11,9 +11,14 @@ setTimeout(function () {
 }, 1000);
 
 // Block drag and drop of icons
-const icons = document.querySelectorAll(".icones-menu");
+const icons = document.querySelectorAll(".icons-menu-option");
 for (let i = 0; i < icons.length; i++) {
     icons[i].draggable = false;
+}
+
+const actionIcons = document.querySelectorAll(".icons-menu");
+for (let i = 0; i < actionIcons.length; i++) {
+    actionIcons[i].draggable = false;
 }
 
 // Get information from the main iframe
@@ -134,31 +139,34 @@ checkTheme();
 // Detect current app page
 setInterval(detectIframeUrl, 500);
 function detectIframeUrl() {
-    const fs = require('fs');
-
     function usingDarkTheme() {
         if (getIframeUrl().includes("solutions.html")) {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
-            document.querySelector("#option-solutions a").style.borderLeft = "4px solid #0085e4";
+            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "#3daee9";
         } else {
-            document.querySelector("#option-solutions a").style.borderLeft = "4px solid #2a2f35";
+            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "";
         }
 
         if (getIframeUrl().includes("forum.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-forum a").style.borderLeft = "4px solid #0085e4";
+            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "#3daee9";
         } else {
-            document.querySelector("#option-forum a").style.borderLeft = "4px solid #2a2f35";
+            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "";
         }
 
         if (getIframeUrl().includes("support.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #0085e4";
+            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "#3daee9";
         } else {
-            document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #2a2f35";
+            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "";
+        }
+
+        const sidebarItemEffectDark = document.querySelectorAll(".sidebar-item-effect");
+        for (let i = 0; i < sidebarItemEffectDark.length; i++) {
+            sidebarItemEffectDark[i].classList.add("sidebar-item-effect-dark");
         }
     }
 
@@ -166,28 +174,34 @@ function detectIframeUrl() {
         if (getIframeUrl().includes("solutions.html")) {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
-            document.querySelector("#option-solutions a").style.borderLeft = "4px solid #0085e4";
+            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "#005fb8";
         } else {
-            document.querySelector("#option-solutions a").style.borderLeft = "4px solid #f3f3f3";
+            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "";
         }
 
         if (getIframeUrl().includes("forum.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-forum a").style.borderLeft = "4px solid #0085e4";
+            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "#005fb8";
         } else {
-            document.querySelector("#option-forum a").style.borderLeft = "4px solid #f3f3f3";
+            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "";
         }
 
         if (getIframeUrl().includes("support.html")) {
             document.getElementById("return-on").style.display = "flex";
             document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #0085e4";
+            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "#005fb8";
         } else {
-            document.querySelector("#option-regataoshelp a").style.borderLeft = "4px solid #f3f3f3";
+            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "";
+        }
+
+        const sidebarItemEffectDark = document.querySelectorAll(".sidebar-item-effect");
+        for (let i = 0; i < sidebarItemEffectDark.length; i++) {
+            sidebarItemEffectDark[i].classList.remove("sidebar-item-effect-dark");
         }
     }
 
+    const fs = require('fs');
     if (fs.existsSync("/tmp/regataos-configs/config/kdeglobals")) {
         const checkColorScheme = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
         const configOption = "ColorScheme=";
@@ -346,7 +360,6 @@ function backButton() {
                 setTimeout(function () {
                     window.scrollTo(0, 0);
                 }, 100);
-
             } else {
                 webview.executeScript({ code: 'history.go(-1)' })
             }
@@ -355,10 +368,8 @@ function backButton() {
 
     if (getIframeUrl().includes("forum.html")) {
         backButtonWebview();
-
     } else if (getIframeUrl().includes("support.html")) {
         backButtonWebview();
-
     } else {
         history.go(-1);
         // Take the page to the top
@@ -378,7 +389,6 @@ function selectCommunity() {
         mainIframe.document.getElementById("community-access").onclick = function () {
             if (languageDetected.includes("pt-br")) {
                 go_forum();
-
             } else {
                 const exec = require('child_process').exec;
                 const command = `xdg-open "https://t.me/regataos_en"`;
