@@ -50,33 +50,54 @@ function checkOnline() {
 setInterval(checkTheme, 1000);
 function checkTheme() {
     function applyDarkTheme() {
-        document.querySelector("body").style.backgroundColor = "#171a21";
-        document.querySelector(".div2").style.backgroundColor = "#171a21";
-        document.getElementById("loadscreen").style.backgroundColor = "#171a21";
+        document.querySelector("body").style.backgroundColor = "#1b1e20";
+        document.querySelector(".div2").style.backgroundColor = "#1b1e20";
+        document.getElementById("loadscreen").style.backgroundColor = "#1b1e20";
         document.getElementById("community-access").classList.add("community-access-dark");
 
+        const styleElement = document.createElement("style");
+        styleElement.appendChild(document.createTextNode(`
+        html ::-webkit-scrollbar-track {
+            background: #1b1e20;
+            border-left: 1px solid #2a2e32;
+        }
+        html ::-webkit-scrollbar-thumb {
+            background: #383e42;
+            border-radius: 2em;
+            border: 6px solid rgba(0, 0, 0, 0);
+            background-clip: padding-box;
+        }
+        html ::-webkit-scrollbar-thumb:hover {
+            background: #2383b5;
+            border-radius: 2em;
+            border: 6px solid rgba(0, 0, 0, 0);
+            background-clip: padding-box;
+        }
+        `));
+        document.getElementsByTagName("head")[0].appendChild(styleElement);
+
         const div1 = document.querySelector(".div1")
-        div1.style.backgroundColor = "#171a21";
+        div1.style.backgroundColor = "#1b1e20";
         div1.style.color = "#fff";
 
         const h2Text = document.querySelectorAll(".h2");
         for (let i = 0; i < h2Text.length; i++) {
-            h2Text[i].style.color = "#f3f3f3";
+            h2Text[i].style.color = "#eff0f1";
         }
 
         const optionItem = document.querySelectorAll(".option-item");
         for (let i = 0; i < optionItem.length; i++) {
-            optionItem[i].style.backgroundColor = "#2a2f35";
+            optionItem[i].style.backgroundColor = "#2a2e32";
         }
 
         const h3Text = document.querySelectorAll(".h3");
         for (let i = 0; i < h3Text.length; i++) {
-            h3Text[i].style.color = "#f3f3f3";
+            h3Text[i].style.color = "#eff0f1";
         }
 
         const pText = document.querySelectorAll("p");
         for (let i = 0; i < pText.length; i++) {
-            pText[i].style.color = "#f3f3f3";
+            pText[i].style.color = "#eff0f1";
         }
 
         document.querySelector(".rede-icone-on").style.backgroundImage = "url(./../images/wifi-on-dark.png)";
@@ -102,6 +123,28 @@ function checkTheme() {
         document.getElementById("loadscreen").style.backgroundColor = "#fff";
         document.getElementById("community-access").classList.remove("community-access-dark");
 
+        const styleElement = document.createElement("style");
+        styleElement.appendChild(document.createTextNode(`
+        html ::-webkit-scrollbar-track {
+            background: #fff;
+            border-left: 1px solid #cdcdcd;
+        }
+        html ::-webkit-scrollbar-thumb {
+            transition: all .3s;
+            background: #b3b3b3;
+            border-radius: 2em;
+            border: 6px solid rgba(0, 0, 0, 0);
+            background-clip: padding-box;
+        }
+        html ::-webkit-scrollbar-thumb:hover {
+            background: #8a8a8a;
+            border-radius: 2em;
+            border: 6px solid rgba(0, 0, 0, 0);
+            background-clip: padding-box;
+        }
+        `));
+        document.getElementsByTagName("head")[0].appendChild(styleElement);
+
         const div1 = document.querySelector(".div1");
         div1.style.backgroundColor = "#fff";
         div1.style.color = "#000";
@@ -113,7 +156,7 @@ function checkTheme() {
 
         const optionItem = document.querySelectorAll(".option-item");
         for (let i = 0; i < optionItem.length; i++) {
-            optionItem[i].style.backgroundColor = "#f3f3f3";
+            optionItem[i].style.backgroundColor = "#eff0f1";
         }
 
         const h3Text = document.querySelectorAll(".h3");

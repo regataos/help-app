@@ -56,14 +56,14 @@ function checkTheme() {
     const fs = require('fs');
 
     function applyDarkTheme() {
-        document.querySelector("body").style.backgroundColor = "#171a21";
-        document.querySelector(".sidebar").style.backgroundColor = "#2a2f35";
-        document.querySelector(".link-items").style.color = "#f3f3f3";
-        document.getElementById("loadscreen").style.backgroundColor = "#171a21";
+        document.querySelector("body").style.backgroundColor = "#1b1e20";
+        document.querySelector(".sidebar").style.backgroundColor = "#2a2e32";
+        document.querySelector(".link-items").style.color = "#eff0f1";
+        document.getElementById("loadscreen").style.backgroundColor = "#1b1e20";
 
         const textSideBar = document.querySelectorAll(".link-items p");
         for (let i = 0; i < textSideBar.length; i++) {
-            textSideBar[i].style.color = "#f3f3f3";
+            textSideBar[i].style.color = "#eff0f1";
         }
 
         document.querySelector("img.seta-off").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow-off-dark.png";
@@ -90,7 +90,7 @@ function checkTheme() {
 
     function applyLightTheme() {
         document.querySelector("body").style.backgroundColor = "#fff";
-        document.querySelector(".sidebar").style.backgroundColor = "#f3f3f3";
+        document.querySelector(".sidebar").style.backgroundColor = "#eff0f1";
         document.querySelector(".link-items").style.color = "#333";
         document.getElementById("loadscreen").style.backgroundColor = "#fff";
 

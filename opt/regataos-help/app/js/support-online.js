@@ -7,8 +7,8 @@ setTimeout(function () {
 setInterval(checkTheme, 1000);
 function checkTheme() {
     function applyDarkTheme() {
-        document.querySelector("body").style.backgroundColor = "#171a21";
-        document.getElementById("loadscreen").style.backgroundColor = "#171a21";
+        document.querySelector("body").style.backgroundColor = "#1b1e20";
+        document.getElementById("loadscreen").style.backgroundColor = "#1b1e20";
     }
 
     function applyLightTheme() {
