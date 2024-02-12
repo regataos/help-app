@@ -74,13 +74,6 @@ a {
     text-decoration-color: #005fb8;
 }
 
-.community-access-dark {
-    color: #3daee9;
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: #3daee9;
-}
-
 .div-iframe {
     position: fixed;
     float: left;
@@ -174,16 +167,6 @@ a {
 .sidebar-button:hover {
     background-color: #d3d3d3;
     color: #d2d5da;
-}
-
-.sidebar-button-dark {
-    background-color: #2a2e32;
-    color: #fff;
-}
-
-.sidebar-button-dark:hover {
-    background-color: #373e46;
-    color: #fff;
 }
 
 .regataos-community {
@@ -485,21 +468,6 @@ li {
     transition: all 0s;
 }
 
-.button-dark {
-    color: #fff;
-    background-color: #3daee9;
-}
-
-.button-dark:hover {
-    background: #2383b5 radial-gradient(circle, transparent 1%, #2383b5 1%) center/15000%;
-}
-
-.button-dark:active {
-    background-color: #3daee9;
-    background-size: 100%;
-    transition: all 0s;
-}
-
 @-webkit-keyframes animatebottom {
     from {
         bottom: -30px;
@@ -521,6 +489,138 @@ li {
     to {
         bottom: 0;
         opacity: 1
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+
+    /* For index */
+    body,
+    #loadscreen,
+    .div1,
+    .div2 {
+        background-color: #1b1e20 !important;
+    }
+
+    .sidebar,
+    .option-item {
+        background-color: #2a2e32 !important;
+    }
+
+    .link-items,
+    .link-items p {
+        color: #eff0f1 !important;
+    }
+
+    .sidebar .ul-sidebar li {
+        background-color: #2a2e32 !important;
+        color: #fff !important;
+    }
+
+    .sidebar .ul-sidebar li:hover {
+        background-color: #373e46 !important;
+        color: #fff !important;
+    }
+
+    img.seta-off {
+        content: url('./../images/img-sidebar/arrow-off-dark.png');
+    }
+
+    img.seta {
+        content: url('./../images/img-sidebar/arrow-dark.png');
+    }
+
+    .hide-sidebar .sidebar-icon,
+    .show-sidebar .sidebar-icon {
+        content: url('./../images/img-sidebar/menu-dark.png');
+    }
+
+    img.solution {
+        content: url('./../images/img-sidebar/tools2-dark.png');
+    }
+
+    img.help {
+        content: url('./../images/img-sidebar/support-dark.png');
+    }
+
+    img.forum {
+        content: url('./../images/img-sidebar/forum-dark.png');
+    }
+
+    a {
+        color: #3daee9;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: #3daee9;
+    }
+
+    .div1 {
+        color: #fff;
+    }
+
+    .h2,
+    .h3,
+    p {
+        color: #eff0f1;
+    }
+
+    .rede-icone-on {
+        background-image: url(./../images/wifi-on-dark.png) !important;
+    }
+
+    .rede-icone-off {
+        background-image: url(./../images/wifi-off-dark.png) !important;
+    }
+
+    .repo-icone-on {
+        background-image: url(./../images/repo-on-dark.png) !important;
+    }
+
+    .repo-icone-off {
+        background-image: url(./../images/repo-on-dark.png) !important;
+    }
+
+    .restore-icone {
+        background-image: url(./../images/restore-dark.png) !important;
+    }
+
+    .info-icone {
+        background-image: url(./../images/info-dark.png) !important;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1b1e20;
+        border-left: 1px solid #2a2e32;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #383e42;
+        border-radius: 2em;
+        border: 6px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #2383b5;
+        border-radius: 2em;
+        border: 6px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+    }
+
+    .button {
+        color: #fff;
+        background-color: #3daee9;
+    }
+
+    .button:hover {
+        background: #2383b5 radial-gradient(circle, transparent 1%, #2383b5 1%) center/15000%;
+    }
+
+    .button:active {
+        background-color: #3daee9;
+        background-size: 100%;
+        transition: all 0s;
     }
 }
 

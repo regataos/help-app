@@ -50,96 +50,10 @@ function checkOnline() {
     }
 }
 
-// Check the theme that should be used
-setInterval(checkTheme, 1000);
-function checkTheme() {
-    const fs = require('fs');
-
-    function applyDarkTheme() {
-        document.querySelector("body").style.backgroundColor = "#1b1e20";
-        document.querySelector(".sidebar").style.backgroundColor = "#2a2e32";
-        document.querySelector(".link-items").style.color = "#eff0f1";
-        document.getElementById("loadscreen").style.backgroundColor = "#1b1e20";
-
-        const textSideBar = document.querySelectorAll(".link-items p");
-        for (let i = 0; i < textSideBar.length; i++) {
-            textSideBar[i].style.color = "#eff0f1";
-        }
-
-        document.querySelector("img.seta-off").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow-off-dark.png";
-        document.querySelector("img.seta").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow-dark.png";
-        document.querySelector(".hide-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu-dark.png";
-        document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu-dark.png";
-        document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools2-dark.png";
-        document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/support-dark.png";
-        document.querySelector("img.forum").src = "file:///opt/regataos-help/www/images/img-sidebar/forum-dark.png";
-
-        // For sidebar buttons
-        const solutionOptions = document.getElementById("option-solutions");
-        solutionOptions.classList.remove("sidebar-button");
-        solutionOptions.classList.add("sidebar-button-dark");
-
-        const optionRegataosHelp = document.getElementById("option-regataoshelp");
-        optionRegataosHelp.classList.remove("sidebar-button");
-        optionRegataosHelp.classList.add("sidebar-button-dark");
-
-        const optionForum = document.getElementById("option-forum");
-        optionForum.classList.remove("sidebar-button");
-        optionForum.classList.add("sidebar-button-dark");
-    }
-
-    function applyLightTheme() {
-        document.querySelector("body").style.backgroundColor = "#fff";
-        document.querySelector(".sidebar").style.backgroundColor = "#eff0f1";
-        document.querySelector(".link-items").style.color = "#333";
-        document.getElementById("loadscreen").style.backgroundColor = "#fff";
-
-        const textSideBar = document.querySelectorAll(".link-items p");
-        for (let i = 0; i < textSideBar.length; i++) {
-            textSideBar[i].style.color = "#333";
-        }
-
-        document.querySelector("img.seta-off").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow-off.png";
-        document.querySelector("img.seta").src = "file:///opt/regataos-help/www/images/img-sidebar/arrow.png";
-        document.querySelector(".hide-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu.png";
-        document.querySelector(".show-sidebar .sidebar-icon").src = "file:///opt/regataos-help/www/images/img-sidebar/menu.png";
-        document.querySelector("img.solution").src = "file:///opt/regataos-help/www/images/img-sidebar/tools2.png";
-        document.querySelector("img.help").src = "file:///opt/regataos-help/www/images/img-sidebar/support.png";
-        document.querySelector("img.forum").src = "file:///opt/regataos-help/www/images/img-sidebar/forum.png";
-
-        // For sidebar buttons
-        const solutionOptions = document.getElementById("option-solutions");
-        solutionOptions.classList.remove("sidebar-button-dark");
-        solutionOptions.classList.add("sidebar-button");
-
-        const optionRegataosHelp = document.getElementById("option-regataoshelp");
-        optionRegataosHelp.classList.remove("sidebar-button-dark");
-        optionRegataosHelp.classList.add("sidebar-button");
-
-        const optionForum = document.getElementById("option-forum");
-        optionForum.classList.remove("sidebar-button-dark");
-        optionForum.classList.add("sidebar-button");
-    }
-
-    if (fs.existsSync("/tmp/regataos-configs/config/kdeglobals")) {
-        const checkColorScheme = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
-        const configOption = "ColorScheme=";
-        const colorConfig = checkConfigFile(checkColorScheme, configOption).toLowerCase();
-        if (colorConfig.includes("dark")) {
-            applyDarkTheme();
-        } else {
-            applyLightTheme();
-        }
-    } else {
-        applyLightTheme();
-    }
-}
-checkTheme();
-
 // Detect current app page
 setInterval(detectIframeUrl, 500);
 function detectIframeUrl() {
-    function usingDarkTheme() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         if (getIframeUrl().includes("solutions.html")) {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
@@ -168,9 +82,8 @@ function detectIframeUrl() {
         for (let i = 0; i < sidebarItemEffectDark.length; i++) {
             sidebarItemEffectDark[i].classList.add("sidebar-item-effect-dark");
         }
-    }
 
-    function usingLightTheme() {
+    } else {
         if (getIframeUrl().includes("solutions.html")) {
             document.getElementById("return-on").style.display = "none";
             document.getElementById("return-off").style.display = "flex";
@@ -199,20 +112,6 @@ function detectIframeUrl() {
         for (let i = 0; i < sidebarItemEffectDark.length; i++) {
             sidebarItemEffectDark[i].classList.remove("sidebar-item-effect-dark");
         }
-    }
-
-    const fs = require('fs');
-    if (fs.existsSync("/tmp/regataos-configs/config/kdeglobals")) {
-        const checkColorScheme = fs.readFileSync("/tmp/regataos-configs/config/kdeglobals", "utf8");
-        const configOption = "ColorScheme=";
-        const colorConfig = checkConfigFile(checkColorScheme, configOption).toLowerCase();
-        if (colorConfig.includes("dark")) {
-            usingDarkTheme();
-        } else {
-            usingLightTheme();
-        }
-    } else {
-        usingLightTheme();
     }
 }
 
@@ -301,8 +200,6 @@ function go_solutions() {
     if (!getIframeUrl().includes("solutions.html")) {
         goIframeUrl("pages/solutions.html");
 
-        checkTheme();
-
         // Take the page to the top
         setTimeout(function () {
             window.scrollTo(0, 0);
@@ -314,8 +211,6 @@ function go_regataoshelp() {
     if (!getIframeUrl().includes("support.html")) {
         goIframeUrl("pages/support.html");
 
-        checkTheme();
-
         // Take the page to the top
         setTimeout(function () {
             window.scrollTo(0, 0);
@@ -326,8 +221,6 @@ function go_regataoshelp() {
 function go_forum() {
     if (!getIframeUrl().includes("forum.html")) {
         goIframeUrl("pages/forum.html");
-
-        checkTheme();
 
         // Take the page to the top
         setTimeout(function () {
