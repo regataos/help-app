@@ -4,6 +4,7 @@
 }
 
 body {
+    width: 100%;
     font-family: Oxygen;
     font-weight: 300;
     background-color: #fff;
@@ -301,12 +302,14 @@ a {
 
 .div1 {
     background: #fff;
-    width: 100%;
-    float: left;
+    width: 95%;
+    max-width: 1400px;
     position: relative;
     display: block;
     margin-bottom: 20px;
     box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .h1 {
@@ -314,7 +317,6 @@ a {
     font-weight: 300;
     margin: 0px;
     padding-top: 10px;
-    padding-left: 30px;
     padding-bottom: 10px;
 }
 
@@ -325,7 +327,7 @@ a {
     font-weight: 300;
     line-height: 1.4;
     margin: 0px;
-    padding: 0px 30px;
+    padding: 0px;
 }
 
 .h3 {
@@ -348,12 +350,14 @@ p {
 }
 
 .div2 {
-    background: #fff;
-    width: 100%;
-    float: left;
     position: relative;
     display: block;
+    width: 95%;
+    max-width: 1400px;
     box-sizing: border-box;
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ul-blocks {
@@ -365,7 +369,7 @@ p {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    padding: 0px 30px;
+    padding: 0px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
