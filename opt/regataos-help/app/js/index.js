@@ -139,14 +139,14 @@ function hideSideBar(saveConfig) {
 
     const itemSideBar = document.querySelectorAll(".sidebar .ul-sidebar li");
     for (let i = 0; i < itemSideBar.length; i++) {
-        itemSideBar[i].style.width = "56px";
+        itemSideBar[i].style.width = "58px";
     }
 
-    document.querySelector(".sidebar").style.width = "56px";
-    document.querySelector(".div-iframe").style.marginLeft = "56px";
+    document.querySelector(".sidebar").style.width = "58px";
+    document.querySelector(".div-iframe").style.marginLeft = "58px";
     document.querySelector(".hide-sidebar").style.display = "none";
     document.querySelector(".show-sidebar").style.display = "flex";
-    document.querySelector(".iframe").style.width = "calc(100% - 56px)";
+    document.querySelector(".iframe").style.width = "calc(100% - 58px)";
 
     if (saveConfig == true) {
         hideSideBarShellScript();
