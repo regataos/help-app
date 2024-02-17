@@ -435,6 +435,7 @@ li {
 
 .option-icon {
     display: block;
+    position: relative;
     width: 100px;
     height: 100px;
     background-position: 0% 50%;
@@ -442,6 +443,16 @@ li {
     background-repeat: no-repeat;
     margin-bottom: 10px;
     border-radius: 6px;
+}
+
+.option-icon img {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 30px;
+    height: auto;
+    fill: #008a17;
+    margin-bottom: 10px;
 }
 
 .restore .option-icon,
