@@ -451,6 +451,10 @@ li {
     margin-bottom: 5px;
 }
 
+.info .option-icon {
+    background-size: 84%;
+}
+
 .rede-icone-off,
 .repo-icone-off {
     display: none;
