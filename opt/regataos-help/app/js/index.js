@@ -1,4 +1,3 @@
-
 // Show app only when the UI is ready
 const gui = require('nw.gui');
 onload = function () {
