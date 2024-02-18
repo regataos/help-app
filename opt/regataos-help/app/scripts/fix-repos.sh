@@ -12,14 +12,14 @@ notifyTitle="$(cat $getTranslationFile | grep upRepoManuallyNotifyTitle= | cut -
 notifyText="$(cat $getTranslationFile | grep upRepoManuallyNotifyText= | cut -d"=" -f 2- | sed 's/"//g')"
 
 # Download files
-wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-22.tar.xz \
-    https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-22.tar.xz 2>&1 |
+wget --no-check-certificate -O /tmp/apps-scripts/regataos-repo-24.tar.xz \
+    https://master.dl.sourceforge.net/project/regataos/repos/regataos-repo-24.tar.xz 2>&1 |
     sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 --text \
         "$text1" --title "$title" --auto-close --auto-kill --no-cancel \
         --window-icon "/usr/share/icons/breeze-dark/preferences/32/yast-sw_source.svg"
 
 # Extract files
-sudo tar xf /tmp/apps-scripts/regataos-repo-22.tar.xz -C /
+sudo tar xf /tmp/apps-scripts/regataos-repo-24.tar.xz -C /
 
 sudo retry -r 20 -- pkcon --noninteractive refresh | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 \
     --text "$text2" --title "$title" --auto-close --auto-kill --no-cancel \
