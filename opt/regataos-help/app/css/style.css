@@ -358,22 +358,25 @@ p {
     background: #fff;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 40px;
 }
 
 .ul-blocks {
-    width: 100%;
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    width: 100%;
     padding: 0px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 40px;
+    animation-name: animatebottom;
+    animation-duration: .5s;
 }
 
 li {
@@ -391,10 +394,7 @@ li {
     padding: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: .5s;
-    animation-name: animatebottom;
-    animation-duration: .5s;
+    transition: all 0.5s ease-in-out;
 }
 
 .option:first-child {
@@ -417,16 +417,12 @@ li {
     padding-top: 5px;
     border-radius: 8px;
     box-shadow: 0 0 2px rgb(0 0 0 / 40%);
-    opacity: 1;
-    animation-name: display-element;
-    animation-duration: 1.5s;
+    transition: all 0.5s ease-in-out;
 }
 
 .option div.option-item p {
+    max-width: 250px;
     margin-bottom: 20px;
-    opacity: 1;
-    animation-name: display-element;
-    animation-duration: 1.5s;
 }
 
 .option-button {
@@ -503,18 +499,6 @@ li {
     transition: all 0s;
 }
 
-@-webkit-keyframes animatebottom {
-    from {
-        bottom: -30px;
-        opacity: 0
-    }
-
-    to {
-        bottom: 0px;
-        opacity: 1
-    }
-}
-
 @keyframes animatebottom {
     from {
         bottom: -30px;
@@ -524,16 +508,6 @@ li {
     to {
         bottom: 0;
         opacity: 1
-    }
-}
-
-@keyframes display-element {
-    from {
-        opacity: 0.2;
-    }
-
-    to {
-        opacity: 1;
     }
 }
 
@@ -679,6 +653,11 @@ li {
 @media screen and (max-width: 1000px) {
     .ul-blocks {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .option div.option-item p {
+        max-width: 400px;
+        margin-bottom: 20px;
     }
 }
 
