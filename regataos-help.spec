@@ -14,8 +14,6 @@ BuildRequires: grep
 Requires: xz
 Requires: magma
 Requires: retry
-Requires: stress-ng
-Requires: stress-ng-bash-completion
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
 Source2: clean_home_directory.tar.xz
