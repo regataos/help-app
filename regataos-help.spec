@@ -1,5 +1,5 @@
 Name: regataos-help
-Version: 6.1
+Version: 7.0
 Release: 0
 Url: https://github.com/regataos/help-app
 Summary: Problems solution of Regata OS
@@ -36,8 +36,10 @@ if test -e /opt/regataos-base/regataos-help-%{version}.tar.xz ; then
 	tar xf /opt/regataos-base/regataos-help-%{version}.tar.xz -C /
 fi
 
-rm -f "/opt/magma/regataoshelp"
-cp -f "/opt/magma/nw" "/opt/magma/regataoshelp"
+if test -e "/opt/magma/nw"; then
+	rm -f "/opt/magma/regataoshelp"
+	cp -f "/opt/magma/nw" "/opt/magma/regataoshelp"
+fi
 
 if test ! -e "/usr/bin/regataoshelp"; then
 	ln -s "/opt/magma/regataoshelp" "/usr/bin/regataoshelp"
