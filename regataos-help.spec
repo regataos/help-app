@@ -14,6 +14,7 @@ BuildRequires: grep
 Requires: xz
 Requires: magma
 Requires: retry
+Requires: regataos-base >= 24
 License: MIT
 Source1: regataos-help-%{version}.tar.xz
 Source2: clean_home_directory.tar.xz
