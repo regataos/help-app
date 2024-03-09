@@ -45,7 +45,7 @@ const languageDetected = systemLang();
 // Choose the JSON file with the language translation.
 function selectTranslationFile() {
     const fs = require('fs');
-    const translationDir = "/opt/regataos-help/www/js/translations/languages"
+    const translationDir = "/opt/regataos-help/app/js/translations/languages"
 
     if (fs.existsSync(`${translationDir}/${languageDetected}.json`)) {
         return `${translationDir}/${languageDetected}.json`;
