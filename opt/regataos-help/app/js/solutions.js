@@ -53,5 +53,4 @@ function runShellScript(script) {
     if [ $? = 1 ]; then sudo /opt/regataos-help/app/scripts/${script}.sh; fi`;
     exec(command, function (error, call, errlog) {
     });
-    console.log(command)
 }
