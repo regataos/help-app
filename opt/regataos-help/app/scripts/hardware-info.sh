@@ -3,7 +3,7 @@
 # Script that helps to collect hardware information.
 
 # Get the translated text
-getTranslationFile="$(/opt/regataos-help/scripts/choose-translation start)"
+getTranslationFile="$(/opt/regataos-help/app/scripts/choose-translation start)"
 title="$(cat $getTranslationFile | grep hardwareInfo= | cut -d"=" -f 2- | sed 's/"//g')"
 text="$(cat $getTranslationFile | grep collectingHardwareInfo= | cut -d"=" -f 2- | sed 's/"//g')"
 

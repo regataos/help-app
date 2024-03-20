@@ -50,7 +50,8 @@ function checkOnline() {
 function runShellScript(script) {
     const exec = require('child_process').exec;
     const command = `xhost +; sleep 1; ps -C ${script}.sh > /dev/null;
-    if [ $? = 1 ]; then sudo /opt/regataos-help/scripts/${script}.sh; fi`;
+    if [ $? = 1 ]; then sudo /opt/regataos-help/app/scripts/${script}.sh; fi`;
     exec(command, function (error, call, errlog) {
     });
+    console.log(command)
 }

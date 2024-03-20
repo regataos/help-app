@@ -124,14 +124,14 @@ function detectIframeUrl() {
 //Save the status of the application sidebar
 function hideSideBarShellScript() {
     const exec = require('child_process').exec;
-    const command = "/bin/bash /opt/regataos-help/scripts/regataos-help-configs -hide-sidebar";
+    const command = "/bin/bash /opt/regataos-help/app/scripts/regataos-help-configs -hide-sidebar";
     exec(command, function (error, call, errlog) {
     });
 }
 
 function showSideBarShellScript() {
     const exec = require('child_process').exec;
-    const command = "/bin/bash /opt/regataos-help/scripts/regataos-help-configs -show-sidebar";
+    const command = "/bin/bash /opt/regataos-help/app/scripts/regataos-help-configs -show-sidebar";
     exec(command, function (error, call, errlog) {
     });
 }

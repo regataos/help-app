@@ -9,20 +9,20 @@ if test -e "/home/$user/.config/plasma-localerc"; then
         lang=$(grep -r LANG= "/home/$user/.config/plasma-localerc" | cut -d"=" -f 2- | cut -d"." -f -1 | tr [A-Z] [a-z] | sed 's/_/-/')
     fi
 
-    if test -e "/opt/regataos-help/scripts/translations/$lang.txt"; then
-        echo "/opt/regataos-help/scripts/translations/$lang.txt"
+    if test -e "/opt/regataos-help/app/scripts/translations/$lang.txt"; then
+        echo "/opt/regataos-help/app/scripts/translations/$lang.txt"
     else
-        echo "/opt/regataos-help/scripts/translations/en-us.txt"
+        echo "/opt/regataos-help/app/scripts/translations/en-us.txt"
     fi
 
 else
     if test -e "/home/$user/.config/user-dirs.locale"; then
         lang=$(cat "/home/$user/.config/user-dirs.locale" | tr [A-Z] [a-z] | sed 's/_/-/')
 
-        if test -e "/opt/regataos-help/scripts/translations/$lang.txt"; then
-            echo "/opt/regataos-help/scripts/translations/$lang.txt"
+        if test -e "/opt/regataos-help/app/scripts/translations/$lang.txt"; then
+            echo "/opt/regataos-help/app/scripts/translations/$lang.txt"
         else
-            echo "/opt/regataos-help/scripts/translations/en-us.txt"
+            echo "/opt/regataos-help/app/scripts/translations/en-us.txt"
         fi
     fi
 fi

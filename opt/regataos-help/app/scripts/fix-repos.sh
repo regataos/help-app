@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Get the translated text
-getTranslationFile="$(/opt/regataos-help/scripts/choose-translation start)"
+getTranslationFile="$(/opt/regataos-help/app/scripts/choose-translation start)"
 
 title="$(cat $getTranslationFile | grep updatingRepo= | cut -d"=" -f 2- | sed 's/"//g')"
 text1="$(cat $getTranslationFile | grep downFiles= | cut -d"=" -f 2- | sed 's/"//g')"

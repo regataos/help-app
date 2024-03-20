@@ -33,7 +33,7 @@ function installDriver() {
 
 # Notify driver installation
 function notifyDriverInstallation() {
-	getTranslationFile="$(/opt/regataos-help/scripts/choose-translation start)"
+	getTranslationFile="$(/opt/regataos-help/app/scripts/choose-translation start)"
 	notifyApp="$(cat $getTranslationFile | grep upRepoManuallyNotifyApp= | cut -d"=" -f 2- | sed 's/"//g')"
 
 	user=$(users | awk '{print $1}')
@@ -63,7 +63,7 @@ for chip in "${chipList[@]}"; do
 			installDriver
 
 			if [[ $(rpm -q broadcom-wl) == *"x86_64"* ]]; then
-				getTranslationFile="$(/opt/regataos-help/scripts/choose-translation start)"
+				getTranslationFile="$(/opt/regataos-help/app/scripts/choose-translation start)"
 				notifyTitle="$(cat $getTranslationFile | grep notifyDriverBroadcomTitle= | cut -d"=" -f 2- | sed 's/"//g')"
 				notifyText="$(cat $getTranslationFile | grep notifyDriverInstallText= | cut -d"=" -f 2- | sed 's/"//g')"
 

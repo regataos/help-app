@@ -1,14 +1,14 @@
 #!/bin/sh
 
 # Get the translated text
-getTranslationFile="$(/opt/regataos-help/scripts/choose-translation start)"
+getTranslationFile="$(/opt/regataos-help/app/scripts/choose-translation start)"
 title="$(cat $getTranslationFile | grep fixNetwork= | cut -d"=" -f 2- | sed 's/"//g')"
 text1="$(cat $getTranslationFile | grep searchingDriverDesc= | cut -d"=" -f 2- | sed 's/"//g')"
 text2="$(cat $getTranslationFile | grep fixNetworkDesc= | cut -d"=" -f 2- | sed 's/"//g')"
 
 # Checking driver...
 (
-    sudo /opt/regataos-help/scripts/install-driver-wireless.sh start
+    sudo /opt/regataos-help/app/scripts/install-driver-wireless.sh start
     sleep 5
 ) | sudo -H env DISPLAY=:0 zenity --progress --pulsate --width 350 \
     --text "$text1" --title "$title" --auto-close --auto-kill --no-cancel \

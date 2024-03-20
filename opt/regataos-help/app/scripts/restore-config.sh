@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Get the translated text
-getTranslationFile="$(/opt/regataos-help/scripts/choose-translation start)"
+getTranslationFile="$(/opt/regataos-help/app/scripts/choose-translation start)"
 title="$(cat $getTranslationFile | grep restoreConfig= | cut -d"=" -f 2- | sed 's/"//g')"
 text="$(cat $getTranslationFile | grep restoreConfigQuestion= | cut -d"=" -f 2- | sed 's/"//g')"
 yesButton="$(cat $getTranslationFile | grep restoreConfigYes= | cut -d"=" -f 2- | sed 's/"//g')"
@@ -43,7 +43,7 @@ then
     chown $user:users /home/$user/.*
 
     # Revert any changes that have taken place at the root of the system to the default
-    cp -f /opt/regataos-help/scripts/regataos-update.sh /usr/share/regataos/regataos-update.sh
+    cp -f /opt/regataos-help/app/scripts/regataos-update.sh /usr/share/regataos/regataos-update.sh
 
     sleep 1
     sudo reboot
