@@ -1,194 +1,160 @@
-// Show app only when the UI is ready
 const gui = require('nw.gui');
 onload = function () {
     gui.Window.get().show();
 }
 
 const win = nw.Window.get();
-// Move window to top left of screen
 win.moveTo(0, 0);
-// Move window to middle of screen
 win.setPosition('center');
 
-// Disable main hover effect after few seconds
 setTimeout(function () {
     document.getElementById("loadscreen").style.display = "none";
 }, 1000);
 
-// Block drag and drop of icons
 const icons = document.querySelectorAll(".icons-menu-option");
-for (let i = 0; i < icons.length; i++) {
-    icons[i].draggable = false;
-}
+icons.forEach(icon => { icon.draggable = false; });
 
 const actionIcons = document.querySelectorAll(".icons-menu");
-for (let i = 0; i < actionIcons.length; i++) {
-    actionIcons[i].draggable = false;
-}
+actionIcons.forEach(icon => { icon.draggable = false; });
 
-// Get information from the main iframe
 const mainIframe = document.getElementById("main-iframe").contentWindow;
+
 function getIframeUrl() {
-    let getUrl = mainIframe.location.href;
-    return getUrl;
+    return mainIframe.location.href;
 }
 
 function goIframeUrl(url) {
     mainIframe.document.location.href = url;
 }
 
-// Check internet connection
-setInterval(checkOnline, 1000);
-function checkOnline() {
-    const regataosHelp = document.getElementById("option-regataoshelp");
-    const regataosCommunity = document.getElementById("option-forum");
+const sidebarElements = {
+    sidebar: document.querySelector(".sidebar"),
+    divIframe: document.querySelector(".div-iframe"),
+    hideBtn: document.querySelector(".hide-sidebar"),
+    showBtn: document.querySelector(".show-sidebar"),
+    iframe: document.querySelector(".iframe"),
+    textItems: document.querySelectorAll(".link-items p"),
+    listItems: document.querySelectorAll(".sidebar .ul-sidebar li"),
+    returnOn: document.getElementById("return-on"),
+    returnOff: document.getElementById("return-off"),
+    regataosHelp: document.getElementById("option-regataoshelp"),
+    regataosCommunity: document.getElementById("option-forum"),
+    solutionsEffect: document.querySelector("li#option-solutions .sidebar-item-effect"),
+    forumEffect: document.querySelector("#option-forum .sidebar-item-effect"),
+    helpEffect: document.querySelector("#option-regataoshelp .sidebar-item-effect"),
+    allEffects: document.querySelectorAll(".sidebar-item-effect")
+};
 
-    if (navigator.onLine) {
-        regataosHelp.style.display = "block";
-
-        if (languageDetected.includes("pt-br")) {
-            regataosCommunity.style.display = "block";
-        }
-    } else {
-        regataosHelp.style.display = "none";
-        regataosCommunity.style.display = "none";
-    }
+function updateOnlineStatus() {
+    const isOnline = navigator.onLine;
+    sidebarElements.regataosHelp.style.display = isOnline ? "block" : "none";
+    sidebarElements.regataosCommunity.style.display =
+        (isOnline && languageDetected.includes("pt-br")) ? "block" : "none";
 }
 
-// Detect current app page
-setInterval(detectIframeUrl, 500);
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+updateOnlineStatus();
+
 function detectIframeUrl() {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        if (getIframeUrl().includes("solutions.html")) {
-            document.getElementById("return-on").style.display = "none";
-            document.getElementById("return-off").style.display = "flex";
-            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "#3daee9";
-        } else {
-            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "";
-        }
+    const url = getIframeUrl();
+    const activeColor = isDarkTheme ? "#3daee9" : "#005fb8";
 
-        if (getIframeUrl().includes("forum.html")) {
-            document.getElementById("return-on").style.display = "flex";
-            document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "#3daee9";
-        } else {
-            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "";
-        }
+    const isSolutions = url.includes("solutions.html");
+    const isForum = url.includes("forum.html");
+    const isSupport = url.includes("support.html");
+    const showBack = isForum || isSupport;
 
-        if (getIframeUrl().includes("support.html")) {
-            document.getElementById("return-on").style.display = "flex";
-            document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "#3daee9";
-        } else {
-            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "";
-        }
+    sidebarElements.returnOn.style.display = showBack ? "flex" : "none";
+    sidebarElements.returnOff.style.display = showBack ? "none" : "flex";
 
-        const sidebarItemEffectDark = document.querySelectorAll(".sidebar-item-effect");
-        for (let i = 0; i < sidebarItemEffectDark.length; i++) {
-            sidebarItemEffectDark[i].classList.add("sidebar-item-effect-dark");
-        }
+    sidebarElements.solutionsEffect.style.backgroundColor = isSolutions ? activeColor : "";
+    sidebarElements.forumEffect.style.backgroundColor = isForum ? activeColor : "";
+    sidebarElements.helpEffect.style.backgroundColor = isSupport ? activeColor : "";
 
-    } else {
-        if (getIframeUrl().includes("solutions.html")) {
-            document.getElementById("return-on").style.display = "none";
-            document.getElementById("return-off").style.display = "flex";
-            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "#005fb8";
-        } else {
-            document.querySelector("li#option-solutions .sidebar-item-effect").style.backgroundColor = "";
-        }
+    sidebarElements.allEffects.forEach(el => {
+        el.classList.toggle("sidebar-item-effect-dark", isDarkTheme);
+    });
+}
 
-        if (getIframeUrl().includes("forum.html")) {
-            document.getElementById("return-on").style.display = "flex";
-            document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "#005fb8";
-        } else {
-            document.querySelector("#option-forum .sidebar-item-effect").style.backgroundColor = "";
+function applyThemeToIframe() {
+    try {
+        const iframeDoc = mainIframe.document;
+        if (iframeDoc && iframeDoc.documentElement) {
+            iframeDoc.documentElement.classList.toggle("dark-theme", isDarkTheme);
         }
+    } catch (e) {}
+}
 
-        if (getIframeUrl().includes("support.html")) {
-            document.getElementById("return-on").style.display = "flex";
-            document.getElementById("return-off").style.display = "none";
-            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "#005fb8";
-        } else {
-            document.querySelector("#option-regataoshelp .sidebar-item-effect").style.backgroundColor = "";
-        }
+document.getElementById("main-iframe").addEventListener('load', function () {
+    detectIframeUrl();
+    applyThemeToIframe();
+});
+detectIframeUrl();
 
-        const sidebarItemEffectDark = document.querySelectorAll(".sidebar-item-effect");
-        for (let i = 0; i < sidebarItemEffectDark.length; i++) {
-            sidebarItemEffectDark[i].classList.remove("sidebar-item-effect-dark");
-        }
+onThemeChange(function () {
+    detectIframeUrl();
+    applyThemeToIframe();
+});
+
+function saveSidebarConfig(hidden) {
+    const configDir = '/tmp/regataos-help/config';
+    const configFile = `${configDir}/regataos-help.conf`;
+
+    if (!fs.existsSync(configDir)) {
+        fs.mkdirSync(configDir, { recursive: true });
     }
-}
 
-// Functions sidebar
-//Save the status of the application sidebar
-function hideSideBarShellScript() {
-    const exec = require('child_process').exec;
-    const command = "/bin/bash /opt/regataos-help/app/scripts/regataos-help-configs -hide-sidebar";
-    exec(command, function (error, call, errlog) {
-    });
-}
-
-function showSideBarShellScript() {
-    const exec = require('child_process').exec;
-    const command = "/bin/bash /opt/regataos-help/app/scripts/regataos-help-configs -show-sidebar";
-    exec(command, function (error, call, errlog) {
-    });
+    if (fs.existsSync(configFile)) {
+        let content = fs.readFileSync(configFile, 'utf8');
+        if (content.includes('hide_sidebar=')) {
+            content = content.replace(/hide_sidebar=\d/, `hide_sidebar=${hidden ? 1 : 0}`);
+        } else {
+            content += `\nhide_sidebar=${hidden ? 1 : 0}`;
+        }
+        fs.writeFileSync(configFile, content);
+    } else {
+        fs.writeFileSync(configFile, `hide_sidebar=${hidden ? 1 : 0}`);
+    }
 }
 
 function hideSideBar(saveConfig) {
-    const textSideBar = document.querySelectorAll(".link-items p");
-    for (let i = 0; i < textSideBar.length; i++) {
-        textSideBar[i].style.visibility = "hidden";
-    }
+    sidebarElements.textItems.forEach(el => { el.style.visibility = "hidden"; });
+    sidebarElements.listItems.forEach(el => { el.style.width = "58px"; });
 
-    const itemSideBar = document.querySelectorAll(".sidebar .ul-sidebar li");
-    for (let i = 0; i < itemSideBar.length; i++) {
-        itemSideBar[i].style.width = "58px";
-    }
+    sidebarElements.sidebar.style.width = "58px";
+    sidebarElements.divIframe.style.marginLeft = "58px";
+    sidebarElements.hideBtn.style.display = "none";
+    sidebarElements.showBtn.style.display = "flex";
+    sidebarElements.iframe.style.width = "calc(100% - 58px)";
 
-    document.querySelector(".sidebar").style.width = "58px";
-    document.querySelector(".div-iframe").style.marginLeft = "58px";
-    document.querySelector(".hide-sidebar").style.display = "none";
-    document.querySelector(".show-sidebar").style.display = "flex";
-    document.querySelector(".iframe").style.width = "calc(100% - 58px)";
-
-    if (saveConfig == true) {
-        hideSideBarShellScript();
+    if (saveConfig === true) {
+        saveSidebarConfig(true);
     }
 }
 
 function showSideBar(saveConfig) {
-    const itemSideBar = document.querySelectorAll(".sidebar .ul-sidebar li");
-    for (let i = 0; i < itemSideBar.length; i++) {
-        itemSideBar[i].style.width = "230px";
-    }
+    sidebarElements.listItems.forEach(el => { el.style.width = "230px"; });
 
-    document.querySelector(".sidebar").style.width = "230px";
-    document.querySelector(".div-iframe").style.marginLeft = "230px";
-    document.querySelector(".hide-sidebar").style.display = "flex";
-    document.querySelector(".show-sidebar").style.display = "none";
-    document.querySelector(".iframe").style.width = "calc(100% - 230px)";
+    sidebarElements.sidebar.style.width = "230px";
+    sidebarElements.divIframe.style.marginLeft = "230px";
+    sidebarElements.hideBtn.style.display = "flex";
+    sidebarElements.showBtn.style.display = "none";
+    sidebarElements.iframe.style.width = "calc(100% - 230px)";
 
-    if (saveConfig == true) {
-        showSideBarShellScript();
+    if (saveConfig === true) {
+        saveSidebarConfig(false);
     }
 
     setTimeout(function () {
-        const textSideBar = document.querySelectorAll(".link-items p");
-        for (let i = 0; i < textSideBar.length; i++) {
-            textSideBar[i].style.visibility = "visible";
-        }
+        sidebarElements.textItems.forEach(el => { el.style.visibility = "visible"; });
     }, 300);
 }
 
 function sideBarStart() {
-    const fs = require('fs');
-
     if (fs.existsSync("/tmp/regataos-help/config/regataos-help.conf")) {
         const regataHelpConfig = fs.readFileSync("/tmp/regataos-help/config/regataos-help.conf", "utf8");
-        const configOption = "hide_sidebar=";
-        const sideBarConfig = checkConfigFile(regataHelpConfig, configOption);
+        const sideBarConfig = checkConfigFile(regataHelpConfig, "hide_sidebar=");
         if (sideBarConfig.includes("0")) {
             showSideBar();
         } else {
@@ -200,50 +166,35 @@ function sideBarStart() {
 }
 sideBarStart();
 
-// Go to specific pages
 function go_solutions() {
     if (!getIframeUrl().includes("solutions.html")) {
         goIframeUrl("pages/solutions.html");
-
-        // Take the page to the top
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 300);
+        setTimeout(function () { window.scrollTo(0, 0); }, 300);
     }
 }
 
 function go_regataoshelp() {
     if (!getIframeUrl().includes("support.html")) {
         goIframeUrl("pages/support.html");
-
-        // Take the page to the top
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 300);
+        setTimeout(function () { window.scrollTo(0, 0); }, 300);
     }
 }
 
 function go_forum() {
     if (!getIframeUrl().includes("forum.html")) {
         goIframeUrl("pages/forum.html");
-
-        // Take the page to the top
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 300);
+        setTimeout(function () { window.scrollTo(0, 0); }, 300);
     }
 }
 
-// Back button
 function backButton() {
     function backButtonWebview() {
         const webview = mainIframe.document.getElementById('main-webview');
 
         webview.executeScript({
             code: "window.location.href"
-        }, result => {
-            this.url = result[0];
-            let urlPage = url;
+        }, function (result) {
+            let urlPage = result[0];
 
             if (urlPage.includes("com.br/")) {
                 urlPage = urlPage.split("com.br/")[1];
@@ -253,47 +204,36 @@ function backButton() {
 
             if (!urlPage) {
                 history.go(-1);
-
-                // Take the page to the top
-                setTimeout(function () {
-                    window.scrollTo(0, 0);
-                }, 100);
+                setTimeout(function () { window.scrollTo(0, 0); }, 100);
             } else {
-                webview.executeScript({ code: 'history.go(-1)' })
+                webview.executeScript({ code: 'history.go(-1)' });
             }
-        })
+        });
     }
 
-    if (getIframeUrl().includes("forum.html")) {
-        backButtonWebview();
-    } else if (getIframeUrl().includes("support.html")) {
+    if (getIframeUrl().includes("forum.html") || getIframeUrl().includes("support.html")) {
         backButtonWebview();
     } else {
         history.go(-1);
-        // Take the page to the top
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 100);
+        setTimeout(function () { window.scrollTo(0, 0); }, 100);
     }
 }
 
-// Select community and hide forum in sidebar
 function selectCommunity() {
     if (!languageDetected.includes("pt-br")) {
-        document.querySelector("#option-forum").style.display = "none";
+        sidebarElements.regataosCommunity.style.display = "none";
     }
 
     if (getIframeUrl().includes("solutions.html")) {
-        mainIframe.document.getElementById("community-access").onclick = function () {
+        const communityLink = mainIframe.document.getElementById("community-access");
+        if (!communityLink) return;
+
+        communityLink.onclick = function () {
             if (languageDetected.includes("pt-br")) {
                 go_forum();
             } else {
-                const exec = require('child_process').exec;
-                const command = `xdg-open "https://t.me/regataos_en"`;
-                exec(command, function (error, call, errlog) {
-                });
+                exec('xdg-open "https://t.me/regataos_en"');
             }
         };
     }
 }
-selectCommunity();

@@ -1,40 +1,38 @@
-[
-    {
-        "index": {
-            "windowTitle":"Suporte do Regata OS",
-            "sideBar": {
-                "backButton": "Voltar",
-                "showMenu": "Ícones e textos",
-                "hideMenu": "Apenas ícones",
-                "toolsButton": "Soluções prontas",
-                "tipsTutorials": "Tutoriais e dicas",
-                "forum": "Regata OS Fórum"
-            }
+{
+    "index": {
+        "windowTitle": "Suporte do Regata OS",
+        "sideBar": {
+            "backButton": "Voltar",
+            "showMenu": "Ícones e textos",
+            "hideMenu": "Apenas ícones",
+            "toolsButton": "Soluções prontas",
+            "tipsTutorials": "Tutoriais e dicas",
+            "forum": "Regata OS Fórum"
+        }
+    },
+    "homePage": {
+        "title": "Você precisa de ajuda com o Regata OS?",
+        "description": "Este é o centro de solução de problemas do Regata OS.</br>Separamos aqui algumas opções que podem lhe ajudar a resolver alguns problemas.</br>",
+        "communityText": "Se você ainda não encontrou o que procura, pergunte à comunidade, através do <a id='community-access'>nosso fórum</a>.",
+        "networkOption": {
+            "title": "Solucionar problemas</br>com a rede",
+            "text": "Se você está tendo problemas com a conexão com a internet, esta opção é a recomendada para você.",
+            "button": "Iniciar agora"
         },
-        "homePage": {
-            "title": "Você precisa de ajuda com o Regata OS?",
-            "description": "Este é o centro de solução de problemas do Regata OS.</br>Separamos aqui algumas opções que podem lhe ajudar a resolver alguns problemas.</br>",
-            "communityText": "Se você ainda não encontrou o que procura, pergunte à comunidade, através do <a id='community-access'>nosso fórum</a>.",
-            "networkOption": {
-                "title": "Solucionar problemas</br>com a rede",
-                "text": "Se você está tendo problemas com a conexão com a internet, esta opção é a recomendada para você.",
-                "button": "Iniciar agora"
-            },
-            "repoOption": {
-                "title": "Atualizar os repositórios</br>de software manualmente",
-                "text": "Atualize os repositórios de software manualmente. Isso pode ajudar a solucionar problemas.",
-                "button": "Atualizar repositórios"
-            },
-            "restoreOption": {
-                "title": "Restaurar as configurações</br>padrão do ambiente gráfico",
-                "text": "Restaure as configurações padrão do ambiente gráfico do Regata OS. Será necessário reiniciar.",
-                "button": "Restaurar configurações"
-            },
-            "infoOption": {
-                "title": "Obter informações detalhadas sobre o hardware",
-                "text": "Um arquivo de texto será criado na sua pasta pessoal com informações importantes sobre o hardware.",
-                "button": "Informações do hardware"
-            }
+        "repoOption": {
+            "title": "Atualizar os repositórios</br>de software manualmente",
+            "text": "Atualize os repositórios de software manualmente. Isso pode ajudar a solucionar problemas.",
+            "button": "Atualizar repositórios"
+        },
+        "restoreOption": {
+            "title": "Restaurar as configurações</br>padrão do ambiente gráfico",
+            "text": "Restaure as configurações padrão do ambiente gráfico do Regata OS. Será necessário reiniciar.",
+            "button": "Restaurar configurações"
+        },
+        "infoOption": {
+            "title": "Obter informações detalhadas sobre o hardware",
+            "text": "Um arquivo de texto será criado na sua pasta pessoal com informações importantes sobre o hardware.",
+            "button": "Informações do hardware"
         }
     }
-]
+}

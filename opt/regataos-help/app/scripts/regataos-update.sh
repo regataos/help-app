@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Update default settings
 if test -e /opt/regataos-base/regataos-base-20.tar.xz ; then
   tar xf /opt/regataos-base/regataos-base-20.tar.xz -C /
 fi
@@ -58,7 +57,6 @@ if test -e /usr/share/plasma/layout-templates/org.kde.plasma.desktop.defaultPane
   rm -rf /usr/share/plasma/layout-templates/org.kde.plasma.desktop.defaultPanel
 fi
 
-# Hide YaST .desktop files
 if [[ $(grep -r "NoDisplay=true" "/usr/share/applications/org.opensuse.yast.Packager.desktop") != *"NoDisplay=true"* ]]; then
 	echo "NoDisplay=true" >> "/usr/share/applications/YaST2/org.opensuse.yast.Snapper.desktop"
 	echo "NoDisplay=true" >> "/usr/share/applications/YaST2/org.opensuse.yast.CheckMedia.desktop"
@@ -69,24 +67,19 @@ if [[ $(grep -r "NoDisplay=true" "/usr/share/applications/org.opensuse.yast.Pack
 	echo "NoDisplay=true" >> "/usr/share/applications/mintstick-kde.desktop"
 fi
 
-# Configure icone menu kickoff
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/metadata.desktop
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/metadata.json
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/config.qml
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/main.xml
-# Configure icone menu kickerdash
+
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kickerdash/metadata.desktop
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kickerdash/metadata.json
-# Configure icone menu kicker
+
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kicker/metadata.desktop
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kicker/metadata.json
 sed -i 's/kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kicker/contents/config/config.qml
 sed -i 's/start-here-kde/suse/' /usr/share/plasma/plasmoids/org.kde.plasma.kicker/contents/config/main.xml
 
-# Disable btrfs quota for /
-# sudo btrfs quota disable /
-
-#remove update-notify
 if test -e /opt/regataos-base/update-notify ; then
   rm -f /opt/regataos-base/update-notify
 fi
@@ -99,46 +92,23 @@ chown root:root /usr/lib
 chown root:root /usr/share
 chown root:root /usr/share/applications
 
-# Configure firewalld
 systemctl enable firewalld.service || true
 systemctl start firewalld.service || true
 
-firewall-cmd --permanent --zone=public --add-service=kdeconnect-kde
-firewall-cmd --permanent --zone=public --add-service={samba,samba-client}
-firewall-cmd --permanent --zone=public --add-service=ipp
-firewall-cmd --permanent --zone=public --add-service=ipp --permanent
-firewall-cmd --permanent --zone=public --add-service=ipp-client
-firewall-cmd --permanent --zone=public --add-service=ipp-client --permanent
-firewall-cmd --permanent --zone=public --add-service=samba
-firewall-cmd --permanent --zone=public --add-service=samba --permanent
-firewall-cmd --permanent --zone=public --add-service=mdns
-firewall-cmd --permanent --zone=public --add-service=mdns --permanent
-
-firewall-cmd --permanent --zone=internal --add-service=kdeconnect-kde
-firewall-cmd --permanent --zone=internal --add-service={samba,samba-client}
-firewall-cmd --permanent --zone=internal --add-service=ipp
-firewall-cmd --permanent --zone=internal --add-service=ipp --permanent
-firewall-cmd --permanent --zone=internal --add-service=ipp-client
-firewall-cmd --permanent --zone=internal --add-service=ipp-client --permanent
-firewall-cmd --permanent --zone=internal --add-service=samba
-firewall-cmd --permanent --zone=internal --add-service=samba --permanent
-firewall-cmd --permanent --zone=internal --add-service=mdns
-firewall-cmd --permanent --zone=internal --add-service=mdns --permanent
-
+for zone in public internal; do
+    firewall-cmd --permanent --zone=$zone --add-service={kdeconnect-kde,samba,samba-client,ipp,ipp-client,mdns}
+done
 firewall-cmd --reload
 
-# Fix cups for printers
 cupsctl --remote-admin --remote-any --share-printers --user-cancel-any
 systemctl restart cups
 
-# Correction for the game Rocket League
 if test ! -e /etc/ssl/certs/ca-certificates.crt ; then
 	mkdir -p /etc/ssl/certs/
 	ln -s /etc/ssl/ca-bundle.pem /etc/ssl/certs/ca-certificates.crt
 	ln -s /etc/ssl/ca-bundle.pem /etc/ssl/certs/ca-bundle.crt
 fi
 
-# Fix Insync and possibly other programs
 if test ! -e /etc/pki/tls/certs/ca-bundle.crt ; then
 	mkdir -p /etc/pki/tls/certs
 	ln -s /etc/ssl/ca-bundle.pem /etc/pki/tls/certs/ca-certificates.crt
@@ -152,173 +122,57 @@ if test -e /usr/share/applications/YaST2/live-installer.desktop ; then
 	echo "visitante ALL=NOPASSWD: ALL" >> /etc/sudoers
 fi
 
-# Detect hybrid graphics
-#Detect "device 2" and configure xorg
+clean_gpu_configs() {
+    local confs=("20-amdgpu.conf" "20-radeon.conf" "20-intel.conf" "20-nvidia.conf")
+    local dirs=("/etc/X11/xorg.conf.d" "/usr/share/X11/xorg.conf.d")
+    for dir in "${dirs[@]}"; do
+        for conf in "${confs[@]}"; do
+            rm -f "$dir/$conf"
+        done
+    done
+}
+
+install_gpu_config() {
+    local src="/usr/share/regataos/gpu/$1"
+    cp -f "$src" "/etc/X11/xorg.conf.d/$1"
+    cp -f "$src" "/usr/share/X11/xorg.conf.d/$1"
+}
+
 device=$(inxi -G | egrep -i "Card-2|Device-2")
 
-if [[ $(echo "$device") == *"AMD"* ]]; then
-	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-
-elif [[ $(echo "$device") == *"ATI"* ]]; then
-	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-
-elif [[ $(echo "$device") == *"NVIDIA"* ]]; then
-	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-
-elif [[ $(echo "$device") == *"GeForce"* ]]; then
-	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-
-elif [[ $(echo "$device") == *"Intel"* ]]; then
-	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-
+if echo "$device" | grep -qiE "AMD|ATI|NVIDIA|GeForce|Intel"; then
+    clean_gpu_configs
 else
-	# Detect driver and configure xorg
-	driver=$(lshw -class display)
+    driver=$(lshw -class display)
+    clean_gpu_configs
 
-	if [[ $(echo $driver) == *"driver=intel"* ]]; then
-    	rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/etc/X11/xorg.conf.d/20-intel.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/usr/share/X11/xorg.conf.d/20-intel.conf"
-
-	elif [[ $(echo $driver) == *"driver=i915"* ]]; then
-    	rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/etc/X11/xorg.conf.d/20-intel.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/usr/share/X11/xorg.conf.d/20-intel.conf"
-
-	elif [[ $(echo $driver) == *"driver=i965"* ]]; then
-    	rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/etc/X11/xorg.conf.d/20-intel.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/usr/share/X11/xorg.conf.d/20-intel.conf"
-
-	elif [[ $(echo $driver) == *"driver=iris"* ]]; then
-    	rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/etc/X11/xorg.conf.d/20-intel.conf"
-    	cp -f "/usr/share/regataos/gpu/20-intel.conf" "/usr/share/X11/xorg.conf.d/20-intel.conf"
-
-	elif [[ $(echo $driver) == *"driver=nvidia"* ]]; then
-    	rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    	cp -f "/usr/share/regataos/gpu/20-nvidia.conf" "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    	cp -f "/usr/share/regataos/gpu/20-nvidia.conf" "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-
-	elif [[ $(echo $driver) == *"driver=amdgpu"* ]]; then
-    	rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-    	cp -f "/usr/share/regataos/gpu/20-amdgpu.conf" "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    	cp -f "/usr/share/regataos/gpu/20-amdgpu.conf" "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-
-	else
-    	rm -f "/etc/X11/xorg.conf.d/20-amdgpu.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-amdgpu.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-radeon.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-intel.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-intel.conf"
-    	rm -f "/etc/X11/xorg.conf.d/20-nvidia.conf"
-    	rm -f "/usr/share/X11/xorg.conf.d/20-nvidia.conf"
-    	echo "ERROR: Unsupported VGA controller"
-	fi
+    if echo "$driver" | grep -qE "driver=(intel|i915|i965|iris)"; then
+        install_gpu_config "20-intel.conf"
+    elif echo "$driver" | grep -q "driver=nvidia"; then
+        install_gpu_config "20-nvidia.conf"
+    elif echo "$driver" | grep -q "driver=amdgpu"; then
+        install_gpu_config "20-amdgpu.conf"
+    else
+        echo "ERROR: Unsupported VGA controller"
+    fi
 fi
 
-# Fix nvidia driver
 if test -e "/usr/share/regataos/nvidia-installer-disable-nouveau.conf"; then
 	cp -f /usr/share/regataos/nvidia-installer-disable-nouveau.conf /etc/modprobe.d/nvidia-installer-disable-nouveau.conf
 fi
 
-# Fix directory "/tmp/regataos-prime"
 if test ! -e "/tmp/regataos-prime"; then
   	mkdir -p /tmp/regataos-prime
-  	chmod 777 /tmp/regataos-prime
-else
-  	chmod 777 /tmp/regataos-prime
 fi
+chmod 777 /tmp/regataos-prime
 
-# Detect layout for the keyboard language and fix Firefox home page
-# sed -i 's/LayoutList=br,us/LayoutList=us,br/' /etc/xdg/kxkbrc
-# sed -i 's,http://www.regataos.com.br/,https://www.regataos.com.br/p/home.html,' /usr/lib64/firefox/distribution/distribution.ini
-
-# Fix pulseaudio
 fix_pulse=$(cat /etc/pulse/system.pa)
 if [[ $fix_pulse != *"load-module module-allow-passthrough"* ]]; then
 	echo "load-module module-allow-passthrough" >> /etc/pulse/system.pa
 fi
 
-# Fix repos
-#Google
-#wget --no-check-certificate -O /usr/share/regataos/linux_signing_key.pub https://dl.google.com/linux/linux_signing_key.pub
-#if test -e /usr/share/regataos/linux_signing_key.pub ; then
-#  zypper clean -a
-#  rpm --import /usr/share/regataos/linux_signing_key.pub
-#  zypper --gpg-auto-import-keys ref
-#fi
-
-# Fix for Calamares
 if test ! -e /run/rootfsbase ; then
 	sudo ln -s / /run/rootfsbase
 fi
 
-# Process completed, it's time to say goodbye...
 rm -f /usr/share/regataos/regataos-update.sh

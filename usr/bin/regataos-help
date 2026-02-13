@@ -36,14 +36,12 @@ if test ! -e "/tmp/regataos-configs/config/user-dirs.locale"; then
 fi
 
 # Check the theme that should be used
-if test ! -e "/tmp/regataos-configs/config/kdeglobals"; then
-	mkdir -p "/tmp/regataos-configs/config"
+mkdir -p "/tmp/regataos-configs/config"
 
-	if test -e "$HOME/.config/kdedefaults/kdeglobals"; then
-		ln -sf "$HOME/.config/kdedefaults/kdeglobals" "/tmp/regataos-configs/config/"
-	else
-		ln -sf "$HOME/.config/kdeglobals" "/tmp/regataos-configs/config/"
-	fi
+if test -e "$HOME/.config/kdeglobals"; then
+	ln -sf "$HOME/.config/kdeglobals" "/tmp/regataos-configs/config/"
+elif test -e "$HOME/.config/kdedefaults/kdeglobals"; then
+	ln -sf "$HOME/.config/kdedefaults/kdeglobals" "/tmp/regataos-configs/config/"
 fi
 
 # Fix for zenity

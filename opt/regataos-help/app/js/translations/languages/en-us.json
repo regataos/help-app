@@ -1,40 +1,38 @@
-[
-    {
-        "index": {
-            "windowTitle":"Regata OS Support",
-            "sideBar": {
-                "backButton": "Return",
-                "showMenu": "Icons only",
-                "hideMenu": "Icons and texts",
-                "toolsButton": "Ready solutions",
-                "tipsTutorials": "Tutorials and tips",
-                "forum": "Regata OS Forum"
-            }
+{
+    "index": {
+        "windowTitle": "Regata OS Support",
+        "sideBar": {
+            "backButton": "Return",
+            "showMenu": "Icons only",
+            "hideMenu": "Icons and texts",
+            "toolsButton": "Ready solutions",
+            "tipsTutorials": "Tutorials and tips",
+            "forum": "Regata OS Forum"
+        }
+    },
+    "homePage": {
+        "title": "Do you need help with Regata OS?",
+        "description": "This is the Regata OS troubleshooting center.</br>We have separated some options here that can help you solve some problems.</br>",
+        "communityText": "If you still haven't found what you're looking for, ask the community using our <a id='community-access'>Telegram group</a>.",
+        "networkOption": {
+            "title": "Troubleshoot network</br>problems",
+            "text": "If you are having problems with your internet connection, this option is recommended for you.",
+            "button": "Start now"
         },
-        "homePage": {
-            "title": "Do you need help with Regata OS?",
-            "description": "This is the Regata OS troubleshooting center.</br>We have separated some options here that can help you solve some problems.</br>",
-            "communityText": "If you still haven't found what you're looking for, ask the community using our <a id='community-access'>Telegram group</a>.",
-            "networkOption": {
-                "title": "Troubleshoot network</br>problems",
-                "text": "If you are having problems with your internet connection, this option is recommended for you.",
-                "button": "Start now"
-            },
-            "repoOption": {
-                "title": "Update software repositories</br>manually",
-                "text": "Update software repositories manually. This can help troubleshoot problems.",
-                "button": "Update repositories"
-            },
-            "restoreOption": {
-                "title": "Restore the default settings</br>of the graphical environment",
-                "text": "Restore the default settings of the Regata OS graphical environment. Restart required.",
-                "button": "Restore settings"
-            },
-            "infoOption": {
-                "title": "Get detailed hardware information",
-                "text": "A text file will be created in your personal folder with important information about the hardware.",
-                "button": "Hardware information"
-            }
+        "repoOption": {
+            "title": "Update software repositories</br>manually",
+            "text": "Update software repositories manually. This can help troubleshoot problems.",
+            "button": "Update repositories"
+        },
+        "restoreOption": {
+            "title": "Restore the default settings</br>of the graphical environment",
+            "text": "Restore the default settings of the Regata OS graphical environment. Restart required.",
+            "button": "Restore settings"
+        },
+        "infoOption": {
+            "title": "Get detailed hardware information",
+            "text": "A text file will be created in your personal folder with important information about the hardware.",
+            "button": "Hardware information"
         }
     }
-]
+}

@@ -1,56 +1,36 @@
-// Disable main hover effect after few seconds
 setTimeout(function () {
     document.getElementById("loadscreen").style.display = "none";
 }, 1000);
 
-// Check internet connection
-setInterval(checkOnline, 500);
-function checkOnline() {
-    const online = document.querySelectorAll(".online");
-    const onlineImg = document.querySelectorAll(".online-img");
-    const offline = document.querySelectorAll(".offline");
-    const offlineImg = document.querySelectorAll(".offline-img");
+const onlineEls = document.querySelectorAll(".online");
+const onlineImgs = document.querySelectorAll(".online-img");
+const offlineEls = document.querySelectorAll(".offline");
+const offlineImgs = document.querySelectorAll(".offline-img");
 
-    if (navigator.onLine) {
-        for (let i = 0; i < online.length; i++) {
-            online[i].style.display = "inline-block";
-        }
-
-        for (let i = 0; i < onlineImg.length; i++) {
-            onlineImg[i].style.display = "block";
-        }
-
-        for (let i = 0; i < offline.length; i++) {
-            offline[i].style.display = "none";
-        }
-
-        for (let i = 0; i < offlineImg.length; i++) {
-            offlineImg[i].style.display = "none";
-        }
-    } else {
-        for (let i = 0; i < online.length; i++) {
-            online[i].style.display = "none";
-        }
-
-        for (let i = 0; i < onlineImg.length; i++) {
-            onlineImg[i].style.display = "none";
-        }
-
-        for (let i = 0; i < offline.length; i++) {
-            offline[i].style.display = "inline-block";
-        }
-
-        for (let i = 0; i < offlineImg.length; i++) {
-            offlineImg[i].style.display = "block";
-        }
-    }
+function updateOnlineOffline() {
+    const isOnline = navigator.onLine;
+    onlineEls.forEach(el => { el.style.display = isOnline ? "inline-block" : "none"; });
+    onlineImgs.forEach(el => { el.style.display = isOnline ? "block" : "none"; });
+    offlineEls.forEach(el => { el.style.display = isOnline ? "none" : "inline-block"; });
+    offlineImgs.forEach(el => { el.style.display = isOnline ? "none" : "block"; });
 }
 
-// Run Shell Script
+window.addEventListener('online', updateOnlineOffline);
+window.addEventListener('offline', updateOnlineOffline);
+updateOnlineOffline();
+
+const ALLOWED_SCRIPTS = ['fix-network', 'fix-repos', 'restore-config', 'hardware-info'];
+
 function runShellScript(script) {
-    const exec = require('child_process').exec;
-    const command = `xhost +; sleep 1; ps -C ${script}.sh > /dev/null;
-    if [ $? = 1 ]; then sudo /opt/regataos-help/app/scripts/${script}.sh; fi`;
-    exec(command, function (error, call, errlog) {
+    if (!ALLOWED_SCRIPTS.includes(script)) {
+        return;
+    }
+
+    const scriptPath = `/opt/regataos-help/app/scripts/${script}.sh`;
+
+    exec(`ps -C ${script}.sh`, function (err) {
+        if (err) {
+            exec(`sudo ${scriptPath}`);
+        }
     });
 }

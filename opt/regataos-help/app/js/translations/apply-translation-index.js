@@ -1,47 +1,21 @@
-// Apply in-app translation based on user's language settings.
-
-// Apply text translations in the app
 function applyTranslation() {
-    const fs = require('fs');
-
     let data = fs.readFileSync(selectTranslationFile(), "utf8");
     data = JSON.parse(data);
 
-    for (let i = 0; i < data.length; i++) {
-        // Window title
-        const windowTitle = document.querySelector("title");
-        windowTitle.innerHTML = data[i].index.windowTitle;
+    document.querySelector("title").innerHTML = data.index.windowTitle;
 
-        // Side bar
-        //Back button
-        const backButton = document.querySelector("#return-on img");
-        backButton.title = data[i].index.sideBar.backButton;
+    document.querySelector("#return-on img").title = data.index.sideBar.backButton;
 
-        //Show and hide the menu
-        const showMenu = document.querySelector(".show-sidebar img");
-        showMenu.title = data[i].index.sideBar.showMenu;
+    document.querySelector(".show-sidebar img").title = data.index.sideBar.showMenu;
+    document.querySelector(".hide-sidebar img").title = data.index.sideBar.hideMenu;
 
-        const hideMenu = document.querySelector(".hide-sidebar img");
-        hideMenu.title = data[i].index.sideBar.hideMenu;
+    document.querySelector("#option-solutions img").title = data.index.sideBar.toolsButton;
+    document.querySelector("#option-solutions P").innerHTML = data.index.sideBar.toolsButton;
 
-        //Menu
-        const toolsButton = document.querySelector("#option-solutions img");
-        toolsButton.title = data[i].index.sideBar.toolsButton;
+    document.querySelector("#option-regataoshelp img").title = data.index.sideBar.tipsTutorials;
+    document.querySelector("#option-regataoshelp p").innerHTML = data.index.sideBar.tipsTutorials;
 
-        const toolsButtonText = document.querySelector("#option-solutions P");
-        toolsButtonText.innerHTML = data[i].index.sideBar.toolsButton;
-
-        const tipsTutorials = document.querySelector("#option-regataoshelp img");
-        tipsTutorials.title = data[i].index.sideBar.tipsTutorials;
-
-        const tipsTutorialsText = document.querySelector("#option-regataoshelp p");
-        tipsTutorialsText.innerHTML = data[i].index.sideBar.tipsTutorials;
-
-        const forum = document.querySelector("#option-forum img");
-        forum.title = data[i].index.sideBar.forum;
-
-        const forumText = document.querySelector("#option-forum p");
-        forumText.innerHTML = data[i].index.sideBar.forum;
-    }
+    document.querySelector("#option-forum img").title = data.index.sideBar.forum;
+    document.querySelector("#option-forum p").innerHTML = data.index.sideBar.forum;
 }
 applyTranslation();
