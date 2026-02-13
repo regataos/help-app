@@ -571,6 +571,10 @@ html.dark-theme a {
     text-decoration-color: #3daee9;
 }
 
+html.dark-theme a.link-items {
+    text-decoration: none;
+}
+
 html.dark-theme .div1 {
     color: #fff;
 }

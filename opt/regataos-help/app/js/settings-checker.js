@@ -46,10 +46,46 @@ function selectTranslationFile() {
     }
 }
 
-const path = require('path');
-const os = require('os');
+let isOnline = false;
+const onlineListeners = [];
 
-const homeDir = os.homedir();
+function onOnlineChange(callback) {
+    onlineListeners.push(callback);
+}
+
+function checkInternetConnection() {
+    fetch("https://www.google.com/generate_204", {
+        method: "HEAD",
+        mode: "no-cors",
+        cache: "no-store"
+    })
+    .then(function () {
+        if (!isOnline) {
+            isOnline = true;
+            onlineListeners.forEach(function (cb) { cb(isOnline); });
+        }
+    })
+    .catch(function () {
+        if (isOnline) {
+            isOnline = false;
+            onlineListeners.forEach(function (cb) { cb(isOnline); });
+        }
+    });
+}
+
+checkInternetConnection();
+setInterval(checkInternetConnection, 10000);
+
+window.addEventListener('online', function () {
+    setTimeout(checkInternetConnection, 1000);
+});
+window.addEventListener('offline', function () {
+    isOnline = false;
+    onlineListeners.forEach(function (cb) { cb(isOnline); });
+});
+
+const homeDir = require('os').homedir();
+const path = require('path');
 const kdeConfigPath = path.join(homeDir, ".config", "kdeglobals");
 const kdeDefaultsPath = path.join(homeDir, ".config", "kdedefaults", "kdeglobals");
 const themeConfigPath = "/tmp/regataos-configs/config/kdeglobals";

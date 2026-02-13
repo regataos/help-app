@@ -8,15 +8,13 @@ const offlineEls = document.querySelectorAll(".offline");
 const offlineImgs = document.querySelectorAll(".offline-img");
 
 function updateOnlineOffline() {
-    const isOnline = navigator.onLine;
     onlineEls.forEach(el => { el.style.display = isOnline ? "inline-block" : "none"; });
     onlineImgs.forEach(el => { el.style.display = isOnline ? "block" : "none"; });
     offlineEls.forEach(el => { el.style.display = isOnline ? "none" : "inline-block"; });
     offlineImgs.forEach(el => { el.style.display = isOnline ? "none" : "block"; });
 }
 
-window.addEventListener('online', updateOnlineOffline);
-window.addEventListener('offline', updateOnlineOffline);
+onOnlineChange(updateOnlineOffline);
 updateOnlineOffline();
 
 const ALLOWED_SCRIPTS = ['fix-network', 'fix-repos', 'restore-config', 'hardware-info'];

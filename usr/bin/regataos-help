@@ -52,5 +52,9 @@ if test -e "$HOME/.config/Regata OS Support/Default/GPUCache/index"; then
 	rm -f "$HOME/.config/Regata OS Support/Default/GPUCache/"*
 fi
 
+# Reduce memory usage
+export MALLOC_ARENA_MAX=2
+export NODE_OPTIONS="--max-old-space-size=128"
+
 # Run app
 regataoshelp /opt/regataos-help

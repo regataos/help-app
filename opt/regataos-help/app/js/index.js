@@ -46,14 +46,12 @@ const sidebarElements = {
 };
 
 function updateOnlineStatus() {
-    const isOnline = navigator.onLine;
     sidebarElements.regataosHelp.style.display = isOnline ? "block" : "none";
     sidebarElements.regataosCommunity.style.display =
         (isOnline && languageDetected.includes("pt-br")) ? "block" : "none";
 }
 
-window.addEventListener('online', updateOnlineStatus);
-window.addEventListener('offline', updateOnlineStatus);
+onOnlineChange(updateOnlineStatus);
 updateOnlineStatus();
 
 function detectIframeUrl() {
