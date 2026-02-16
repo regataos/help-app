@@ -54,7 +54,7 @@ fi
 
 # Reduce memory usage
 export MALLOC_ARENA_MAX=2
-export NODE_OPTIONS="--max-old-space-size=128"
+export NODE_OPTIONS="--max-old-space-size=160"
 
 # Run app
 regataoshelp /opt/regataos-help
