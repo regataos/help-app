@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Disk Cleanup - Regata OS</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="./../css/style.css">
+    <link rel="stylesheet" type="text/css" href="./../css/cleanup.css">
+</head>
+
+<body>
+    <div id="loadscreen"></div>
+
+    <div class="div1">
+        <div class="cleanup-header">
+            <div class="cleanup-header-icon"></div>
+            <div class="cleanup-header-text">
+                <h1 class="h1 cleanup-page-title">Disk cleanup</h1>
+                <h2 class="h2 cleanup-page-desc">Scan your system for unnecessary files and free up disk space.</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disk usage overview -->
+    <div class="div1" style="margin-bottom: 15px;">
+        <div class="disk-usage-bar-container">
+            <div class="disk-usage-info">
+                <span class="disk-usage-label cleanup-disk-label">Disk usage</span>
+                <span class="disk-usage-values" id="disk-usage-text">— / —</span>
+            </div>
+            <div class="disk-usage-bar">
+                <div class="disk-usage-bar-fill" id="disk-usage-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan state: initial -->
+    <div class="div1" id="scan-initial">
+        <div class="scan-prompt">
+            <p class="cleanup-scan-prompt-text">Click the button below to scan your system for files that can be safely removed.</p>
+            <div class="scan-button button" id="btn-scan" onclick="startScan()">
+                <span class="cleanup-scan-button-text">Scan now</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan state: scanning -->
+    <div class="div1" id="scan-loading" style="display: none;">
+        <div class="scan-progress">
+            <div class="scan-spinner"></div>
+            <p class="scan-status cleanup-scanning-text">Scanning system files...</p>
+        </div>
+    </div>
+
+    <!-- Scan state: results -->
+    <div class="div1" id="scan-results" style="display: none;">
+        <div class="results-header">
+            <div class="results-summary">
+                <span class="results-total-label cleanup-total-label">Total recoverable:</span>
+                <span class="results-total-value" id="total-size">0 MB</span>
+            </div>
+            <div class="results-actions">
+                <div class="button results-select-all" id="btn-select-all" onclick="toggleSelectAll()">
+                    <span class="cleanup-select-all-text">Select all</span>
+                </div>
+                <div class="button results-clean-btn" id="btn-clean" onclick="startClean()">
+                    <span class="cleanup-clean-button-text">Clean selected</span>
+                </div>
+            </div>
+        </div>
+
+        <ul class="cleanup-list" id="cleanup-list">
+            <!-- Items will be inserted dynamically -->
+        </ul>
+
+        <div class="rescan-area">
+            <div class="button rescan-btn" id="btn-rescan" onclick="startScan()">
+                <span class="cleanup-rescan-text">Scan again</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clean state: in progress -->
+    <div class="div1" id="clean-loading" style="display: none;">
+        <div class="scan-progress">
+            <div class="scan-spinner"></div>
+            <p class="scan-status cleanup-cleaning-text">Cleaning selected files...</p>
+        </div>
+    </div>
+
+    <!-- Clean state: done -->
+    <div class="div1" id="clean-done" style="display: none;">
+        <div class="clean-done-box">
+            <div class="clean-done-icon"></div>
+            <h3 class="h3 cleanup-done-title">Cleanup complete!</h3>
+            <p class="cleanup-done-desc" id="clean-done-text">0 MB of disk space has been freed.</p>
+            <div class="button rescan-btn" onclick="startScan()" style="position:relative; margin-top:20px;">
+                <span class="cleanup-rescan-text">Scan again</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./../js/settings-checker.js"></script>
+    <script type="text/javascript" src="./../js/translations/apply-translation-cleanup.js"></script>
+    <script type="text/javascript" src="./../js/cleanup.js"></script>
+</body>
+
+</html>

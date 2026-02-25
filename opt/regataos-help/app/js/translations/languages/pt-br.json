@@ -29,10 +29,57 @@
             "text": "Restaure as configurações padrão do ambiente gráfico do Regata OS. Será necessário reiniciar.",
             "button": "Restaurar configurações"
         },
+        "cleanupOption": {
+            "title": "Limpeza de disco",
+            "text": "Verifique e remova arquivos desnecessários como cache, logs e arquivos temporários para liberar espaço em disco.",
+            "button": "Verificar limpeza"
+        },
         "infoOption": {
             "title": "Obter informações detalhadas sobre o hardware",
             "text": "Um arquivo de texto será criado na sua pasta pessoal com informações importantes sobre o hardware.",
             "button": "Informações do hardware"
+        }
+    },
+    "cleanupPage": {
+        "pageTitle": "Limpeza de disco",
+        "pageDesc": "Analise seu sistema em busca de arquivos desnecessários e libere espaço em disco.",
+        "diskLabel": "Uso do disco",
+        "scanPromptText": "Clique no botão abaixo para verificar quais arquivos podem ser removidos com segurança.",
+        "scanButton": "Verificar agora",
+        "scanningText": "Analisando arquivos do sistema...",
+        "totalLabel": "Total recuperável:",
+        "selectAll": "Selecionar tudo",
+        "cleanButton": "Limpar selecionados",
+        "rescanButton": "Verificar novamente",
+        "cleaningText": "Limpando arquivos selecionados...",
+        "doneTitle": "Limpeza concluída!",
+        "doneDesc": "{size} de espaço em disco foram liberados.",
+        "emptyText": "Nada para limpar",
+        "categories": {
+            "package-cache": {
+                "title": "Cache de pacotes",
+                "desc": "Pacotes baixados pelo gerenciador de pacotes."
+            },
+            "system-logs": {
+                "title": "Logs antigos do sistema",
+                "desc": "Arquivos de log rotacionados e comprimidos em /var/log."
+            },
+            "temp-files": {
+                "title": "Arquivos temporários",
+                "desc": "Arquivos temporários em /tmp e /var/tmp."
+            },
+            "user-cache": {
+                "title": "Cache do usuário",
+                "desc": "Arquivos de cache de aplicativos na sua pasta pessoal."
+            },
+            "thumbnails": {
+                "title": "Cache de miniaturas",
+                "desc": "Miniaturas de imagens geradas pelo gerenciador de arquivos."
+            },
+            "trash": {
+                "title": "Lixeira",
+                "desc": "Arquivos na sua lixeira."
+            }
         }
     }
 }
