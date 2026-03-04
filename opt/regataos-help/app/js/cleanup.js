@@ -211,11 +211,67 @@ function confirmClean() { hideConfirmDialog(); startClean(); }
 function startClean() {
     var sel = scanResults.filter(function (it) { return it.selected; }); if (!sel.length) return;
     showState("clean-loading");
-    var freed = sel.reduce(function (a, it) { return a + it.bytes; }, 0);
-    runCmd(sel.map(function (it) { return it.cleanCmd; }).join(" ; "), 120000).then(function () {
-        document.getElementById("clean-done-text").textContent = getDoneText(formatBytes(freed));
-        showState("clean-done"); updateDiskUsage();
-    });
+
+    // Build step list
+    var stepsEl = document.getElementById("cp-steps");
+    stepsEl.innerHTML = sel.map(function (it, i) {
+        return '<div class="cp-step pending" id="cp-s' + i + '">' +
+            '<div class="cp-step-icon">○</div>' +
+            '<span class="cp-step-name">' + getCategoryTitle(it.id) + '</span>' +
+            '<span class="cp-step-size">' + formatBytes(it.bytes) + '</span></div>';
+    }).join('');
+    document.getElementById("cp-pct").textContent = "0%";
+    document.getElementById("cp-bar-fill").style.width = "0%";
+    document.getElementById("cp-freed").innerHTML = "";
+
+    var totalBytes = sel.reduce(function (a, it) { return a + it.bytes; }, 0);
+    var idx = 0;
+
+    function runNext() {
+        if (idx >= sel.length) {
+            // All done
+            document.getElementById("cp-pct").textContent = "100%";
+            document.getElementById("cp-bar-fill").style.width = "100%";
+            var titleEl = document.querySelector(".cp-title");
+            if (titleEl) titleEl.textContent = t("cleanupPage.doneTitle") || "Cleanup complete!";
+            document.getElementById("cp-freed").innerHTML =
+                (t("cleanupPage.freedLabel") || "Freed:") + " <b>" + formatBytes(totalBytes) + "</b>";
+
+            // After 2s, switch to done screen
+            setTimeout(function () {
+                document.getElementById("clean-done-text").textContent = getDoneText(formatBytes(totalBytes));
+                showState("clean-done"); updateDiskUsage();
+            }, 2000);
+            return;
+        }
+
+        // Mark current as active
+        var stepEl = document.getElementById("cp-s" + idx);
+        stepEl.className = "cp-step active";
+        stepEl.querySelector('.cp-step-icon').innerHTML = '<div class="cp-spin"></div>';
+
+        // Update bar
+        var pct = Math.round((idx / sel.length) * 100);
+        document.getElementById("cp-pct").textContent = pct + "%";
+        document.getElementById("cp-bar-fill").style.width = pct + "%";
+
+        // Run the command
+        runCmd(sel[idx].cleanCmd, 30000).then(function () {
+            // Mark as done
+            stepEl.className = "cp-step done";
+            stepEl.querySelector('.cp-step-icon').textContent = '✓';
+
+            idx++;
+            var pct2 = Math.round((idx / sel.length) * 100);
+            document.getElementById("cp-pct").textContent = pct2 + "%";
+            document.getElementById("cp-bar-fill").style.width = pct2 + "%";
+
+            // Small delay before next for visual feedback
+            setTimeout(runNext, 150);
+        });
+    }
+
+    runNext();
 }
 
 // =============================================

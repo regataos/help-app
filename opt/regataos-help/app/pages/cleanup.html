@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
     <title>Disk Cleanup - Regata OS</title>
     <meta charset="utf-8" />
@@ -116,9 +116,17 @@
         </div>
     </div>
 
-    <!-- Clean: loading -->
+    <!-- Clean: progress -->
     <div class="div1" id="clean-loading" style="display:none;">
-        <div class="scan-progress"><div class="scan-spinner"></div><p class="scan-status cleanup-cleaning-text">Cleaning selected files...</p></div>
+        <div class="clean-progress-card card">
+            <div class="cp-top">
+                <span class="cp-title cleanup-cleaning-text">Cleaning...</span>
+                <span class="cp-pct" id="cp-pct">0%</span>
+            </div>
+            <div class="cp-bar"><div class="cp-bar-fill" id="cp-bar-fill" style="width:0%"></div></div>
+            <div class="cp-steps" id="cp-steps"></div>
+            <div class="cp-freed" id="cp-freed"></div>
+        </div>
     </div>
 
     <!-- Clean: done -->

@@ -54,7 +54,7 @@
         "selectAll": "Todos",
         "cleanButton": "Executar Limpeza",
         "rescanButton": "Atualizar",
-        "cleaningText": "Limpando arquivos selecionados...",
+        "cleaningText": "Limpando...",
         "doneTitle": "Limpeza concluída!",
         "doneDesc": "{size} de espaço em disco foram liberados.",
         "emptyText": "Nada para limpar",
@@ -123,6 +123,7 @@
         "downloadsInfo": "Clique em Analisar para ver os arquivos na pasta Downloads ordenados por tamanho.",
         "largestTitle": "20 maiores arquivos",
         "largestBtn": "Analisar",
-        "largestInfo": "Clique em Analisar para encontrar os 20 maiores arquivos na sua pasta pessoal."
+        "largestInfo": "Clique em Analisar para encontrar os 20 maiores arquivos na sua pasta pessoal.",
+        "freedLabel": "Liberado:"
     }
 }

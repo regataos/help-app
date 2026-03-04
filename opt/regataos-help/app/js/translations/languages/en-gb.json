@@ -54,7 +54,7 @@
         "selectAll": "All",
         "cleanButton": "Clean selected",
         "rescanButton": "Refresh",
-        "cleaningText": "Cleaning selected files...",
+        "cleaningText": "Cleaning...",
         "doneTitle": "Cleanup complete!",
         "doneDesc": "{size} of disk space has been freed.",
         "emptyText": "Nothing to clean",
@@ -123,6 +123,7 @@
         "downloadsInfo": "Click Analyze to see files in your Downloads folder sorted by size.",
         "largestTitle": "20 largest files",
         "largestBtn": "Analyze",
-        "largestInfo": "Click Analyze to find the 20 largest files in your home directory."
+        "largestInfo": "Click Analyze to find the 20 largest files in your home directory.",
+        "freedLabel": "Freed:"
     }
 }

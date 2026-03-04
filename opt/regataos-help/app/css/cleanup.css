@@ -230,6 +230,32 @@
 .icon-flatpak-cache { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' fill='none' stroke='%23005fb8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6' y='6' width='28' height='28' rx='3'/%3E%3Cline x1='6' y1='14' x2='34' y2='14'/%3E%3Cline x1='6' y1='26' x2='34' y2='26'/%3E%3Cline x1='14' y1='6' x2='14' y2='34'/%3E%3Cline x1='26' y1='6' x2='26' y2='34'/%3E%3C/svg%3E"); }
 
 /* =============================================
+   Clean progress (Model A)
+   ============================================= */
+.clean-progress-card { padding: 16px 18px; }
+.cp-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.cp-title { font-size: 15px; font-weight: 600; color: #222; }
+.cp-pct { font-size: 26px; font-weight: 700; color: #005fb8; }
+.cp-bar { height: 8px; background: #d5d7da; border-radius: 2em; overflow: hidden; margin-bottom: 14px; }
+.cp-bar-fill { height: 100%; background: linear-gradient(90deg, #005fb8, #3daee9); border-radius: 2em; transition: width 0.4s ease; }
+
+.cp-steps { display: flex; flex-direction: column; gap: 3px; }
+.cp-step { display: flex; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 5px; font-size: 13px; }
+.cp-step.done { color: #008a17; }
+.cp-step.active { background: #e3f0fd; color: #005fb8; font-weight: 600; }
+.cp-step.pending { color: #aaa; }
+.cp-step-icon { width: 18px; min-width: 18px; text-align: center; font-size: 13px; }
+.cp-step .cp-spin {
+    width: 14px; height: 14px; border: 2px solid #d5d7da; border-top: 2px solid #005fb8;
+    border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block;
+}
+.cp-step-name { flex: 1; }
+.cp-step-size { font-size: 12px; font-weight: 600; }
+.cp-step.done .cp-step-size { color: #008a17; }
+.cp-freed { text-align: center; margin-top: 12px; font-size: 13px; color: #666; }
+.cp-freed b { color: #008a17; font-size: 15px; }
+
+/* =============================================
    Dark Theme
    ============================================= */
 html.dark-theme .cleanup-header-icon { background-image: url("./../images/cleanup-dark.svg"); }
@@ -252,6 +278,16 @@ html.dark-theme .cleanup-item.checked .cleanup-item-checkbox { background-color:
 html.dark-theme .confirm-dialog { background-color: #2a2e32; } html.dark-theme .confirm-dialog h3 { color: #eff0f1; } html.dark-theme .confirm-dialog p { color: #aaa; }
 html.dark-theme .clean-done-box .h3 { color: #2ecc71; }
 html.dark-theme .clean-done-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%232ecc71' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='32' cy='32' r='28'/%3E%3Cpath d='M18 32 L28 42 L46 22'/%3E%3C/svg%3E"); }
+html.dark-theme .cp-title { color: #eff0f1; }
+html.dark-theme .cp-pct { color: #3daee9; }
+html.dark-theme .cp-bar { background: #444; }
+html.dark-theme .cp-bar-fill { background: linear-gradient(90deg, #3daee9, #5bc0f0); }
+html.dark-theme .cp-step.active { background: #1a2a3a; color: #3daee9; }
+html.dark-theme .cp-step.done { color: #2ecc71; }
+html.dark-theme .cp-step.pending { color: #555; }
+html.dark-theme .cp-step .cp-spin { border-color: #444; border-top-color: #3daee9; }
+html.dark-theme .cp-freed { color: #aaa; }
+html.dark-theme .cp-freed b { color: #2ecc71; }
 html.dark-theme .file-item { background-color: #1b1e20; } html.dark-theme .file-item-name { color: #eff0f1; } html.dark-theme .file-item-size { color: #3daee9; }
 html.dark-theme .layout-toggle { background: #444; } html.dark-theme .layout-toggle-btn.active { background: #2a2e32; }
 html.dark-theme .layout-toggle-btn svg line, html.dark-theme .layout-toggle-btn svg rect { stroke: #ccc; }
