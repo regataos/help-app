@@ -32,3 +32,8 @@ function runShellScript(script) {
         }
     });
 }
+
+// Disk Cleanup - open the cleanup panel page
+function openCleanupPanel() {
+    window.location.href = "cleanup.html";
+}

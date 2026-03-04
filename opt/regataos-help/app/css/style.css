@@ -98,12 +98,6 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
-/*
-.iframe::-webkit-scrollbar {
-    display: none;
-}
-*/
-
 .sidebar {
     display: block;
     position: fixed;
@@ -452,6 +446,7 @@ li {
 }
 
 .restore .option-icon,
+.cleanup .option-icon,
 .info .option-icon {
     background-size: 80%;
     margin-top: 5px;
@@ -603,6 +598,10 @@ html.dark-theme .repo-icone-off {
 
 html.dark-theme .restore-icone {
     background-image: url(./../images/restore-dark.png) !important;
+}
+
+html.dark-theme .cleanup-icone {
+    background-image: url(./../images/cleanup-dark.svg) !important;
 }
 
 html.dark-theme .info-icone {

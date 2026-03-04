@@ -29,10 +29,101 @@
             "text": "Restaure as configurações padrão do ambiente gráfico do Regata OS. Será necessário reiniciar.",
             "button": "Restaurar configurações"
         },
+        "cleanupOption": {
+            "title": "Limpeza de disco",
+            "text": "Verifique e remova arquivos desnecessários como cache, logs e arquivos temporários para liberar espaço em disco.",
+            "button": "Verificar limpeza"
+        },
         "infoOption": {
             "title": "Obter informações detalhadas sobre o hardware",
             "text": "Um arquivo de texto será criado na sua pasta pessoal com informações importantes sobre o hardware.",
             "button": "Informações do hardware"
         }
+    },
+    "cleanupPage": {
+        "pageTitle": "Limpeza de disco",
+        "pageDesc": "Analise seu sistema em busca de arquivos desnecessários e libere espaço em disco.",
+        "diskLabel": "Uso do disco",
+        "scanPromptText": "Clique no botão abaixo para verificar quais arquivos podem ser removidos com segurança.",
+        "scanButton": "Verificar agora",
+        "scanningText": "Analisando arquivos do sistema...",
+        "statTotalLabel": "Total liberável",
+        "statSelectedLabel": "Itens selecionados",
+        "statFoundLabel": "Itens encontrados",
+        "selectItemsLabel": "Selecione os itens para limpeza:",
+        "selectAll": "Todos",
+        "cleanButton": "Executar Limpeza",
+        "rescanButton": "Atualizar",
+        "cleaningText": "Limpando...",
+        "doneTitle": "Limpeza concluída!",
+        "doneDesc": "{size} de espaço em disco foram liberados.",
+        "emptyText": "Nada para limpar",
+        "confirmTitle": "Confirmar limpeza",
+        "confirmText": "Tem certeza que deseja excluir os itens selecionados?",
+        "confirmItemsLabel": "Itens:",
+        "confirmCancel": "Cancelar",
+        "confirmYes": "Sim, limpar",
+        "categories": {
+            "snaps": {
+                "title": "Snaps Desativados",
+                "short": "Snaps",
+                "desc": "Versões antigas desabilitadas de snaps"
+            },
+            "user-cache": {
+                "title": "Caches de Dev",
+                "short": "Caches Dev",
+                "desc": "Cache de aplicativos em ~/.cache"
+            },
+            "temp-files": {
+                "title": "Arquivos Temporários",
+                "short": "Temporários",
+                "desc": "Arquivos temporários em /tmp do seu usuário"
+            },
+            "thumbnails": {
+                "title": "Thumbnails",
+                "short": "Thumbnails",
+                "desc": "Miniaturas geradas pelo gerenciador de arquivos"
+            },
+            "package-cache": {
+                "title": "Cache Zypper",
+                "short": "Zypper",
+                "desc": "Pacotes baixados pelo gerenciador de pacotes"
+            },
+            "trash": {
+                "title": "Lixeira (KDE)",
+                "short": "Lixeira",
+                "desc": "Arquivos na lixeira do sistema"
+            },
+            "baloo": {
+                "title": "Baloo (Indexação KDE)",
+                "short": "Baloo",
+                "desc": "Índice de busca do KDE Plasma"
+            },
+            "browser-cache": {
+                "title": "Caches de Navegador",
+                "short": "Navegador",
+                "desc": "Cache do Firefox, Chrome, Brave e outros"
+            },
+            "journal-logs": {
+                "title": "Journal Logs",
+                "short": "Journal",
+                "desc": "Logs do systemd journal"
+            },
+            "flatpak-cache": {
+                "title": "Caches Flatpak",
+                "short": "Flatpak",
+                "desc": "Cache e runtimes não utilizados do Flatpak"
+            }
+        },
+        "tabCleanupLabel": "Limpeza",
+        "tabDownloadsLabel": "Downloads",
+        "tabLargestLabel": "Maiores arquivos",
+        "downloadsTitle": "Pasta de Downloads",
+        "downloadsBtn": "Analisar",
+        "downloadsInfo": "Clique em Analisar para ver os arquivos na pasta Downloads ordenados por tamanho.",
+        "largestTitle": "20 maiores arquivos",
+        "largestBtn": "Analisar",
+        "largestInfo": "Clique em Analisar para encontrar os 20 maiores arquivos na sua pasta pessoal.",
+        "freedLabel": "Liberado:"
     }
 }

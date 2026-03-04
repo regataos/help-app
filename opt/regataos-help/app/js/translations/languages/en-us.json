@@ -29,10 +29,101 @@
             "text": "Restore the default settings of the Regata OS graphical environment. Restart required.",
             "button": "Restore settings"
         },
+        "cleanupOption": {
+            "title": "Disk cleanup",
+            "text": "Scan and remove unnecessary files such as cache, logs and temporary files to free up disk space.",
+            "button": "Check cleanup"
+        },
         "infoOption": {
             "title": "Get detailed hardware information",
             "text": "A text file will be created in your personal folder with important information about the hardware.",
             "button": "Hardware information"
         }
+    },
+    "cleanupPage": {
+        "pageTitle": "Disk cleanup",
+        "pageDesc": "Scan your system for unnecessary files and free up disk space.",
+        "diskLabel": "Disk usage",
+        "scanPromptText": "Click the button below to scan your system for files that can be safely removed.",
+        "scanButton": "Scan now",
+        "scanningText": "Scanning system files...",
+        "statTotalLabel": "Total recoverable",
+        "statSelectedLabel": "Selected",
+        "statFoundLabel": "Items found",
+        "selectItemsLabel": "Select items to clean:",
+        "selectAll": "All",
+        "cleanButton": "Clean selected",
+        "rescanButton": "Refresh",
+        "cleaningText": "Cleaning...",
+        "doneTitle": "Cleanup complete!",
+        "doneDesc": "{size} of disk space has been freed.",
+        "emptyText": "Nothing to clean",
+        "confirmTitle": "Confirm cleanup",
+        "confirmText": "Are you sure you want to delete the selected items?",
+        "confirmItemsLabel": "Items:",
+        "confirmCancel": "Cancel",
+        "confirmYes": "Yes, clean",
+        "categories": {
+            "snaps": {
+                "title": "Disabled Snaps",
+                "short": "Snaps",
+                "desc": "Old disabled snap revisions"
+            },
+            "user-cache": {
+                "title": "Dev Caches",
+                "short": "Dev Caches",
+                "desc": "Application cache files in ~/.cache"
+            },
+            "temp-files": {
+                "title": "Temporary Files",
+                "short": "Temp Files",
+                "desc": "User temp files in /tmp"
+            },
+            "thumbnails": {
+                "title": "Thumbnails",
+                "short": "Thumbnails",
+                "desc": "Image thumbnails from file manager"
+            },
+            "package-cache": {
+                "title": "Zypper Cache",
+                "short": "Zypper",
+                "desc": "Downloaded packages from Zypper"
+            },
+            "trash": {
+                "title": "Trash (KDE)",
+                "short": "Trash",
+                "desc": "Files in your trash can"
+            },
+            "baloo": {
+                "title": "Baloo (KDE Index)",
+                "short": "Baloo",
+                "desc": "KDE Baloo search index"
+            },
+            "browser-cache": {
+                "title": "Browser Caches",
+                "short": "Browser",
+                "desc": "Firefox, Chrome, Brave caches"
+            },
+            "journal-logs": {
+                "title": "Journal Logs",
+                "short": "Journal",
+                "desc": "Systemd journal logs"
+            },
+            "flatpak-cache": {
+                "title": "Flatpak Caches",
+                "short": "Flatpak",
+                "desc": "Flatpak cache and unused runtimes"
+            }
+        },
+        "tabCleanupLabel": "Cleanup",
+        "tabDownloadsLabel": "Downloads",
+        "tabLargestLabel": "Largest files",
+        "downloadsTitle": "Downloads folder",
+        "downloadsBtn": "Analyze",
+        "downloadsInfo": "Click Analyze to see files in your Downloads folder sorted by size.",
+        "largestTitle": "20 largest files",
+        "largestBtn": "Analyze",
+        "largestInfo": "Click Analyze to find the 20 largest files in your home directory.",
+        "freedLabel": "Freed:"
     }
 }
