@@ -18,9 +18,15 @@ function applyTranslation() {
     document.querySelector(".restore-configs-desc").innerHTML = data.homePage.restoreOption.text;
     document.querySelector(".restore-botao").innerHTML = data.homePage.restoreOption.button;
 
-    document.querySelector(".cleanup-title").innerHTML = data.homePage.cleanupOption.title;
-    document.querySelector(".cleanup-desc").innerHTML = data.homePage.cleanupOption.text;
-    document.querySelector(".cleanup-botao").innerHTML = data.homePage.cleanupOption.button;
+    if (data.homePage.cleanupOption) {
+        var el;
+        el = document.querySelector(".cleanup-title");
+        if (el) el.innerHTML = data.homePage.cleanupOption.title;
+        el = document.querySelector(".cleanup-desc");
+        if (el) el.innerHTML = data.homePage.cleanupOption.text;
+        el = document.querySelector(".cleanup-botao");
+        if (el) el.innerHTML = data.homePage.cleanupOption.button;
+    }
 
     document.querySelector(".info-configs").innerHTML = data.homePage.infoOption.title;
     document.querySelector(".info-configs-desc").innerHTML = data.homePage.infoOption.text;

@@ -47,39 +47,82 @@
         "scanPromptText": "Clique no botão abaixo para verificar quais arquivos podem ser removidos com segurança.",
         "scanButton": "Verificar agora",
         "scanningText": "Analisando arquivos do sistema...",
-        "totalLabel": "Total recuperável:",
-        "selectAll": "Selecionar tudo",
-        "cleanButton": "Limpar selecionados",
-        "rescanButton": "Verificar novamente",
+        "statTotalLabel": "Total liberável",
+        "statSelectedLabel": "Itens selecionados",
+        "statFoundLabel": "Itens encontrados",
+        "selectItemsLabel": "Selecione os itens para limpeza:",
+        "selectAll": "Todos",
+        "cleanButton": "Executar Limpeza",
+        "rescanButton": "Atualizar",
         "cleaningText": "Limpando arquivos selecionados...",
         "doneTitle": "Limpeza concluída!",
         "doneDesc": "{size} de espaço em disco foram liberados.",
         "emptyText": "Nada para limpar",
+        "confirmTitle": "Confirmar limpeza",
+        "confirmText": "Tem certeza que deseja excluir os itens selecionados?",
+        "confirmItemsLabel": "Itens:",
+        "confirmCancel": "Cancelar",
+        "confirmYes": "Sim, limpar",
         "categories": {
-            "package-cache": {
-                "title": "Cache de pacotes",
-                "desc": "Pacotes baixados pelo gerenciador de pacotes."
-            },
-            "system-logs": {
-                "title": "Logs antigos do sistema",
-                "desc": "Arquivos de log rotacionados e comprimidos em /var/log."
-            },
-            "temp-files": {
-                "title": "Arquivos temporários",
-                "desc": "Arquivos temporários em /tmp e /var/tmp."
+            "snaps": {
+                "title": "Snaps Desativados",
+                "short": "Snaps",
+                "desc": "Versões antigas desabilitadas de snaps"
             },
             "user-cache": {
-                "title": "Cache do usuário",
-                "desc": "Arquivos de cache de aplicativos na sua pasta pessoal."
+                "title": "Caches de Dev",
+                "short": "Caches Dev",
+                "desc": "Cache de aplicativos em ~/.cache"
+            },
+            "temp-files": {
+                "title": "Arquivos Temporários",
+                "short": "Temporários",
+                "desc": "Arquivos temporários em /tmp do seu usuário"
             },
             "thumbnails": {
-                "title": "Cache de miniaturas",
-                "desc": "Miniaturas de imagens geradas pelo gerenciador de arquivos."
+                "title": "Thumbnails",
+                "short": "Thumbnails",
+                "desc": "Miniaturas geradas pelo gerenciador de arquivos"
+            },
+            "package-cache": {
+                "title": "Cache Zypper",
+                "short": "Zypper",
+                "desc": "Pacotes baixados pelo gerenciador de pacotes"
             },
             "trash": {
-                "title": "Lixeira",
-                "desc": "Arquivos na sua lixeira."
+                "title": "Lixeira (KDE)",
+                "short": "Lixeira",
+                "desc": "Arquivos na lixeira do sistema"
+            },
+            "baloo": {
+                "title": "Baloo (Indexação KDE)",
+                "short": "Baloo",
+                "desc": "Índice de busca do KDE Plasma"
+            },
+            "browser-cache": {
+                "title": "Caches de Navegador",
+                "short": "Navegador",
+                "desc": "Cache do Firefox, Chrome, Brave e outros"
+            },
+            "journal-logs": {
+                "title": "Journal Logs",
+                "short": "Journal",
+                "desc": "Logs do systemd journal"
+            },
+            "flatpak-cache": {
+                "title": "Caches Flatpak",
+                "short": "Flatpak",
+                "desc": "Cache e runtimes não utilizados do Flatpak"
             }
-        }
+        },
+        "tabCleanupLabel": "Limpeza",
+        "tabDownloadsLabel": "Downloads",
+        "tabLargestLabel": "Maiores arquivos",
+        "downloadsTitle": "Pasta de Downloads",
+        "downloadsBtn": "Analisar",
+        "downloadsInfo": "Clique em Analisar para ver os arquivos na pasta Downloads ordenados por tamanho.",
+        "largestTitle": "20 maiores arquivos",
+        "largestBtn": "Analisar",
+        "largestInfo": "Clique em Analisar para encontrar os 20 maiores arquivos na sua pasta pessoal."
     }
 }
