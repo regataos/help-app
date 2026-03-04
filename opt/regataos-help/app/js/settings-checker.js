@@ -32,6 +32,18 @@ function systemLang() {
             .replace(/_/g, '-')
             .trim();
     }
+
+    var envLang = process.env.LANG || process.env.LANGUAGE || "";
+    if (envLang) {
+        return envLang
+            .split(':')[0]
+            .replace(/\.utf-?8/gi, '')
+            .replace(/_/g, '-')
+            .toLowerCase()
+            .trim();
+    }
+
+    return "en-us";
 }
 
 const languageDetected = systemLang();
